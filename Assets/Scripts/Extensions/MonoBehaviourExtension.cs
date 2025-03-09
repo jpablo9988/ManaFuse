@@ -1,7 +1,7 @@
 using Unity.VisualScripting;
 using UnityEngine;
 
-public static class GameObjectExtensions
+public static class MonoBehaviourExtension
 {
     public static T GetComponentInScene<T>(this MonoBehaviour self, bool createObjectIfMissing) where T : MonoBehaviour
     {
