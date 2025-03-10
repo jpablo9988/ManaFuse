@@ -46,13 +46,28 @@ public class PlayerMovement : MonoBehaviour
 
     private void Move()
     {
-   
-        Vector3 movement = transform.right * moveInput.x + transform.forward * moveInput.y;
+        // Use world space movement instead of local space
+        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void Rotate()
     {
-
+        // Only rotate if there is input
+        if (moveInput.magnitude > 0.1f)
+        {
+            // Calculate the angle from input
+            float angle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
+            
+            // Round to nearest 45 degrees
+            float roundedAngle = Mathf.Round(angle / 45f) * 45f;
+            
+            // Create rotation with rounded angle on Y axis
+            // Add 90 degrees offset because forward is Z axis
+            Quaternion targetRotation = Quaternion.Euler(0f, roundedAngle - 90f, 0f);
+            
+            // Instantly set rotation instead of smooth rotation for grid-like movement
+            rb.MoveRotation(targetRotation);
+        }
     }
 }
