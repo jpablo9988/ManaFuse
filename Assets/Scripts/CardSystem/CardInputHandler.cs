@@ -5,7 +5,7 @@ namespace CardSystem
 {
     public class CardInputHandler : MonoBehaviour
     {
-        private PlayerInputMap _inputActions; 
+        private PlayerInputMap _inputActions;
         public CardManager cardManager;
         public GameObject player;
 

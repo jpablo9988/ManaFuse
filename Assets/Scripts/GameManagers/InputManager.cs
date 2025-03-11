@@ -12,15 +12,13 @@ public class InputManager : MonoBehaviour
     private bool _activateUIInputsOnEnable = true;
     private PlayerInputMap _genInputMap;
     private PlayerInputMap.PlayerActions _playerActions;
+    private PlayerInputMap.CardControlsActions _cardActions;
+    public PlayerInputMap.CardControlsActions CardActions => _cardActions;
     private EventSystem _uiEventSystem;
     /// <summary>
     /// Gets called everytime the Move Input is performed (every frame it's pressed) or the frame it is canceled.
     /// </summary>
     public static event Action<Vector2> OnMoveInteracted;
-    public bool WasAttackEastPressedThisFrame { get { return this._playerActions.Attack_East.WasPressedThisFrame(); } }
-    public bool WasAttackWestPressedThisFrame { get { return this._playerActions.Attack_West.WasPressedThisFrame(); } }
-    public bool WasAttackSouthPressedThisFrame { get { return this._playerActions.Attack_North.WasPressedThisFrame(); } }
-    public bool WasAttackNorthPressedThisFrame { get { return this._playerActions.Attack_South.WasPressedThisFrame(); } }
     public bool WasSprintPressedThisFrame { get { return this._playerActions.Sprint.WasPressedThisFrame(); } }
     public bool WasMovePressedThisFrame { get { return this._playerActions.Move.WasPressedThisFrame(); } }
     public bool WasEscapePressedThisFrame { get { return this._playerActions.Escape.WasPressedThisFrame(); } }
@@ -28,34 +26,6 @@ public class InputManager : MonoBehaviour
     /// <summary>
     /// References to InputActions for each action in the revolver chamber, movement and shift. 
     /// </summary>
-    public InputAction AttackEast
-    {
-        get
-        {
-            return _playerActions.Attack_East;
-        }
-    }
-    public InputAction AttackWest
-    {
-        get
-        {
-            return _playerActions.Attack_West;
-        }
-    }
-    public InputAction AttackSouth
-    {
-        get
-        {
-            return _playerActions.Attack_South;
-        }
-    }
-    public InputAction AttackNorth
-    {
-        get
-        {
-            return _playerActions.Attack_North;
-        }
-    }
     public InputAction Move
     {
         get

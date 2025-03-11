@@ -101,42 +101,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": true
                 },
                 {
-                    ""name"": ""Attack_West"",
-                    ""type"": ""Button"",
-                    ""id"": ""6c2ab1b8-8984-453a-af3d-a3c78ae1679a"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack_North"",
-                    ""type"": ""Button"",
-                    ""id"": ""852140f2-7766-474d-8707-702459ba45f3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack_East"",
-                    ""type"": ""Button"",
-                    ""id"": ""27c5f898-bc57-4ee1-8800-db469aca5fe3"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Attack_South"",
-                    ""type"": ""Button"",
-                    ""id"": ""f1ba0d36-48eb-4cd5-b651-1c94a6531f70"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
                     ""name"": ""Sprint"",
                     ""type"": ""Button"",
                     ""id"": ""641cd816-40e6-41b4-8c3d-04687c349290"",
@@ -153,24 +117,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""Confirm"",
-                    ""type"": ""Button"",
-                    ""id"": ""8c84fffc-4320-4b03-ac45-3c493a94057d"",
-                    ""expectedControlType"": """",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": false
-                },
-                {
-                    ""name"": ""RevolverActions"",
-                    ""type"": ""Value"",
-                    ""id"": ""ece412b7-4149-4da1-9398-e9a9f5a103cd"",
-                    ""expectedControlType"": ""Vector2"",
-                    ""processors"": """",
-                    ""interactions"": """",
-                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -253,28 +199,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ee3d0cd2-254e-47a7-a8cb-bc94d9658c54"",
-                    ""path"": ""<Gamepad>/buttonWest"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Joystick"",
-                    ""action"": ""Attack_West"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3c1c7f0-bd20-4ee7-a0f1-899b24bca6d7"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Attack_West"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""f2e9ba44-c423-42a7-ad56-f20975884794"",
                     ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
@@ -308,72 +232,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""eb40bb66-4559-4dfa-9a2f-820438abb426"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Attack_South"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""daba33a1-ad0c-4742-a909-43ad1cdfbeb6"",
-                    ""path"": ""<Gamepad>/buttonSouth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Attack_South"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""b3f66d0b-7751-423f-908b-a11c5bd95930"",
-                    ""path"": ""<Gamepad>/buttonNorth"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Attack_North"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c04ea5f-b012-41d1-a6f7-02e963b52893"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Attack_North"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""4f4649ac-64a8-4a73-af11-b3faef356a4d"",
-                    ""path"": ""<Gamepad>/buttonEast"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Gamepad"",
-                    ""action"": ""Attack_East"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""36e52cba-0905-478e-a818-f4bfcb9f3b9a"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard&Mouse"",
-                    ""action"": ""Attack_East"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""3b7dd00f-7fe0-4f0e-bb02-26336f3965bd"",
                     ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
@@ -391,83 +249,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
                     ""action"": ""Escape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""2D Vector"",
-                    ""id"": ""511aa6ab-79de-40d0-b515-f714822f2a22"",
-                    ""path"": ""2DVector"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RevolverActions"",
-                    ""isComposite"": true,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": ""up"",
-                    ""id"": ""29883d48-7887-4906-bd58-41da3fb715a5"",
-                    ""path"": ""<Keyboard>/w"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RevolverActions"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""down"",
-                    ""id"": ""a9f6baa0-6151-47ca-a8f7-052da50207be"",
-                    ""path"": ""<Keyboard>/s"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RevolverActions"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""left"",
-                    ""id"": ""3bca2ee8-83f8-4eb0-a9cb-0183c9392522"",
-                    ""path"": ""<Keyboard>/a"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RevolverActions"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": ""right"",
-                    ""id"": ""1633d982-f22f-47bf-93cc-624db9241fcf"",
-                    ""path"": ""<Keyboard>/d"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RevolverActions"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": true
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""1c5db2ba-156a-43c5-871e-cf018c436b8c"",
-                    ""path"": ""<Gamepad>/rightStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""RevolverActions"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""52c1dae2-1e3b-4198-9f25-fa6065d3febc"",
-                    ""path"": ""<Keyboard>/space"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Confirm"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -1206,14 +987,8 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         // Player
         m_Player = asset.FindActionMap("Player", throwIfNotFound: true);
         m_Player_Move = m_Player.FindAction("Move", throwIfNotFound: true);
-        m_Player_Attack_West = m_Player.FindAction("Attack_West", throwIfNotFound: true);
-        m_Player_Attack_North = m_Player.FindAction("Attack_North", throwIfNotFound: true);
-        m_Player_Attack_East = m_Player.FindAction("Attack_East", throwIfNotFound: true);
-        m_Player_Attack_South = m_Player.FindAction("Attack_South", throwIfNotFound: true);
         m_Player_Sprint = m_Player.FindAction("Sprint", throwIfNotFound: true);
         m_Player_Escape = m_Player.FindAction("Escape", throwIfNotFound: true);
-        m_Player_Confirm = m_Player.FindAction("Confirm", throwIfNotFound: true);
-        m_Player_RevolverActions = m_Player.FindAction("RevolverActions", throwIfNotFound: true);
         // UI
         m_UI = asset.FindActionMap("UI", throwIfNotFound: true);
         m_UI_Navigate = m_UI.FindAction("Navigate", throwIfNotFound: true);
@@ -1317,14 +1092,8 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
     private readonly InputActionMap m_Player;
     private List<IPlayerActions> m_PlayerActionsCallbackInterfaces = new List<IPlayerActions>();
     private readonly InputAction m_Player_Move;
-    private readonly InputAction m_Player_Attack_West;
-    private readonly InputAction m_Player_Attack_North;
-    private readonly InputAction m_Player_Attack_East;
-    private readonly InputAction m_Player_Attack_South;
     private readonly InputAction m_Player_Sprint;
     private readonly InputAction m_Player_Escape;
-    private readonly InputAction m_Player_Confirm;
-    private readonly InputAction m_Player_RevolverActions;
     /// <summary>
     /// Provides access to input actions defined in input action map "Player".
     /// </summary>
@@ -1341,22 +1110,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// </summary>
         public InputAction @Move => m_Wrapper.m_Player_Move;
         /// <summary>
-        /// Provides access to the underlying input action "Player/Attack_West".
-        /// </summary>
-        public InputAction @Attack_West => m_Wrapper.m_Player_Attack_West;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Attack_North".
-        /// </summary>
-        public InputAction @Attack_North => m_Wrapper.m_Player_Attack_North;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Attack_East".
-        /// </summary>
-        public InputAction @Attack_East => m_Wrapper.m_Player_Attack_East;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Attack_South".
-        /// </summary>
-        public InputAction @Attack_South => m_Wrapper.m_Player_Attack_South;
-        /// <summary>
         /// Provides access to the underlying input action "Player/Sprint".
         /// </summary>
         public InputAction @Sprint => m_Wrapper.m_Player_Sprint;
@@ -1364,14 +1117,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// Provides access to the underlying input action "Player/Escape".
         /// </summary>
         public InputAction @Escape => m_Wrapper.m_Player_Escape;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/Confirm".
-        /// </summary>
-        public InputAction @Confirm => m_Wrapper.m_Player_Confirm;
-        /// <summary>
-        /// Provides access to the underlying input action "Player/RevolverActions".
-        /// </summary>
-        public InputAction @RevolverActions => m_Wrapper.m_Player_RevolverActions;
         /// <summary>
         /// Provides access to the underlying input action map instance.
         /// </summary>
@@ -1401,30 +1146,12 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Move.started += instance.OnMove;
             @Move.performed += instance.OnMove;
             @Move.canceled += instance.OnMove;
-            @Attack_West.started += instance.OnAttack_West;
-            @Attack_West.performed += instance.OnAttack_West;
-            @Attack_West.canceled += instance.OnAttack_West;
-            @Attack_North.started += instance.OnAttack_North;
-            @Attack_North.performed += instance.OnAttack_North;
-            @Attack_North.canceled += instance.OnAttack_North;
-            @Attack_East.started += instance.OnAttack_East;
-            @Attack_East.performed += instance.OnAttack_East;
-            @Attack_East.canceled += instance.OnAttack_East;
-            @Attack_South.started += instance.OnAttack_South;
-            @Attack_South.performed += instance.OnAttack_South;
-            @Attack_South.canceled += instance.OnAttack_South;
             @Sprint.started += instance.OnSprint;
             @Sprint.performed += instance.OnSprint;
             @Sprint.canceled += instance.OnSprint;
             @Escape.started += instance.OnEscape;
             @Escape.performed += instance.OnEscape;
             @Escape.canceled += instance.OnEscape;
-            @Confirm.started += instance.OnConfirm;
-            @Confirm.performed += instance.OnConfirm;
-            @Confirm.canceled += instance.OnConfirm;
-            @RevolverActions.started += instance.OnRevolverActions;
-            @RevolverActions.performed += instance.OnRevolverActions;
-            @RevolverActions.canceled += instance.OnRevolverActions;
         }
 
         /// <summary>
@@ -1439,30 +1166,12 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             @Move.started -= instance.OnMove;
             @Move.performed -= instance.OnMove;
             @Move.canceled -= instance.OnMove;
-            @Attack_West.started -= instance.OnAttack_West;
-            @Attack_West.performed -= instance.OnAttack_West;
-            @Attack_West.canceled -= instance.OnAttack_West;
-            @Attack_North.started -= instance.OnAttack_North;
-            @Attack_North.performed -= instance.OnAttack_North;
-            @Attack_North.canceled -= instance.OnAttack_North;
-            @Attack_East.started -= instance.OnAttack_East;
-            @Attack_East.performed -= instance.OnAttack_East;
-            @Attack_East.canceled -= instance.OnAttack_East;
-            @Attack_South.started -= instance.OnAttack_South;
-            @Attack_South.performed -= instance.OnAttack_South;
-            @Attack_South.canceled -= instance.OnAttack_South;
             @Sprint.started -= instance.OnSprint;
             @Sprint.performed -= instance.OnSprint;
             @Sprint.canceled -= instance.OnSprint;
             @Escape.started -= instance.OnEscape;
             @Escape.performed -= instance.OnEscape;
             @Escape.canceled -= instance.OnEscape;
-            @Confirm.started -= instance.OnConfirm;
-            @Confirm.performed -= instance.OnConfirm;
-            @Confirm.canceled -= instance.OnConfirm;
-            @RevolverActions.started -= instance.OnRevolverActions;
-            @RevolverActions.performed -= instance.OnRevolverActions;
-            @RevolverActions.canceled -= instance.OnRevolverActions;
         }
 
         /// <summary>
@@ -1922,34 +1631,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnMove(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Attack_West" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack_West(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Attack_North" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack_North(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Attack_East" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack_East(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Attack_South" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnAttack_South(InputAction.CallbackContext context);
-        /// <summary>
         /// Method invoked when associated input action "Sprint" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
@@ -1963,20 +1644,6 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
         void OnEscape(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "Confirm" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnConfirm(InputAction.CallbackContext context);
-        /// <summary>
-        /// Method invoked when associated input action "RevolverActions" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
-        /// </summary>
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
-        /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnRevolverActions(InputAction.CallbackContext context);
     }
     /// <summary>
     /// Interface to implement callback methods for all input action callbacks associated with input actions defined by "UI" which allows adding and removing callbacks.
