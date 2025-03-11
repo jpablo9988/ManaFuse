@@ -11,11 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
 
-    [Header("Shooting")]
-    [SerializeField] private GameObject projectilePrefab;
-    [SerializeField] private Transform shootPoint;
-    [SerializeField] private float shootCooldown = 0.5f;
-    private float _lastShootTime;
 
     private Vector2 _moveInput;
     private Rigidbody _rb;
@@ -39,16 +34,6 @@ public class PlayerMovement : MonoBehaviour
         _moveInput = input;
     }
 
-    private void HandleShooting()
-    {
-        if (Time.time - _lastShootTime < shootCooldown) return;
-        
-        if (projectilePrefab != null && shootPoint != null)
-        {
-            Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
-            _lastShootTime = Time.time;
-        }
-    }
 
     private void FixedUpdate()
     {
