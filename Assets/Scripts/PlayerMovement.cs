@@ -11,6 +11,7 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
 
+
     private Vector2 _moveInput;
     private Rigidbody _rb;
 
@@ -32,6 +33,7 @@ public class PlayerMovement : MonoBehaviour
     {
         _moveInput = input;
     }
+
 
     private void FixedUpdate()
     {

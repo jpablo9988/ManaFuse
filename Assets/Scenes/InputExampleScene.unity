@@ -548,6 +548,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _inputManager: {fileID: 0}
+  _attackManager: {fileID: 0}
   _createManagersIfMissing: 1
 --- !u!4 &486056030
 Transform:
