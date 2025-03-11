@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using CardSystem;
 using UnityEngine;
 
 public class RevolverManagerUI : MonoBehaviour
@@ -19,14 +20,14 @@ public class RevolverManagerUI : MonoBehaviour
         }
     }
 
-    public void ReloadBullet(BulletDirection direction, BulletAction action)
+    public void LoadCard(BulletDirection direction, Card action)
     {
         BulletManagerUI bullet = _bullets.Where(bullet => bullet.Direction == direction).
         FirstOrDefault();
         bullet.gameObject.SetActive(true);
         bullet.ActivateBullet(action);
     }
-    public void RemoveBullet(BulletDirection direction)
+    public void DiscardCard(BulletDirection direction)
     {
         BulletManagerUI bullet = _bullets.Where(bullet => bullet.Direction == direction).
         FirstOrDefault();

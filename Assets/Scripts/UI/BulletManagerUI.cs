@@ -1,4 +1,5 @@
 
+using CardSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,12 +19,12 @@ public class BulletManagerUI : MonoBehaviour
         _energyNodesPool = GetComponentInChildren<Pool>(true);
         _imageRT = GetComponent<RectTransform>();
     }
-    public void ActivateBullet(BulletAction bulletToSet)
+    public void ActivateBullet(Card cardToSet)
     {
         _bulletImage.enabled = true;
-        _bulletImage.sprite = bulletToSet.BulletSprite;
+        _bulletImage.sprite = cardToSet.cardIcon;
         _bulletImage.SetNativeSize();
-        SetEnergyNodes(bulletToSet.ManaCost);
+        SetEnergyNodes(cardToSet.cardCost);
     }
     public void ActivateBullet(int ManaCost, Sprite bulletSprite)
     {

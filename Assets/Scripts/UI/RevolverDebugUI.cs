@@ -1,3 +1,4 @@
+using CardSystem;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,13 +9,13 @@ public class RevolverDebugUI : MonoBehaviour
     [SerializeField]
     private RevolverManagerUI revUI;
     [SerializeField]
-    private BulletAction bulletTest;
+    private Card cardTest;
     void OnEnable()
     {
-        addSouth.onClick.AddListener(delegate { revUI.ReloadBullet(BulletDirection.SOUTH, bulletTest); });
-        addNorth.onClick.AddListener(delegate { revUI.ReloadBullet(BulletDirection.NORTH, bulletTest); });
-        removeSouth.onClick.AddListener(delegate { revUI.RemoveBullet(BulletDirection.SOUTH); });
-        removeNorth.onClick.AddListener(delegate { revUI.RemoveBullet(BulletDirection.NORTH); });
+        addSouth.onClick.AddListener(delegate { revUI.LoadCard(BulletDirection.SOUTH, cardTest); });
+        addNorth.onClick.AddListener(delegate { revUI.LoadCard(BulletDirection.NORTH, cardTest); });
+        removeSouth.onClick.AddListener(delegate { revUI.DiscardCard(BulletDirection.SOUTH); });
+        removeNorth.onClick.AddListener(delegate { revUI.DiscardCard(BulletDirection.NORTH); });
     }
     void OnDisable()
     {

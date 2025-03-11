@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: Attack3
   m_EditorClassIdentifier: 
   cardName: Attack3
-  cardIcon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
+  cardIcon: {fileID: 21300000, guid: 18b31f27b0fb53b4f8f8c60a8894be0b, type: 3}
   cardType: 0
+  cardCost: 5
