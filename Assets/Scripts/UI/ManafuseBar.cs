@@ -35,7 +35,12 @@ public class ManafuseBar : MonoBehaviour
     {
         for (int i = 0; i < unitDividers; i++)
         {
-            dividerPool.GetInactiveObject().SetActive(true);
+            GameObject divider = dividerPool.GetInactiveObject();
+            divider.SetActive(true);
+            if (i == unitDividers - 1)
+            {
+                divider.GetComponent<Image>().enabled = false;
+            }
         }
     }
 

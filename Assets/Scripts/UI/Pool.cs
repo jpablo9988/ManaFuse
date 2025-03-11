@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 
 public class Pool : MonoBehaviour
@@ -18,5 +19,12 @@ public class Pool : MonoBehaviour
     public GameObject GetInactiveObject()
     {
         return pooledObjects.Where(pooledObject => pooledObject.activeInHierarchy == false).FirstOrDefault();
+    }
+    public void SetAllObjectsInactive()
+    {
+        foreach (GameObject obj in pooledObjects)
+        {
+            if (obj.activeSelf) obj.SetActive(false);
+        }
     }
 }
