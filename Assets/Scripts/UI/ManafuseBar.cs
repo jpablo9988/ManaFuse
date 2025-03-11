@@ -9,6 +9,8 @@ public class ManafuseBar : MonoBehaviour
     [Tooltip("How much will it take for the red mana to drain per one unit. ")]
     [SerializeField]
     private float redManaDrainTime = 0.5f;
+    [SerializeField]
+    private float maxTicks = 100f;
     [Header("Dependencies")]
     [SerializeField]
     private Slider greenSlider;
@@ -22,7 +24,10 @@ public class ManafuseBar : MonoBehaviour
     void Start()
     {
         ActivateDividers();
+        greenSlider.maxValue = maxTicks;
         redSlider.maxValue = MaxSliderValue;
+        greenSlider.value = MaxSliderValue;
+        redSlider.value = MaxSliderValue;
     }
     void Update()
     {

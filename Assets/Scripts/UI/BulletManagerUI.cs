@@ -6,29 +6,30 @@ using UnityEngine.UI;
 public class BulletManagerUI : MonoBehaviour
 {
 
+    [SerializeField]
+    private BulletDirection _direction;
+    [SerializeField]
     private Image _bulletImage;
     private Pool _energyNodesPool;
     private RectTransform _imageRT;
+    public BulletDirection Direction => _direction;
     void Awake()
     {
-        _bulletImage = GetComponentInChildren<Image>(true);
         _energyNodesPool = GetComponentInChildren<Pool>(true);
         _imageRT = GetComponent<RectTransform>();
-    }
-    void Start()
-    {
-        SetEnergyNodes(3);
     }
     public void ActivateBullet(BulletAction bulletToSet)
     {
         _bulletImage.enabled = true;
         _bulletImage.sprite = bulletToSet.BulletSprite;
+        _bulletImage.SetNativeSize();
         SetEnergyNodes(bulletToSet.ManaCost);
     }
     public void ActivateBullet(int ManaCost, Sprite bulletSprite)
     {
         _bulletImage.enabled = true;
         _bulletImage.sprite = bulletSprite;
+        _bulletImage.SetNativeSize();
         SetEnergyNodes(ManaCost);
     }
     public void DisableBullet()
