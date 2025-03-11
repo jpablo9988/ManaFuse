@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31458f0df4b6b019bb6343d20b7fcede, type: 3}
   m_Name: Attack2
   m_EditorClassIdentifier: 
-  cardName: Attack
+  cardName: Attack2
   cardIcon: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}
   cardType: 0

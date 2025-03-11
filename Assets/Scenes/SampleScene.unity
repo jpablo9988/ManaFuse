@@ -633,7 +633,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9a9c50a359fc2c44c84f460567045000, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _inputManager: {fileID: 0}
+  _inputManager: {fileID: 1082970951}
   _createManagersIfMissing: 1
 --- !u!4 &486056030
 Transform:
@@ -865,6 +865,8 @@ GameObject:
   - component: {fileID: 1222862857}
   - component: {fileID: 1222862859}
   - component: {fileID: 1222862858}
+  - component: {fileID: 1222862861}
+  - component: {fileID: 1222862860}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -930,6 +932,43 @@ MonoBehaviour:
   moveSpeed: 10
   rotateRigidbody: 0
   targetTransformRotation: {fileID: 1328465366}
+--- !u!114 &1222862860
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222862856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae9b0d1b30ed100ffb58bf6d046efe3e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerDeck:
+  - {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  - {fileID: 11400000, guid: bbe54e931e49c430d8ba3838217ffeaa, type: 2}
+  - {fileID: 11400000, guid: 00c77f4e436ecb419bc804e95213176e, type: 2}
+  - {fileID: 11400000, guid: 5f3560562cb4a3040a4cb13978e70426, type: 2}
+  - {fileID: 11400000, guid: 6570551dfa7dd094085b075bb7dad6c0, type: 2}
+  cardSlots:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+--- !u!114 &1222862861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1222862856}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9b7f4b062e2af945f896aad8e8a640e8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardManager: {fileID: 1222862860}
+  player: {fileID: 1222862856}
 --- !u!1 &1328465365
 GameObject:
   m_ObjectHideFlags: 0
