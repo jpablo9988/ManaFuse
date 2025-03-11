@@ -12,7 +12,8 @@ public class GameContext : Singleton<GameContext>
         {
             if (_inputManager == null)
             {
-                return this.GetComponentInScene<InputManager>(_createManagersIfMissing);
+                this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
+                _inputManager.enabled = true;
             }
             return _inputManager;
         }
@@ -20,7 +21,7 @@ public class GameContext : Singleton<GameContext>
     override protected void Awake()
     {
         base.Awake();
-        if (_inputManager == null) _inputManager = this.GetComponentInScene<InputManager>(_createManagersIfMissing);
+        if (_inputManager == null) _inputManager = this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
     }
 
 }

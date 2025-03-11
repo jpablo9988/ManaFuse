@@ -81,8 +81,17 @@ public class InputManager : MonoBehaviour
     {
         _genInputMap = new PlayerInputMap();
         _playerActions = _genInputMap.Player;
-        _uiEventSystem = this.GetComponentInScene<EventSystem>(false);
+        this.GetComponentInScene<EventSystem>(false, out _uiEventSystem);
+        if (_uiEventSystem != null)
+        {
+            if (!_uiEventSystem.isActiveAndEnabled)
+            {
+                _uiEventSystem.enabled = true;
+            }
+        }
     }
+
+
     void OnEnable()
     {
         _playerActions.Move.performed += DetectedMovement;

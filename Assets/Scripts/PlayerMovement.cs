@@ -11,7 +11,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
 
-    private InputAction moveAction;
     private Vector2 moveInput;
     private Rigidbody rb;
 
@@ -19,27 +18,19 @@ public class PlayerMovement : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
     }
-
-    private void Start()
+    private void OnEnable()
     {
-        // Get reference to the Move action
-        moveAction = InputSystem.actions.FindAction("Move");
-
-        // Enable the action
-        moveAction.Enable();
+        InputManager.OnMoveInteracted += ReadMovementInput;
     }
 
-    private void OnDestroy()
+    private void OnDisable()
     {
-        // Clean up by disabling the action when the object is destroyed
-        if (moveAction != null)
-            moveAction.Disable();
+        InputManager.OnMoveInteracted -= ReadMovementInput;
     }
 
-    private void Update()
+    private void ReadMovementInput(Vector2 input)
     {
-        // Read the movement input value
-        moveInput = moveAction.ReadValue<Vector2>();
+        moveInput = input;
     }
 
     private void FixedUpdate()
