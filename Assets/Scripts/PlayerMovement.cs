@@ -6,70 +6,131 @@ public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
     [SerializeField] private float moveSpeed = 5f;
-    [Tooltip("Will it rotate its own rigidbody or a targeted transform?")]
-    [SerializeField] private bool rotateRigidbody = false;
+    [SerializeField] private float rotationSpeed = 720f;
+
+    [Header("Sprint Settings")]
+    [SerializeField] private float sprintDistance = 3f;
+    [SerializeField] private float sprintDuration = 0.2f;
+    [SerializeField] private float sprintCooldown = 1f;
+    [SerializeField] private AnimationCurve sprintCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
+
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
 
+    private InputAction moveAction;
+    private InputAction sprintAction;
+    private Vector2 moveInput;
+    private Rigidbody rb;
 
-    private Vector2 _moveInput;
-    private Rigidbody _rb;
+    private bool isSprinting;
+    private float sprintTimer;
+    private float sprintCooldownTimer;
+    private Vector3 sprintStartPosition;
+    private Vector3 sprintTargetPosition;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
-    }
-    private void OnEnable()
-    {
-        InputManager.OnMoveInteracted += ReadMovementInput;
+        rb = GetComponent<Rigidbody>();
     }
 
-    private void OnDisable()
+    private void Start()
     {
-        InputManager.OnMoveInteracted -= ReadMovementInput;
+        moveAction = InputSystem.actions.FindAction("Move");
+        sprintAction = InputSystem.actions.FindAction("Sprint");
+        
+        moveAction.Enable();
+        sprintAction.Enable();
     }
 
-    private void ReadMovementInput(Vector2 input)
+    private void OnDestroy()
     {
-        _moveInput = input;
+        if (moveAction != null) moveAction.Disable();
+        if (sprintAction != null) sprintAction.Disable();
     }
 
+    private void Update()
+    {
+        moveInput = moveAction.ReadValue<Vector2>();
+
+        if (sprintAction.triggered && !isSprinting && sprintCooldownTimer <= 0)
+        {
+            InitiateSprint();
+        }
+
+        if (isSprinting)
+        {
+            UpdateSprint();
+        }
+        else
+        {
+            if (sprintCooldownTimer > 0)
+                sprintCooldownTimer -= Time.deltaTime;
+        }
+    }
 
     private void FixedUpdate()
     {
-        Move();
-        Rotate();
+        if (!isSprinting)
+        {
+            Move();
+            Rotate();
+        }
     }
 
     private void Move()
     {
-        // Use world space movement instead of local space
-        Vector3 movement = new(_moveInput.x, 0f, _moveInput.y);
-        _rb.MovePosition(_rb.position + moveSpeed * Time.fixedDeltaTime * movement);
+        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
+        rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
     private void Rotate()
     {
-        // Only rotate if there is input
-        if (!(_moveInput.magnitude > 0.1f)) return;
-        // Calculate the angle from input
-        var angle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg;
-
-        // Round to nearest 45 degrees
-        var roundedAngle = Mathf.Round(angle / 45f) * 45f;
-
-        // Create rotation with rounded angle on Y axis
-        // Add 90 degrees offset because forward is Z axis
-        var targetRotation = Quaternion.Euler(0f, roundedAngle - 90f, 0f);
-
-        // Instantly set rotation instead of smooth rotation for grid-like movement
-        if (rotateRigidbody || !targetTransformRotation)
+        if (moveInput.magnitude > 0.1f)
         {
-            _rb.MoveRotation(targetRotation);
+            float angle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
+            float roundedAngle = Mathf.Round(angle / 45f) * 45f;
+            Quaternion targetRotation = Quaternion.Euler(0f, roundedAngle - 90f, 0f);
+            rb.MoveRotation(targetRotation);
+        }
+    }
+
+    private void InitiateSprint()
+    {
+        // Only sprint if there's movement input
+        if (moveInput.magnitude < 0.1f) return;
+
+        isSprinting = true;
+        sprintTimer = 0f;
+        sprintStartPosition = transform.position;
+        
+        // Use movement input direction instead of transform.forward
+        Vector3 sprintDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
+        sprintTargetPosition = sprintStartPosition + sprintDirection * sprintDistance;
+
+        // Raycast to prevent sprinting through walls
+        if (Physics.Raycast(sprintStartPosition, sprintDirection, out RaycastHit hit, sprintDistance))
+        {
+            sprintTargetPosition = hit.point - (sprintDirection * 0.5f);
+        }
+    }
+
+    private void UpdateSprint()
+    {
+        sprintTimer += Time.deltaTime;
+        float normalizedTime = sprintTimer / sprintDuration;
+
+        if (normalizedTime >= 1f)
+        {
+            // End sprint
+            isSprinting = false;
+            sprintCooldownTimer = sprintCooldown;
+            rb.position = sprintTargetPosition;
         }
         else
         {
-            targetTransformRotation.rotation = targetRotation;
+            // Interpolate position using the sprint curve
+            float curveValue = sprintCurve.Evaluate(normalizedTime);
+            rb.position = Vector3.Lerp(sprintStartPosition, sprintTargetPosition, curveValue);
         }
     }
 }
