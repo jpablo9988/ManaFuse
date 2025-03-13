@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -10,14 +9,17 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private bool rotateRigidbody = false;
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
+    [SerializeField] private CharacterAnimationManager _charAnimations;
+    [SerializeField] private Rigidbody _rigidbody;
 
 
     private Vector2 _moveInput;
-    private Rigidbody _rb;
+
+    private float roundedAngle = 0.0f;
 
     private void Awake()
     {
-        _rb = GetComponent<Rigidbody>();
+        if (_rigidbody == null) _rigidbody = GetComponent<Rigidbody>();
     }
     private void OnEnable()
     {
@@ -32,9 +34,14 @@ public class PlayerMovement : MonoBehaviour
     private void ReadMovementInput(Vector2 input)
     {
         _moveInput = input;
+
     }
+    void Update()
+    {
+        _charAnimations.SetAnimationParameters(_moveInput.magnitude, roundedAngle);
+        //this.transform.position = this._rigidbody.transform.position;
 
-
+    }
     private void FixedUpdate()
     {
         Move();
@@ -45,7 +52,7 @@ public class PlayerMovement : MonoBehaviour
     {
         // Use world space movement instead of local space
         Vector3 movement = new(_moveInput.x, 0f, _moveInput.y);
-        _rb.MovePosition(_rb.position + moveSpeed * Time.fixedDeltaTime * movement);
+        _rigidbody.MovePosition(_rigidbody.position + moveSpeed * Time.fixedDeltaTime * movement);
     }
 
     private void Rotate()
@@ -56,8 +63,8 @@ public class PlayerMovement : MonoBehaviour
         var angle = Mathf.Atan2(_moveInput.x, _moveInput.y) * Mathf.Rad2Deg;
 
         // Round to nearest 45 degrees
-        var roundedAngle = Mathf.Round(angle / 45f) * 45f;
-
+        roundedAngle = Mathf.Round(angle / 45f) * 45f;
+        Debug.Log(roundedAngle);
         // Create rotation with rounded angle on Y axis
         // Add 90 degrees offset because forward is Z axis
         var targetRotation = Quaternion.Euler(0f, roundedAngle - 90f, 0f);
@@ -65,7 +72,7 @@ public class PlayerMovement : MonoBehaviour
         // Instantly set rotation instead of smooth rotation for grid-like movement
         if (rotateRigidbody || !targetTransformRotation)
         {
-            _rb.MoveRotation(targetRotation);
+            _rigidbody.MoveRotation(targetRotation);
         }
         else
         {

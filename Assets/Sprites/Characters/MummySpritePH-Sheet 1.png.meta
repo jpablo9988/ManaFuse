@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 1f7aaeeb2be72184abbd2977d02c14da
+guid: 2947505d7dd2ecf4d803bfe229ba6650
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -110,177 +110,177 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_0
+      name: MummySpritePH-Sheet 1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 160
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 7080cb3d0cf1ec34099ef9cdcd91c32c
-      internalID: -634388385
+      spriteID: 305a500ed8845544faf7dff15fa10668
+      internalID: 1572655452
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_1
+      name: MummySpritePH-Sheet 1_1
       rect:
         serializedVersion: 2
         x: 80
         y: 160
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6f4549ff4ac258044bf196d4bd7f378b
-      internalID: -339475787
+      spriteID: 248cd5cbf4230be41b52e4c1f480cfde
+      internalID: -1429164305
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_2
+      name: MummySpritePH-Sheet 1_2
       rect:
         serializedVersion: 2
         x: 160
         y: 160
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 235587e291a879a4a9a4893ed30b474f
-      internalID: 490455604
+      spriteID: 4ccc21adfdcdc264d9aa97b254ac00cc
+      internalID: -1871420721
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_3
+      name: MummySpritePH-Sheet 1_3
       rect:
         serializedVersion: 2
         x: 0
         y: 80
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 363dda86e3a01a44e92e393d5ff40580
-      internalID: -587389110
+      spriteID: d585cae87759b7f4fae371c069ae4485
+      internalID: -1380751469
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_4
+      name: MummySpritePH-Sheet 1_4
       rect:
         serializedVersion: 2
         x: 80
         y: 80
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c94fbae2c50dff4aae871f9fb4573e3
-      internalID: -631629631
+      spriteID: 786559c2a5202924aa377db34d90789e
+      internalID: -759486289
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_5
+      name: MummySpritePH-Sheet 1_5
       rect:
         serializedVersion: 2
         x: 160
         y: 80
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d4ccc5f554b4bc443b8843be7e0ee0f7
-      internalID: 2131501348
+      spriteID: 450ba14a512d8b54e88d2e5e5623e813
+      internalID: 1532111890
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_6
+      name: MummySpritePH-Sheet 1_6
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 9951171fa92338f4da769737ca23f4cd
-      internalID: 654041034
+      spriteID: 87ea1d469f9cb8b44a7f0f49c253014a
+      internalID: 672676377
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: MummySpritePH-Sheet_7
+      name: MummySpritePH-Sheet 1_7
       rect:
         serializedVersion: 2
         x: 80
         y: 0
         width: 80
         height: 80
-      alignment: 9
-      pivot: {x: 0.5, y: 0.35}
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       customData: 
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 205bdd6d33392ee439615436723d504a
-      internalID: -2010311063
+      spriteID: 18354372640ff704dbe5831f1c24598c
+      internalID: -1109848437
       vertices: []
       indices: 
       edges: []
@@ -289,7 +289,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: 421c84a713d8bc34089ef31d5b0c0727
+    spriteID: b8443b32de51a5746a6197e9aade3e28
     internalID: 0
     vertices: []
     indices: 
@@ -299,14 +299,14 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      MummySpritePH-Sheet_0: -634388385
-      MummySpritePH-Sheet_1: -339475787
-      MummySpritePH-Sheet_2: 490455604
-      MummySpritePH-Sheet_3: -587389110
-      MummySpritePH-Sheet_4: -631629631
-      MummySpritePH-Sheet_5: 2131501348
-      MummySpritePH-Sheet_6: 654041034
-      MummySpritePH-Sheet_7: -2010311063
+      MummySpritePH-Sheet 1_0: 1572655452
+      MummySpritePH-Sheet 1_1: -1429164305
+      MummySpritePH-Sheet 1_2: -1871420721
+      MummySpritePH-Sheet 1_3: -1380751469
+      MummySpritePH-Sheet 1_4: -759486289
+      MummySpritePH-Sheet 1_5: 1532111890
+      MummySpritePH-Sheet 1_6: 672676377
+      MummySpritePH-Sheet 1_7: -1109848437
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

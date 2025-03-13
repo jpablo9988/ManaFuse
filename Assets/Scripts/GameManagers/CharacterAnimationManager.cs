@@ -1,0 +1,20 @@
+using UnityEngine;
+
+[RequireComponent(typeof(Animator))]
+public class CharacterAnimationManager : MonoBehaviour
+{
+    private Animator _animManager;
+    [SerializeField]
+    private string SpeedParameterName = "Speed";
+    [SerializeField]
+    private string AngleParameterName = "Angle";
+    void Awake()
+    {
+        _animManager = GetComponent<Animator>();
+    }
+    public void SetAnimationParameters(float speed, float directionAngle)
+    {
+        _animManager.SetFloat(AngleParameterName, directionAngle);
+        _animManager.SetFloat(SpeedParameterName, speed);
+    }
+}
