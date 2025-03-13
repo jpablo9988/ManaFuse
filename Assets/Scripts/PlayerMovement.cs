@@ -1,7 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-[RequireComponent(typeof(Rigidbody))]
 public class PlayerMovement : MonoBehaviour
 {
     [Header("Movement Settings")]
@@ -16,12 +15,15 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
+    [SerializeField] private CharacterAnimationManager _charAnimations;
+    [SerializeField] private Rigidbody _rigidbody;
 
     private InputAction moveAction;
     private InputAction sprintAction;
     private Vector2 moveInput;
     private Rigidbody rb;
-
+    private Vector2 _moveInput;
+    private float roundedAngle = 0.0f;
     private bool isSprinting;
     private float sprintTimer;
     private float sprintCooldownTimer;
@@ -48,8 +50,11 @@ public class PlayerMovement : MonoBehaviour
         if (sprintAction != null) sprintAction.Disable();
     }
 
-    private void Update()
+
+    void Update()
     {
+        _charAnimations.SetAnimationParameters(_moveInput.magnitude, roundedAngle);
+        //this.transform.position = this._rigidbody.transform.position;
         moveInput = moveAction.ReadValue<Vector2>();
 
         if (sprintAction.triggered && !isSprinting && sprintCooldownTimer <= 0)
@@ -67,7 +72,6 @@ public class PlayerMovement : MonoBehaviour
                 sprintCooldownTimer -= Time.deltaTime;
         }
     }
-
     private void FixedUpdate()
     {
         if (!isSprinting)
@@ -88,7 +92,7 @@ public class PlayerMovement : MonoBehaviour
         if (moveInput.magnitude > 0.1f)
         {
             float angle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
-            float roundedAngle = Mathf.Round(angle / 45f) * 45f;
+            roundedAngle = Mathf.Round(angle / 45f) * 45f;
             Quaternion targetRotation = Quaternion.Euler(0f, roundedAngle - 90f, 0f);
             rb.MoveRotation(targetRotation);
         }
@@ -106,7 +110,6 @@ public class PlayerMovement : MonoBehaviour
         // Use movement input direction instead of transform.forward
         Vector3 sprintDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
         sprintTargetPosition = sprintStartPosition + sprintDirection * sprintDistance;
-
         // Raycast to prevent sprinting through walls
         if (Physics.Raycast(sprintStartPosition, sprintDirection, out RaycastHit hit, sprintDistance))
         {
@@ -118,7 +121,6 @@ public class PlayerMovement : MonoBehaviour
     {
         sprintTimer += Time.deltaTime;
         float normalizedTime = sprintTimer / sprintDuration;
-
         if (normalizedTime >= 1f)
         {
             // End sprint
