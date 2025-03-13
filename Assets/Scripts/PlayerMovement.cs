@@ -16,7 +16,6 @@ public class PlayerMovement : MonoBehaviour
     [Header("Dependencies")]
     [SerializeField] private Transform targetTransformRotation;
     [SerializeField] private CharacterAnimationManager _charAnimations;
-    [SerializeField] private Rigidbody _rigidbody;
 
     private InputAction moveAction;
     private InputAction sprintAction;
@@ -39,7 +38,7 @@ public class PlayerMovement : MonoBehaviour
     {
         moveAction = InputSystem.actions.FindAction("Move");
         sprintAction = InputSystem.actions.FindAction("Sprint");
-        
+
         moveAction.Enable();
         sprintAction.Enable();
     }
@@ -53,7 +52,6 @@ public class PlayerMovement : MonoBehaviour
 
     void Update()
     {
-        _charAnimations.SetAnimationParameters(_moveInput.magnitude, roundedAngle);
         //this.transform.position = this._rigidbody.transform.position;
         moveInput = moveAction.ReadValue<Vector2>();
 
@@ -68,22 +66,24 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
+            Rotate();
             if (sprintCooldownTimer > 0)
                 sprintCooldownTimer -= Time.deltaTime;
         }
+        _charAnimations.SetAnimationParameters(_moveInput.magnitude, roundedAngle);
+
     }
     private void FixedUpdate()
     {
         if (!isSprinting)
         {
             Move();
-            Rotate();
         }
     }
 
     private void Move()
     {
-        Vector3 movement = new Vector3(moveInput.x, 0f, moveInput.y);
+        Vector3 movement = new(moveInput.x, 0f, moveInput.y);
         rb.MovePosition(rb.position + movement * moveSpeed * Time.fixedDeltaTime);
     }
 
@@ -94,7 +94,7 @@ public class PlayerMovement : MonoBehaviour
             float angle = Mathf.Atan2(moveInput.x, moveInput.y) * Mathf.Rad2Deg;
             roundedAngle = Mathf.Round(angle / 45f) * 45f;
             Quaternion targetRotation = Quaternion.Euler(0f, roundedAngle - 90f, 0f);
-            rb.MoveRotation(targetRotation);
+            targetTransformRotation.rotation = targetRotation;
         }
     }
 
@@ -106,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         isSprinting = true;
         sprintTimer = 0f;
         sprintStartPosition = transform.position;
-        
+
         // Use movement input direction instead of transform.forward
         Vector3 sprintDirection = new Vector3(moveInput.x, 0f, moveInput.y).normalized;
         sprintTargetPosition = sprintStartPosition + sprintDirection * sprintDistance;
