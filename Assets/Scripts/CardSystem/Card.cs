@@ -1,4 +1,8 @@
+using UnityEditor.Rendering;
 using UnityEngine;
+#if UNITY_EDITOR
+using UnityEditor;
+#endif
 
 namespace CardSystem
 {
@@ -7,25 +11,78 @@ namespace CardSystem
     {
         public string cardName;
         public Sprite cardIcon;
-        public CardType cardType; //Grabs card type from enums below. Use for setting up card behavior
+        public CardType cardType;
         public int cardCost;
 
-        public void Activate(GameObject user)
+        //Attack card vars
+        public float damage;
+        public float attackRadius;
+        public DamageType damageType;
+
+
+        //Heal card vars
+        public float healAmount;
+
+        //Movements vars
+
+        //Attack & Movement vars
+        public float range;
+
+        #if UNITY_EDITOR //Check if we are within the unity editor
+
+        [CustomEditor(typeof(Card))] //Custom card editor that lets us show only relevant options for the cards :)
+        private class CardEditor : Editor
         {
-            //Implement what the card does here
-            Debug.Log($"{cardName} activated!");
-            //Update UI
-            //TODO: All of this is ideally done with an event. Refactor code whenever possible:
-            GameContext.Instance.UIManafuseBar.ChangeByUnit(-cardCost, false);
-            //TODO: For now, each card is shooting a basic projectile. Change this according to the funcionality.
-            GameContext.Instance.ProjectileManager.ShootProjectile();
+            public override void OnInspectorGUI()
+            {
+                serializedObject.Update();
+
+                //These will be the common fields for our cards
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("cardName"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("cardIcon"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("cardType"));
+                EditorGUILayout.PropertyField(serializedObject.FindProperty("cardCost"));
+
+                //Get our card type
+                CardType currentType = (CardType)serializedObject.FindProperty("cardType").enumValueIndex;
+
+                //Display only fields relevant to the card we are creating.
+                switch (currentType)
+                {
+                    case CardType.Attack:
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("damage"));
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("attackRadius"));
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("damageType"));
+
+                        break;
+                    case CardType.Heal:
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("healAmount"));
+                        break;
+                    case CardType.Movement:
+                        EditorGUILayout.PropertyField(serializedObject.FindProperty("range"));
+                        break;
+                }
+
+                serializedObject.ApplyModifiedProperties();
+            }
         }
+#endif
     }
 
     public enum CardType
     {
         Attack,
         Heal,
-        Dash
+        Movement
+    }
+    public enum DamageType
+    {
+        Basic,
+        Poison,
+        Fire,
+        Curse,
+        Acid,
+        Healing,
+        Ice
     }
 }

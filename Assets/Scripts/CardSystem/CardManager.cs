@@ -12,6 +12,9 @@ namespace CardSystem
         //Slot allocation
         public Card[] cardSlots = new Card[4];
 
+        //Card Effect Handler
+        public CardEffectHandler effectHandler;
+
         //Draw card into defined slot
         public void DrawCardToSlot(int slotIndex)
         {
@@ -32,13 +35,11 @@ namespace CardSystem
         }
 
         //Activate the card in the slot
-        public void ActivateCardInSlot(int slotIndex, GameObject user)
-        {
+        public void ActivateCardInSlot(int slotIndex, GameObject user) {
             if (slotIndex < 0 || slotIndex >= cardSlots.Length) return;
             var card = cardSlots[slotIndex];
-            if (card != null)
-            {
-                card.Activate(user);
+            if (card != null) {
+                effectHandler.ExecuteCardEffect(card, user);
             }
             DiscardCardFromSlot(slotIndex);
         }
