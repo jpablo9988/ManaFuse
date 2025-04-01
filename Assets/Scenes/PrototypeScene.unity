@@ -983,6 +983,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 8972357512367899166, guid: 2cd7a250b66628d428799771e0a987ab, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 37957294, guid: 05d2d282c5f3d3042981d7085688a154, type: 3}
     - target: {fileID: 9050683842836146199, guid: 2cd7a250b66628d428799771e0a987ab, type: 3}
       propertyPath: sprintDistance
       value: 9
