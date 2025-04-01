@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,23 +22,44 @@ public class ManafuseBar : MonoBehaviour
 
     public float MaxSliderValue { get { return greenSlider.maxValue; } }
     public float TicksPerUnit { get { return MaxSliderValue / unitDividers; } }
-    void Start()
-    {
-        ActivateDividers();
-        greenSlider.maxValue = maxTicks;
-        redSlider.maxValue = MaxSliderValue;
-        greenSlider.value = MaxSliderValue;
-        redSlider.value = MaxSliderValue;
-    }
+    public static event Action<bool> NoManaLeft;
+    private bool callsUpdate = true;
+
+
     void Update()
     {
+        if (!callsUpdate) return;
+        if (redSlider.value <= redSlider.minValue)
+        {
+            NoManaLeft?.Invoke(true);
+            callsUpdate = false;
+            return;
+        }
         if (redSlider.value > greenSlider.value)
         {
             redSlider.value -= Time.deltaTime * (TicksPerUnit * redManaDrainTime);
         }
+
+    }
+    void OnEnable()
+    {
+        redSlider.onValueChanged.AddListener(delegate { CheckRecovery(); });
+    }
+    void OnDisable()
+    {
+        redSlider.onValueChanged.RemoveAllListeners();
+    }
+    private void CheckRecovery()
+    {
+        if (!callsUpdate && redSlider.value > redSlider.minValue)
+        {
+            callsUpdate = true;
+            NoManaLeft?.Invoke(false);
+        }
     }
     private void ActivateDividers()
     {
+        dividerPool.SetAllObjectsInactive(); //Refresh Mana.
         for (int i = 0; i < unitDividers; i++)
         {
             GameObject divider = dividerPool.GetInactiveObject();
@@ -67,5 +89,19 @@ public class ManafuseBar : MonoBehaviour
     {
         float valueToChange = TicksPerUnit * noUnits;
         ChangeByTick(valueToChange, includeRedSlider);
+    }
+    public void SetManaUnits(int units, int ticks = 100, bool resetManaValues = true)
+    {
+        unitDividers = units;
+        if (maxTicks != ticks)
+            maxTicks = (float)ticks;
+        ActivateDividers();
+        greenSlider.maxValue = maxTicks;
+        redSlider.maxValue = MaxSliderValue;
+        if (resetManaValues)
+        {
+            greenSlider.value = MaxSliderValue;
+            redSlider.value = MaxSliderValue;
+        }
     }
 }

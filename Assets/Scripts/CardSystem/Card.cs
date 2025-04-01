@@ -16,7 +16,7 @@ namespace CardSystem
             Debug.Log($"{cardName} activated!");
             //Update UI
             //TODO: All of this is ideally done with an event. Refactor code whenever possible:
-            GameContext.Instance.UIManafuseBar.ChangeByUnit(-cardCost, false);
+            GameContext.Instance.Player.ChangeMana(-cardCost, false);
             //TODO: For now, each card is shooting a basic projectile. Change this according to the funcionality.
             GameContext.Instance.ProjectileManager.ShootProjectile();
         }

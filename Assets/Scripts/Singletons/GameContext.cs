@@ -5,9 +5,9 @@ public class GameContext : Singleton<GameContext>
     [Header("Dependencies")]
     [SerializeField] private InputManager _inputManager;
     [SerializeField] private RevolverManagerUI ui_RevolverManager;
-    [SerializeField] private ManafuseBar ui_ManaManager;
     [SerializeField] private AttackManager _attackManager;
-    [Header("Dependecy Settings")]
+    [SerializeField] private PlayerManager _playerManager;
+    [Header("Dependency Settings")]
     [SerializeField] private bool _createManagersIfMissing = true;
     public InputManager InputManager
     {
@@ -33,18 +33,6 @@ public class GameContext : Singleton<GameContext>
             return ui_RevolverManager;
         }
     }
-    public ManafuseBar UIManafuseBar
-    {
-        get
-        {
-            if (_inputManager == null)
-            {
-                this.GetComponentInScene<ManafuseBar>(_createManagersIfMissing, out ui_ManaManager);
-                ui_ManaManager.enabled = true;
-            }
-            return ui_ManaManager;
-        }
-    }
     public AttackManager ProjectileManager
     {
         get
@@ -57,12 +45,24 @@ public class GameContext : Singleton<GameContext>
             return _attackManager;
         }
     }
+    public PlayerManager Player
+    {
+        get
+        {
+            if (_playerManager == null)
+            {
+                this.GetComponentInScene(_createManagersIfMissing, out _playerManager);
+                _playerManager.enabled = true;
+            }
+            return _playerManager;
+        }
+    }
     override protected void Awake()
     {
         base.Awake();
         if (_inputManager == null) _inputManager = this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
-        ui_ManaManager = this.GetComponentInScene<ManafuseBar>(false, out ui_ManaManager);
         ui_RevolverManager = this.GetComponentInScene<RevolverManagerUI>(false, out ui_RevolverManager);
+        _playerManager = this.GetComponentInScene(false, out _playerManager);
         if (_attackManager == null) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
     }
 
