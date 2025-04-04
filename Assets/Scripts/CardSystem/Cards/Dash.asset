@@ -13,6 +13,13 @@ MonoBehaviour:
   m_Name: Dash
   m_EditorClassIdentifier: 
   cardName: Dash
-  cardIcon: {fileID: 21300000, guid: 18b31f27b0fb53b4f8f8c60a8894be0b, type: 3}
+  cardIcon: {fileID: 21300000, guid: 436cea13fdcfb5e40945d076d8da79e8, type: 3}
   cardType: 2
-  cardCost: 3
+  cardCost: 1
+  projectilePrefab: {fileID: 0}
+  particleEffectPrefab: {fileID: 0}
+  spawnProjectile: 1
+  spawnParticleEffect: 0
+  healAmount: 2
+  dashDistance: 8
+  dashDuration: 0.2
