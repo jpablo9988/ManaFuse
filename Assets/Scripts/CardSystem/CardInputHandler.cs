@@ -36,28 +36,20 @@ namespace CardSystem
         private void HandleSlotInput(int slotIndex)
         {
             //Read trigger values
-            var leftTriggerValue = _inputActions.CardControls.EquipMod.ReadValue<float>();
             var rightTriggerValue = _inputActions.CardControls.DiscardMod.ReadValue<float>();
 
-            //Read keyboard values [CHANGE THIS PLEASE]
-            var isLeftShiftHeld = Keyboard.current.leftShiftKey.isPressed;
+            //Read keyboard values 
             var isRightShiftHeld = Keyboard.current.rightShiftKey.isPressed;
 
-            //Check if left modifier is held (equip)
-            if (leftTriggerValue > TriggerThreshold || isLeftShiftHeld)
-            {
-                // Draw card into this slot
-                cardManager.DrawCardToSlot(slotIndex);
-            }
             //Check if right modifier is held (discard)
-            else if (rightTriggerValue > TriggerThreshold || isRightShiftHeld)
+            if (rightTriggerValue > TriggerThreshold || isRightShiftHeld)
             {
                 //Discard card from selected slot
                 cardManager.DiscardCardFromSlot(slotIndex);
             }
             else
             {
-                //Draw card to selected slot
+                //Activate card in selected slot
                 cardManager.ActivateCardInSlot(slotIndex, player);
             }
         }

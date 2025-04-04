@@ -13,6 +13,10 @@ MonoBehaviour:
   m_Name: Attack2
   m_EditorClassIdentifier: 
   cardName: Attack2
-  cardIcon: {fileID: 21300000, guid: 18b31f27b0fb53b4f8f8c60a8894be0b, type: 3}
+  cardIcon: {fileID: 21300000, guid: abc550f885aac3144b041d2dca0b6e44, type: 3}
   cardType: 0
-  cardCost: 3
+  cardCost: 2
+  projectilePrefab: {fileID: 3025412219267322083, guid: 5b2cd65579d67284da8b333f96f3f9ff, type: 3}
+  particleEffectPrefab: {fileID: 0}
+  spawnProjectile: 1
+  spawnParticleEffect: 0
