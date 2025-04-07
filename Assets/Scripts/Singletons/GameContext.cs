@@ -9,6 +9,8 @@ public class GameContext : Singleton<GameContext>
     [SerializeField] private AttackManager _attackManager;
     [Header("Dependecy Settings")]
     [SerializeField] private bool _createManagersIfMissing = true;
+    [SerializeField] private GameStateManager _gameStateManager;
+
     public InputManager InputManager
     {
         get
@@ -57,6 +59,21 @@ public class GameContext : Singleton<GameContext>
             return _attackManager;
         }
     }
+
+    // Game State Manager
+    public GameStateManager GameStateManager
+    {
+        get
+        {
+            if (_gameStateManager == null)
+            {
+                this.GetComponentInScene<GameStateManager>(_createManagersIfMissing, out _gameStateManager);
+                _gameStateManager.enabled = true;
+            }
+            return _gameStateManager;
+        }
+    }
+
     override protected void Awake()
     {
         base.Awake();
@@ -64,6 +81,10 @@ public class GameContext : Singleton<GameContext>
         ui_ManaManager = this.GetComponentInScene<ManafuseBar>(false, out ui_ManaManager);
         ui_RevolverManager = this.GetComponentInScene<RevolverManagerUI>(false, out ui_RevolverManager);
         if (_attackManager == null) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
+
+        // Game State Manager
+        if (_gameStateManager == null)
+            _gameStateManager = this.GetComponentInScene<GameStateManager>(_createManagersIfMissing, out _gameStateManager);
     }
 
 }
