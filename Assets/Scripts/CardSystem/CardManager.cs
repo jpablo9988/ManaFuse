@@ -28,7 +28,7 @@ namespace CardSystem
                 deckManager = GetComponent<DeckManager>();
                 if (deckManager == null)
                 {
-                    deckManager = FindObjectOfType<DeckManager>();
+                    deckManager = this.GetComponentInScene(false, out deckManager);
                 }
             }
         }
@@ -43,12 +43,12 @@ namespace CardSystem
         {
             if (slotIndex < 0 || slotIndex >= cardSlots.Length) return;
             cardSlots[slotIndex] = card;
-            
+
             if (card != null)
             {
                 Debug.Log($"Setting {card.cardName} in slot {slotIndex}");
             }
-            
+
             UpdateSlotUI(slotIndex, card);
         }
 
@@ -67,17 +67,17 @@ namespace CardSystem
             {
                 // Store the card before removing it from the slot
                 Card usedCard = card;
-                
+
                 // Remove from slot
                 cardSlots[slotIndex] = null;
                 UpdateSlotUI(slotIndex);
-                
+
                 // Activate the card
                 usedCard.Activate(user);
-                
+
                 // Add to discard pile
                 deckManager.DiscardCard(usedCard);
-                
+
                 // Start auto-draw for this slot
                 deckManager.StartAutoDrawForSlot(slotIndex);
             }
@@ -92,14 +92,14 @@ namespace CardSystem
         public void DiscardCardFromSlot(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= cardSlots.Length) return;
-            
+
             // Get the card before removing it
             Card discardedCard = cardSlots[slotIndex];
-            
+
             // Remove from slot
             cardSlots[slotIndex] = null;
             UpdateSlotUI(slotIndex);
-            
+
             // Add to discard pile if it exists
             if (discardedCard != null)
             {
@@ -120,13 +120,13 @@ namespace CardSystem
                 Debug.LogWarning("UIRevolverManager not found in GameContext");
                 return;
             }
-            
+
             if (card == null)
             {
                 GameContext.Instance.UIRevolverManager.DiscardCard((BulletDirection)slotIndex);
                 return;
             }
-            
+
             GameContext.Instance.UIRevolverManager.LoadCard((BulletDirection)slotIndex, card);
             Debug.Log($"Slot {slotIndex} updated with {card.cardName}");
         }

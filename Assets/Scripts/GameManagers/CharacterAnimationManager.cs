@@ -8,6 +8,8 @@ public class CharacterAnimationManager : MonoBehaviour
     private string SpeedParameterName = "Speed";
     [SerializeField]
     private string AngleParameterName = "Angle";
+    [SerializeField]
+    private string ShootParameterName = "Shoot";
     void Awake()
     {
         _animManager = GetComponent<Animator>();
@@ -16,5 +18,9 @@ public class CharacterAnimationManager : MonoBehaviour
     {
         _animManager.SetFloat(AngleParameterName, directionAngle);
         _animManager.SetFloat(SpeedParameterName, speed);
+    }
+    public void Shoot()
+    {
+        _animManager.SetTrigger(ShootParameterName);
     }
 }

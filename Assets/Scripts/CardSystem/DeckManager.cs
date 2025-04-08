@@ -13,12 +13,12 @@ namespace CardSystem
         [Header("Deck Configuration")]
         [Tooltip("The player's permanent card collection. This is used to initialize the active deck at game start.")]
         [SerializeField] private List<Card> baseDeck = new List<Card>();
-        
+
         /// <summary>
         /// Cards currently available to be drawn. This deck is depleted as cards are drawn.
         /// </summary>
         private List<Card> activeDeck = new List<Card>();
-        
+
         /// <summary>
         /// Cards that have been used or discarded. These are shuffled back into the active deck when it runs empty.
         /// </summary>
@@ -41,7 +41,7 @@ namespace CardSystem
                 cardManager = GetComponent<CardManager>();
                 if (cardManager == null)
                 {
-                    cardManager = FindObjectOfType<CardManager>();
+                    cardManager = this.GetComponentInScene(false, out cardManager);
                 }
             }
         }
@@ -54,7 +54,7 @@ namespace CardSystem
             // Initialize after a slight delay to ensure UI components are ready
             StartCoroutine(InitializeDecksDelayed());
         }
-        
+
         /// <summary>
         /// Waits for the end of the frame before initializing decks to avoid UI race conditions.
         /// </summary>
@@ -62,7 +62,7 @@ namespace CardSystem
         {
             // Wait for end of frame to ensure UI components have initialized
             yield return new WaitForEndOfFrame();
-            
+
             // Initialize decks
             InitializeDecks();
         }
@@ -79,16 +79,16 @@ namespace CardSystem
 
             // Copy base deck to active deck
             activeDeck.AddRange(baseDeck);
-            
+
             // Shuffle the active deck
             ShuffleDeck(activeDeck);
-            
+
             // Load all chambers with cards
             for (int i = 0; i < cardManager.cardSlots.Length; i++)
             {
                 DrawCardToSlot(i);
             }
-            
+
             Debug.Log($"Deck initialized with {activeDeck.Count} cards in active deck");
         }
 
@@ -115,7 +115,7 @@ namespace CardSystem
             // Draw top card from active deck
             Card drawnCard = activeDeck[0];
             activeDeck.RemoveAt(0);
-            
+
             return drawnCard;
         }
 
@@ -190,7 +190,7 @@ namespace CardSystem
             // Move all cards from discard to active deck
             activeDeck.AddRange(discardPile);
             discardPile.Clear();
-            
+
             // Shuffle the active deck
             ShuffleDeck(activeDeck);
 
@@ -201,10 +201,10 @@ namespace CardSystem
         /// Returns the number of cards currently in the active deck.
         /// </summary>
         public int GetActiveCount() => activeDeck.Count;
-        
+
         /// <summary>
         /// Returns the number of cards currently in the discard pile.
         /// </summary>
         public int GetDiscardCount() => discardPile.Count;
     }
-} 
+}

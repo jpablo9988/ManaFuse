@@ -6,6 +6,7 @@ public class AttackManager : MonoBehaviour
     [Header("Dependencies")]
     private GameObject projectilePrefab;
     [SerializeField] private Transform shootPoint;
+    [SerializeField] private CharacterAnimationManager _animatorManager;
 
     public void ShootProjectile(GameObject projectilePrefab)
     {
@@ -14,5 +15,6 @@ public class AttackManager : MonoBehaviour
         
         // Instantiate the projectile at the appropriate position/rotation
         Instantiate(projectilePrefab, shootPoint.position, shootPoint.rotation);
+        _animatorManager.Shoot();
     }
 }
