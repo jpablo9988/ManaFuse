@@ -12,25 +12,25 @@ namespace CardSystem
     {
         [Tooltip("The display name of the card.")]
         public string cardName;
-        
+
         [Tooltip("The icon displayed in the card UI.")]
         public Sprite cardIcon;
-        
+
         [Tooltip("The card type that determines its behavior: Attack, Heal, or Dash.")]
         public CardType cardType;
-        
+
         [Tooltip("The mana cost to use this card.")]
         public int cardCost;
-        
+
         [Tooltip("The projectile prefab to spawn for Attack cards. Leave null for non-projectile cards.")]
         public GameObject projectilePrefab;
-        
+
         [Tooltip("Optional particle effect prefab to spawn when card is activated.")]
         public GameObject particleEffectPrefab;
-        
+
         [Tooltip("Whether this card should spawn a projectile when activated (Attack cards only).")]
         public bool spawnProjectile = true;
-        
+
         [Tooltip("Whether this card should spawn its particle effect when activated.")]
         public bool spawnParticleEffect = false;
 
@@ -42,7 +42,7 @@ namespace CardSystem
         [Header("Dash Card Settings")]
         [Tooltip("Distance in units the player will dash when a Dash card is activated.")]
         [SerializeField] private float dashDistance = 3f;
-        
+
         [Tooltip("Duration in seconds of the dash movement.")]
         [SerializeField] private float dashDuration = 0.2f;
 
@@ -55,26 +55,26 @@ namespace CardSystem
         public void Activate(GameObject user)
         {
             Debug.Log($"{cardName} activated!");
-            
+
             // Apply mana cost to the player
             GameContext.Instance.Player.ChangeMana(-cardCost, false);
-            
+
             // Execute type-specific behavior
             switch (cardType)
             {
                 case CardType.Attack:
                     ActivateAttackEffect(user);
                     break;
-                    
+
                 case CardType.Heal:
                     ActivateHealEffect(user);
                     break;
-                    
+
                 case CardType.Dash:
                     ActivateDashEffect(user);
                     break;
             }
-            
+
             // Spawn particle effect if enabled
             if (spawnParticleEffect && particleEffectPrefab != null)
             {
@@ -91,7 +91,10 @@ namespace CardSystem
             // Attack cards can shoot projectiles
             if (spawnProjectile && projectilePrefab != null)
             {
-                GameContext.Instance.ProjectileManager.ShootProjectile(projectilePrefab);
+                if (projectilePrefab.TryGetComponent(out Projectile projectileRef))
+                {
+                    GameContext.Instance.ProjectileManager.ShootProjectile(projectileRef);
+                }
             }
         }
 
@@ -117,19 +120,19 @@ namespace CardSystem
             if (GameContext.Instance.Player.PlayerMovementManager != null)
             {
                 var playerMovement = GameContext.Instance.Player.PlayerMovementManager;
-                
+
                 // Get the player's current facing angle
                 float angle = playerMovement.RoundedAngle * Mathf.Deg2Rad;
-                
+
                 // Convert angle to a direction vector
                 // Using the snapped rotation to match visual facing
                 Vector2 moveInput = new Vector2(
                     Mathf.Sin(angle),  // x component
                     Mathf.Cos(angle)   // z component (as y in Vector2)
                 );
-                
+
                 Debug.Log($"Dashing with angle {playerMovement.RoundedAngle}, direction: {moveInput}");
-                
+
                 // Use the direction vector for the sprint
                 playerMovement.InitiateSprint(
                     moveInput,
@@ -147,10 +150,10 @@ namespace CardSystem
     {
         /// <summary>Attack cards shoot projectiles.</summary>
         Attack,
-        
+
         /// <summary>Heal cards restore mana to the player.</summary>
         Heal,
-        
+
         /// <summary>Dash cards move the player quickly in their facing direction.</summary>
         Dash
     }

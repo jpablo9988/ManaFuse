@@ -9,14 +9,12 @@ public class Projectile : MonoBehaviour
 
     private void Start()
     {
-        Debug.Log(transform.forward);
         Destroy(gameObject, lifetime);
     }
 
     private void Update()
     {
-
-        transform.Translate(speed * Time.deltaTime * Vector3.left);
+        transform.Translate(-speed * Time.deltaTime * Vector3.left);
     }
 
     private void OnCollisionEnter(Collision collision)

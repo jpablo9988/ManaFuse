@@ -20,3 +20,6 @@ MonoBehaviour:
   particleEffectPrefab: {fileID: 0}
   spawnProjectile: 1
   spawnParticleEffect: 1
+  healAmount: 2
+  dashDistance: 3
+  dashDuration: 0.2
