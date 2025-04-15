@@ -6,7 +6,8 @@ namespace CardSystem
     public class CardInputHandler : MonoBehaviour
     {
         private PlayerInputMap _inputActions;
-        public CardManager cardManager;
+        private CardManager cardManager;
+        public DeckManager _deckManager;
         public GameObject player;
 
         //Trigger Thresholds for "Held" input
@@ -15,21 +16,28 @@ namespace CardSystem
         private void Awake()
         {
             _inputActions = new PlayerInputMap();
+            cardManager = _deckManager.CardManager;
         }
 
         private void OnEnable()
         {
             _inputActions.CardControls.Enable();
-
             //Slot binds. These are setup for both keyboard and controller
             _inputActions.CardControls.Slot1.performed += ctx => HandleSlotInput(0);
             _inputActions.CardControls.Slot2.performed += ctx => HandleSlotInput(1);
             _inputActions.CardControls.Slot3.performed += ctx => HandleSlotInput(2);
             _inputActions.CardControls.Slot4.performed += ctx => HandleSlotInput(3);
+            _inputActions.CardControls.EquipMod.performed += ctx => _deckManager.ReloadSlots();
         }
 
         private void OnDisable()
         {
+            //Slot binds. These are setup for both keyboard and controller
+            _inputActions.CardControls.Slot1.performed -= ctx => HandleSlotInput(0);
+            _inputActions.CardControls.Slot2.performed -= ctx => HandleSlotInput(1);
+            _inputActions.CardControls.Slot3.performed -= ctx => HandleSlotInput(2);
+            _inputActions.CardControls.Slot4.performed -= ctx => HandleSlotInput(3);
+            _inputActions.CardControls.EquipMod.performed -= ctx => _deckManager.ReloadSlots();
             _inputActions.CardControls.Disable();
         }
 

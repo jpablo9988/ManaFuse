@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -17,6 +19,8 @@ namespace CardSystem
         [Header("Dependencies")]
         [Tooltip("Reference to the DeckManager that manages the card decks and drawing.")]
         [SerializeField] private DeckManager deckManager;
+
+        public int CardSlotsCount => cardSlots.Length;
 
         /// <summary>
         /// Get references to required components on initialization.
@@ -113,9 +117,9 @@ namespace CardSystem
         /// </summary>
         /// <param name="slotIndex">The slot index to update (0-3).</param>
         /// <param name="card">The card to display, or null to hide the slot.</param>
-        private static void UpdateSlotUI(int slotIndex, Card card = null)
+        private void UpdateSlotUI(int slotIndex, Card card = null)
         {
-            if (GameContext.Instance?.UIRevolverManager == null)
+            if (GameContext.Instance.UIRevolverManager == null)
             {
                 Debug.LogWarning("UIRevolverManager not found in GameContext");
                 return;
@@ -129,6 +133,35 @@ namespace CardSystem
 
             GameContext.Instance.UIRevolverManager.LoadCard((BulletDirection)slotIndex, card);
             Debug.Log($"Slot {slotIndex} updated with {card.cardName}");
+        }
+        /// <summary>
+        /// Will iterate over the card list and check if all items are null or not.
+        /// </summary>
+        /// <param name="_actionIfEmptyMarkFirst"> Executes an action if the chamber has no bullets,
+        /// passing a bool indicating if it's the first slot checked.</param>
+        /// <param name="_actionIfEmpty">Ex</param> Executes an action if the chamber has no bullets.
+        /// <returns></returns>
+        public bool IsChamberEmpty(int startIndex = -1)
+        {
+            for (int i = startIndex + 1; i < cardSlots.Length; i++)
+            {
+                if (cardSlots[i] != null) return false;
+            }
+            return true;
+        }
+        public bool IsSlotEmpty(int index)
+        {
+            if (index < 0 || index >= cardSlots.Length) return true;
+            return cardSlots[index] == null;
+        }
+        public bool IsLastSlotEmpty(int index)
+        {
+            if (index < 0 || index >= cardSlots.Length - 1) return true;
+            return IsChamberEmpty(index);
+        }
+        public int NoEmptySlots()
+        {
+            return cardSlots.Where(card => card == null).Count();
         }
     }
 }
