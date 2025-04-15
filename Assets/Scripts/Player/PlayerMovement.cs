@@ -15,37 +15,37 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     [Header("Sprint Settings")]
     [Tooltip("Distance in units the player will move during a default sprint.")]
     [SerializeField] private float sprintDistance = 3f;
-    
+
     [Tooltip("Duration in seconds of the default sprint movement.")]
     [SerializeField] private float sprintDuration = 0.2f;
-    
+
     [Tooltip("Animation curve that controls sprint movement over time. 0,0 to 1,1 range.")]
     [SerializeField] private AnimationCurve sprintCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
     [Header("Dependencies")]
     [Tooltip("Transform that will be rotated to match the player's facing direction.")]
     [SerializeField] private Transform targetTransformRotation;
-    
+
     /// <summary>
     /// Reference to the player's Rigidbody component for physics-based movement.
     /// </summary>
     private Rigidbody rb;
-    
+
     /// <summary>
     /// The current rotation angle of the player, snapped to 45-degree increments.
     /// </summary>
-    private float _roundedAngle = 0.0f;
-    
+    private float _roundedAngle = 180.0f;
+
     /// <summary>
     /// Whether the player is currently performing a sprint/dash.
     /// </summary>
     private bool _isSprinting;
-    
+
     /// <summary>
     /// Gets whether the player is currently sprinting.
     /// </summary>
     public bool IsSprinting => _isSprinting;
-    
+
     /// <summary>
     /// Gets the current visual rotation angle of the player between -180 and 180 degrees.
     /// This is snapped to 45-degree increments for 8-directional movement.
@@ -59,7 +59,7 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     {
         rb = GetComponent<Rigidbody>();
     }
-    
+
     /// <summary>
     /// Moves the player based on input direction.
     /// Should be called from FixedUpdate for physics-based movement.
@@ -68,6 +68,7 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     public void Move(Vector2 m_Input)
     {
         Vector3 movement = new(m_Input.x, 0f, m_Input.y);
+        if (m_Input.magnitude == 0) rb.linearVelocity = new Vector3(0, 0, 0);
         rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
     }
 
@@ -83,10 +84,10 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
         {
             // Calculate angle from input
             float angle = Mathf.Atan2(m_Input.x, m_Input.y) * Mathf.Rad2Deg;
-            
+
             // Snap to 45-degree increments (0, 45, 90, 135, 180, 225, 270, 315)
             _roundedAngle = Mathf.Round(angle / 45f) * 45f;
-            
+
             // Apply rotation to the target transform (usually the visual model)
             Quaternion targetRotation = Quaternion.Euler(0f, _roundedAngle - 90f, 0f);
             targetTransformRotation.rotation = targetRotation;
@@ -113,26 +114,26 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     {
         // Don't sprint if there's no input direction or already sprinting
         if (m_Input.magnitude < 0.1f || _isSprinting) return;
-        
+
         // Mark as sprinting to prevent movement during sprint
         _isSprinting = true;
-        
+
         // Calculate start and end positions
         Vector3 sprintStartPosition = transform.position;
         Vector3 sprintDirection = new Vector3(m_Input.x, 0f, m_Input.y).normalized;
         Vector3 sprintTargetPosition = sprintStartPosition + sprintDirection * distance;
-        
+
         // Raycast to prevent sprinting through walls
         if (Physics.Raycast(sprintStartPosition, sprintDirection, out RaycastHit hit, distance))
         {
             // If we hit something, stop short with a small margin
             sprintTargetPosition = hit.point - (sprintDirection * 0.5f);
         }
-        
+
         // Start the sprint coroutine
         StartCoroutine(UpdateSprint(duration, sprintStartPosition, sprintTargetPosition));
     }
-    
+
     /// <summary>
     /// Coroutine that handles the sprint movement over time.
     /// Uses an animation curve to control the movement speed.
@@ -145,22 +146,22 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     {
         float sprintTimer = 0.0f;
         float normalizedTime = 0.0f;
-        
+
         // Continue until we reach the end of the sprint
         while (normalizedTime <= 1f)
         {
             sprintTimer += Time.deltaTime;
             normalizedTime = sprintTimer / sprintDuration;
-            
+
             // Use animation curve to control movement speed
             float curveValue = sprintCurve.Evaluate(normalizedTime);
-            
+
             // Lerp position based on curve
             rb.position = Vector3.Lerp(sprintStartPosition, sprintTargetPosition, curveValue);
-            
+
             yield return null;
         }
-        
+
         // End sprint
         _isSprinting = false;
         rb.position = sprintTargetPosition;

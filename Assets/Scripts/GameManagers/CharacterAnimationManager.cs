@@ -23,4 +23,8 @@ public class CharacterAnimationManager : MonoBehaviour
     {
         _animManager.SetTrigger(ShootParameterName);
     }
+    public void AnimationSpeed(float speed)
+    {
+        _animManager.speed = speed;
+    }
 }

@@ -60,28 +60,40 @@ public class PlayerManager : MonoBehaviour
     }
     public void SetManaUnits(int newUnits, int newTicks = 0)
     {
-        _manaUnits = newUnits;
-        if (newTicks > 0)
+        if (_bar.gameObject.activeSelf)
         {
-            _bar.SetManaUnits(_manaUnits, newTicks, false);
-        }
-        else
-        {
-            _bar.SetManaUnits(_manaUnits, (int)_bar.MaxSliderValue, false);
+            _manaUnits = newUnits;
+            if (newTicks > 0)
+            {
+                _bar.SetManaUnits(_manaUnits, newTicks, false);
+            }
+            else
+            {
+                _bar.SetManaUnits(_manaUnits, (int)_bar.MaxSliderValue, false);
+            }
         }
     }
     public void ChangeManaByTickUnit(float unit, bool includeRedSlider = true)
     {
-        _bar.ChangeByTick(unit, includeRedSlider);
+        if (_bar.gameObject.activeSelf)
+        {
+            _bar.ChangeByTick(unit, includeRedSlider);
+        }
     }
 
     private void ReduceManaByTickUnit(float unit)
     {
-        _bar.ChangeByTick(-unit, true);
+        if (_bar.gameObject.activeSelf)
+        {
+            _bar.ChangeByTick(-unit, true);
+        }
     }
     public void ChangeMana(int unitAmount, bool includeRedSlider)
     {
-        _bar.ChangeByUnit(unitAmount, includeRedSlider);
+        if (_bar.gameObject.activeSelf)
+        {
+            _bar.ChangeByUnit(unitAmount, includeRedSlider);
+        }
     }
     private void IsGameOver(bool gameOver)
     {
