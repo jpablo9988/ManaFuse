@@ -9,6 +9,7 @@ namespace CardSystem
         private CardManager cardManager;
         public DeckManager _deckManager;
         public GameObject player;
+        public bool discardHeld = false;
 
         //Trigger Thresholds for "Held" input
         private const float TriggerThreshold = 0.5f;
@@ -17,9 +18,27 @@ namespace CardSystem
         {
             _inputActions = new PlayerInputMap();
             cardManager = _deckManager.CardManager;
+            if (cardManager) return;
+            _deckManager = GetComponent<DeckManager>();
+            if (_deckManager)
+            {
+                cardManager = _deckManager.CardManager;
+            }
+            _deckManager = this.GetComponentInScene(false, out _deckManager);
+            if (_deckManager)
+            {
+                cardManager = _deckManager.CardManager;
+            }
+
+            if (cardManager) return;
+            //Yeet play mode if we can't find a card manager
+            #if UNITY_EDITOR
+            Debug.LogError("Failed to find card manager");
+            UnityEditor.EditorApplication.isPlaying = false;
+            #endif
         }
 
-        private void OnEnable()
+        private void OnEnable() //fix all these at some point
         {
             _inputActions.CardControls.Enable();
             //Slot binds. These are setup for both keyboard and controller
@@ -28,6 +47,8 @@ namespace CardSystem
             _inputActions.CardControls.Slot3.performed += ctx => HandleSlotInput(2);
             _inputActions.CardControls.Slot4.performed += ctx => HandleSlotInput(3);
             _inputActions.CardControls.EquipMod.performed += ctx => _deckManager.ReloadSlots();
+            _inputActions.CardControls.DiscardMod.performed += ctx => discardHeld = true;
+            _inputActions.CardControls.DiscardMod.canceled += ctx => discardHeld = false;
         }
 
         private void OnDisable()
@@ -38,19 +59,13 @@ namespace CardSystem
             _inputActions.CardControls.Slot3.performed -= ctx => HandleSlotInput(2);
             _inputActions.CardControls.Slot4.performed -= ctx => HandleSlotInput(3);
             _inputActions.CardControls.EquipMod.performed -= ctx => _deckManager.ReloadSlots();
+            _inputActions.CardControls.DiscardMod.performed -= ctx => discardHeld = false;
             _inputActions.CardControls.Disable();
         }
 
         private void HandleSlotInput(int slotIndex)
         {
-            //Read trigger values
-            var rightTriggerValue = _inputActions.CardControls.DiscardMod.ReadValue<float>();
-
-            //Read keyboard values 
-            var isRightShiftHeld = Keyboard.current.rightShiftKey.isPressed;
-
-            //Check if right modifier is held (discard)
-            if (rightTriggerValue > TriggerThreshold || isRightShiftHeld)
+            if (discardHeld)
             {
                 //Discard card from selected slot
                 cardManager.DiscardCardFromSlot(slotIndex);

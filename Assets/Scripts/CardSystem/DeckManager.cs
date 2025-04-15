@@ -41,14 +41,19 @@ namespace CardSystem
         /// </summary>
         private void Awake()
         {
-            if (cardManager == null)
+            if (cardManager) return;
+            cardManager = GetComponent<CardManager>();
+            if (!cardManager)
             {
-                cardManager = GetComponent<CardManager>();
-                if (cardManager == null)
-                {
-                    cardManager = this.GetComponentInScene(false, out cardManager);
-                }
+                cardManager = this.GetComponentInScene(false, out cardManager);
             }
+
+            if (cardManager) return;
+            //Yeet play mode if we can't find a card manager
+#if UNITY_EDITOR
+            Debug.LogError("Failed to find card manager");
+            UnityEditor.EditorApplication.isPlaying = false;
+#endif
         }
 
         /// <summary>
@@ -94,7 +99,7 @@ namespace CardSystem
                 DrawCardToSlot(i);
             }
 
-            Debug.Log($"Deck initialized with {activeDeck.Count} cards in active deck");
+            print($"Deck initialized with {activeDeck.Count} cards in active deck");
         }
 
         /// <summary>
@@ -113,7 +118,7 @@ namespace CardSystem
             // If still empty (no cards at all), return null
             if (activeDeck.Count == 0)
             {
-                Debug.LogWarning("No cards available in any deck!");
+                print("No cards available in any deck!");
                 return null;
             }
 
@@ -131,10 +136,10 @@ namespace CardSystem
         public void DrawCardToSlot(int slotIndex)
         {
             if (slotIndex < 0 || slotIndex >= cardManager.cardSlots.Length) return;
-            if (cardManager.cardSlots[slotIndex] != null) return; // Slot already filled
+            if (cardManager.cardSlots[slotIndex]) return; // Slot already filled
 
             Card drawnCard = DrawCard();
-            if (drawnCard != null)
+            if (drawnCard)
             {
                 cardManager.SetCardInSlot(slotIndex, drawnCard);
             }
@@ -146,7 +151,7 @@ namespace CardSystem
         /// <param name="card">The card to discard.</param>
         public void DiscardCard(Card card)
         {
-            if (card != null)
+            if (card)
             {
                 discardPile.Add(card);
             }
@@ -158,27 +163,23 @@ namespace CardSystem
         /// </summary>
         public void ReloadSlots()
         {
-            if (!willAutodraw)
+            if (willAutodraw) return;
+            GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+            int noReloadBullets = 1;
+            for (int i = 0; i < cardManager.CardSlotsCount; i++)
             {
-                GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
-                int noReloadBullets = 1;
-                for (int i = 0; i < cardManager.CardSlotsCount; i++)
+                if (!cardManager.IsSlotEmpty(i)) continue;
+                if (cardManager.IsLastSlotEmpty(i))
                 {
-                    if (cardManager.IsSlotEmpty(i))
-                    {
-                        if (cardManager.IsLastSlotEmpty(i))
-                        {
-                            StartCoroutine(AutoDrawAfterDelay
-                            (autoDrawDelay * noReloadBullets, i,
-                            () => { Debug.Log("Loading Last Element..."); }));
-                        }
-                        else
-                        {
-                            StartCoroutine(AutoDrawAfterDelay(autoDrawDelay * noReloadBullets, i));
-                        }
-                        noReloadBullets++;
-                    }
+                    StartCoroutine(AutoDrawAfterDelay
+                    (autoDrawDelay * noReloadBullets, i,
+                        () => { print("Loading Last Element..."); }));
                 }
+                else
+                {
+                    StartCoroutine(AutoDrawAfterDelay(autoDrawDelay * noReloadBullets, i));
+                }
+                noReloadBullets++;
             }
         }
 
@@ -188,11 +189,9 @@ namespace CardSystem
         /// <param name="slotIndex">The slot index to draw a card to (0-3).</param>
         public void StartAutoDrawForSlot(int slotIndex)
         {
-            if (willAutodraw)
-            {
-                GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
-                StartCoroutine(AutoDrawAfterDelay(this.autoDrawDelay, slotIndex));
-            }
+            if (!willAutodraw) return;
+            GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+            StartCoroutine(AutoDrawAfterDelay(this.autoDrawDelay, slotIndex));
         }
 
         /// <summary>
@@ -234,7 +233,7 @@ namespace CardSystem
             // Shuffle the active deck
             ShuffleDeck(activeDeck);
 
-            Debug.Log("Discard pile shuffled into active deck");
+            print("Discard pile shuffled into active deck");
         }
 
         /// <summary>

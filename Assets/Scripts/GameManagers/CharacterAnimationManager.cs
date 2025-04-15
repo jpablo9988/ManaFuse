@@ -10,9 +10,14 @@ public class CharacterAnimationManager : MonoBehaviour
     private string AngleParameterName = "Angle";
     [SerializeField]
     private string ShootParameterName = "Shoot";
-    void Awake()
+
+    private void Awake()
     {
         _animManager = GetComponent<Animator>();
+        if (!_animManager)
+        {
+            Debug.LogError("Animator component not found on this GameObject.");
+        }
     }
     public void SetAnimationParameters(float speed, float directionAngle)
     {

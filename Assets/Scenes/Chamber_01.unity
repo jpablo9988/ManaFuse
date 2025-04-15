@@ -2558,6 +2558,7 @@ GameObject:
   - component: {fileID: 65052029}
   - component: {fileID: 65052028}
   - component: {fileID: 65052027}
+  - component: {fileID: 65052030}
   m_Layer: 0
   m_Name: Capsule (1)
   m_TagString: Untagged
@@ -2656,6 +2657,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 65052025}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &65052030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 65052025}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 2
+  moveSpeed: 2
+  projectileDamage: 10
+  jiggleMagnitude: 1
+  jiggleSpeed: 2
+  health: 10
+  manaReward: 50
 --- !u!1 &73123916
 GameObject:
   m_ObjectHideFlags: 0
@@ -14691,9 +14715,9 @@ Camera:
   m_NormalizedViewPortRect:
     serializedVersion: 2
     x: 0
-    y: 0
-    width: 1
-    height: 1
+    y: 0.044164035
+    width: 0.99999994
+    height: 0.9126577
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -48560,9 +48584,10 @@ GameObject:
   - component: {fileID: 1032791660}
   - component: {fileID: 1032791659}
   - component: {fileID: 1032791658}
+  - component: {fileID: 1032791661}
   m_Layer: 0
   m_Name: Capsule
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -48658,6 +48683,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1032791656}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1032791661
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1032791656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 1
+  moveSpeed: 6
+  projectileDamage: 10
+  jiggleMagnitude: 10
+  jiggleSpeed: 10
+  health: 10
+  manaReward: 50
 --- !u!1 &1034598012
 GameObject:
   m_ObjectHideFlags: 0
@@ -52407,6 +52455,7 @@ GameObject:
   - component: {fileID: 1101632835}
   - component: {fileID: 1101632834}
   - component: {fileID: 1101632833}
+  - component: {fileID: 1101632836}
   m_Layer: 0
   m_Name: Capsule (2)
   m_TagString: Untagged
@@ -52505,6 +52554,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1101632831}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1101632836
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1101632831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 2
+  moveSpeed: 2
+  projectileDamage: 10
+  jiggleMagnitude: 1
+  jiggleSpeed: 2
+  health: 10
+  manaReward: 50
 --- !u!1 &1102421288
 GameObject:
   m_ObjectHideFlags: 0
@@ -53857,6 +53929,7 @@ GameObject:
   - component: {fileID: 1135611849}
   - component: {fileID: 1135611848}
   - component: {fileID: 1135611847}
+  - component: {fileID: 1135611850}
   m_Layer: 0
   m_Name: Capsule (6)
   m_TagString: Untagged
@@ -53955,6 +54028,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1135611845}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1135611850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1135611845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 2
+  moveSpeed: 2
+  projectileDamage: 10
+  jiggleMagnitude: 1
+  jiggleSpeed: 2
+  health: 10
+  manaReward: 50
 --- !u!1 &1136038591
 GameObject:
   m_ObjectHideFlags: 0
@@ -62824,6 +62920,7 @@ GameObject:
   - component: {fileID: 1300970110}
   - component: {fileID: 1300970109}
   - component: {fileID: 1300970108}
+  - component: {fileID: 1300970111}
   m_Layer: 0
   m_Name: Capsule (3)
   m_TagString: Untagged
@@ -62922,6 +63019,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1300970106}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1300970111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1300970106}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 2
+  moveSpeed: 2
+  projectileDamage: 10
+  jiggleMagnitude: 1
+  jiggleSpeed: 2
+  health: 10
+  manaReward: 50
 --- !u!1 &1302546995
 GameObject:
   m_ObjectHideFlags: 0
@@ -64040,6 +64160,10 @@ PrefabInstance:
       objectReference: {fileID: 627942872}
     - target: {fileID: 2583485449541067318, guid: 2cd7a250b66628d428799771e0a987ab, type: 3}
       propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 2583485449541067318, guid: 2cd7a250b66628d428799771e0a987ab, type: 3}
+      propertyPath: m_TagString
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6394605966725257262, guid: 2cd7a250b66628d428799771e0a987ab, type: 3}
@@ -77735,6 +77859,7 @@ GameObject:
   - component: {fileID: 1617495349}
   - component: {fileID: 1617495348}
   - component: {fileID: 1617495347}
+  - component: {fileID: 1617495350}
   m_Layer: 0
   m_Name: Capsule (5)
   m_TagString: Untagged
@@ -77833,6 +77958,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1617495345}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1617495350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1617495345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 2
+  moveSpeed: 2
+  projectileDamage: 10
+  jiggleMagnitude: 1
+  jiggleSpeed: 2
+  health: 10
+  manaReward: 50
 --- !u!1 &1621101676
 GameObject:
   m_ObjectHideFlags: 0
@@ -92718,6 +92866,7 @@ GameObject:
   - component: {fileID: 1938476893}
   - component: {fileID: 1938476892}
   - component: {fileID: 1938476891}
+  - component: {fileID: 1938476894}
   m_Layer: 0
   m_Name: Capsule (4)
   m_TagString: Untagged
@@ -92816,6 +92965,29 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1938476889}
   m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1938476894
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1938476889}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6fefbadc9026c9955867857bd0752d52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  detectionUsesMinRange: 0
+  attackCard: {fileID: 11400000, guid: 612cab37a8fa313b6b289a1ee665a4c6, type: 2}
+  optimalRangeMin: 6
+  optimalRangeMax: 12
+  attackCooldown: 2
+  moveSpeed: 2
+  projectileDamage: 10
+  jiggleMagnitude: 1
+  jiggleSpeed: 2
+  health: 10
+  manaReward: 50
 --- !u!1 &1940683297
 GameObject:
   m_ObjectHideFlags: 0

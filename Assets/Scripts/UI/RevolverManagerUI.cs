@@ -38,16 +38,16 @@ public class RevolverManagerUI : MonoBehaviour
 
     public void LoadCard(BulletDirection direction, Card action)
     {
-        if (action == null)
+        if (!action)
         {
             Debug.LogWarning("Attempted to load null card");
             return;
         }
 
-        BulletManagerUI bullet = _bullets.Where(bullet => bullet.Direction == direction).
-        FirstOrDefault();
+        BulletManagerUI bullet = _bullets.
+            FirstOrDefault(bullet => bullet.Direction == direction);
 
-        if (bullet == null)
+        if (!bullet)
         {
             Debug.LogWarning($"No bullet UI found for direction {direction}");
             return;
@@ -59,10 +59,10 @@ public class RevolverManagerUI : MonoBehaviour
 
     public void DiscardCard(BulletDirection direction)
     {
-        BulletManagerUI bullet = _bullets.Where(bullet => bullet.Direction == direction).
-        FirstOrDefault();
+        BulletManagerUI bullet = _bullets.
+            FirstOrDefault(bullet => bullet.Direction == direction);
 
-        if (bullet == null)
+        if (!bullet)
         {
             return;
         }
