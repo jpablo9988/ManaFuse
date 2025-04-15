@@ -147,16 +147,21 @@ namespace CardSystem
             }
             return true;
         }
+        /// <summary>
+        /// Checks if the specific slot is empty (card is null).
+        /// If the index is outside of the boundaries, always returns true.
+        /// </summary>
+        /// <param name="index"> Index of the Element to check</param>
+        /// <returns></returns>
         public bool IsSlotEmpty(int index)
         {
             if (index < 0 || index >= cardSlots.Length) return true;
             return cardSlots[index] == null;
         }
-        public bool IsLastSlotEmpty(int index)
-        {
-            if (index < 0 || index >= cardSlots.Length - 1) return true;
-            return IsChamberEmpty(index);
-        }
+        /// <summary>
+        /// Returns the amount of slots that holds a null card (or empty card)
+        /// </summary>
+        /// <returns></returns>
         public int NoEmptySlots()
         {
             return cardSlots.Count(card => card == null);

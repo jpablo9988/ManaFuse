@@ -125,7 +125,6 @@ namespace CardSystem
             // Draw top card from active deck
             Card drawnCard = activeDeck[0];
             activeDeck.RemoveAt(0);
-
             return drawnCard;
         }
 
@@ -168,12 +167,26 @@ namespace CardSystem
             int noReloadBullets = 1;
             for (int i = 0; i < cardManager.CardSlotsCount; i++)
             {
-                if (!cardManager.IsSlotEmpty(i)) continue;
-                if (cardManager.IsLastSlotEmpty(i))
+                GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+                GameContext.Instance.InputManager.ActivateCardInputs = false;
+                int noReloadBullets = 1;
+                for (int i = 0; i < cardManager.CardSlotsCount; i++)
                 {
-                    StartCoroutine(AutoDrawAfterDelay
-                    (autoDrawDelay * noReloadBullets, i,
-                        () => { print("Loading Last Element..."); }));
+                    if (cardManager.IsSlotEmpty(i))
+                    {
+
+                        StartCoroutine(AutoDrawAfterDelay
+                        (autoDrawDelay * noReloadBullets, i,
+                        () =>
+                        {
+                            //If it's the last chamber to load, activate player controls.
+                            if (cardManager.NoEmptySlots() <= 0)
+                            {
+                                GameContext.Instance.InputManager.ActivateCardInputs = true;
+                            }
+                        }));
+                        noReloadBullets++;
+                    }
                 }
                 else
                 {
@@ -240,7 +253,6 @@ namespace CardSystem
         /// Returns the number of cards currently in the active deck.
         /// </summary>
         public int GetActiveCount() => activeDeck.Count;
-
         /// <summary>
         /// Returns the number of cards currently in the discard pile.
         /// </summary>
