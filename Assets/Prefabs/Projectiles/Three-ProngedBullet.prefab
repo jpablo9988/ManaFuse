@@ -126,6 +126,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   lifetime: 3
+  damage: 10
+  isEnemyProjectile: 0
+  selfDamageEnabled: 0
+  collisionDelay: 0.3
 --- !u!54 &8576268981330277418
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -397,6 +401,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   lifetime: 3
+  damage: 10
+  isEnemyProjectile: 0
+  selfDamageEnabled: 0
+  collisionDelay: 0.05
 --- !u!54 &-8599985849092932970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -666,6 +674,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 40
   lifetime: 3
+  damage: 10
+  isEnemyProjectile: 0
+  selfDamageEnabled: 0
+  collisionDelay: 0.3
 --- !u!54 &6538291878321205902
 Rigidbody:
   m_ObjectHideFlags: 0

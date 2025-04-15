@@ -32,15 +32,15 @@ public class BulletManagerUI : MonoBehaviour
     
     public void ActivateBullet(Card cardToSet)
     {
-        if (cardToSet == null)
+        if (!cardToSet)
         {
-            Debug.LogWarning($"Tried to activate bullet with null card in {_direction}");
+            print($"Tried to activate bullet with null card in {_direction}");
             return;
         }
         
-        if (_bulletImage == null)
+        if (!_bulletImage)
         {
-            Debug.LogError($"Bullet image is null in {_direction}");
+            print($"Bullet image is null in {_direction}");
             return;
         }
         
@@ -49,7 +49,7 @@ public class BulletManagerUI : MonoBehaviour
         _bulletImage.SetNativeSize();
         SetEnergyNodes(cardToSet.cardCost);
         
-        Debug.Log($"Bullet {_direction} activated with {cardToSet.cardName}");
+        print($"Bullet {_direction} activated with {cardToSet.cardName}");
     }
     
     public void ActivateBullet(int ManaCost, Sprite bulletSprite)
@@ -68,12 +68,12 @@ public class BulletManagerUI : MonoBehaviour
     
     public void DisableBullet()
     {
-        if (_energyNodesPool != null)
+        if (_energyNodesPool)
         {
             _energyNodesPool.SetAllObjectsInactive();
         }
         
-        if (_bulletImage != null)
+        if (_bulletImage)
         {
             _bulletImage.enabled = false;
         }
@@ -81,9 +81,12 @@ public class BulletManagerUI : MonoBehaviour
 
     private void SetEnergyNodes(int noNodes)
     {
-        if (_energyNodesPool == null)
+        //Is this needed?
+        if (!_energyNodesPool)
         {
-            Debug.LogError($"Energy nodes pool is null in {_direction}");
+            #if UNITY_EDITOR
+                //Debug.LogError($"Energy nodes pool is null in {_direction}");
+            #endif
             return;
         }
         
@@ -95,9 +98,9 @@ public class BulletManagerUI : MonoBehaviour
         for (int i = 0; i < noNodes; i++)
         {
             GameObject activeEnergyNode = _energyNodesPool.GetInactiveObject();
-            if (activeEnergyNode == null)
+            if (!activeEnergyNode)
             {
-                Debug.LogWarning($"Not enough energy nodes in pool for {_direction}");
+                print($"Not enough energy nodes in pool for {_direction}");
                 continue;
             }
             

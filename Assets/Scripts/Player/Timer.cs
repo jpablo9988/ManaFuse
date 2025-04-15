@@ -22,14 +22,10 @@ public class Timer : MonoBehaviour
     }
     void Update()
     {
-        if (_isTicking)
-        {
-            _localTimer -= Time.deltaTime;
-            if (_localTimer <= 0)
-            {
-                OnDownTick?.Invoke(1);
-                _localTimer = _timeUnit;
-            }
-        }
+        if (!_isTicking) return;
+        _localTimer -= Time.deltaTime;
+        if (!(_localTimer <= 0)) return;
+        OnDownTick?.Invoke(1);
+        _localTimer = _timeUnit;
     }
 }

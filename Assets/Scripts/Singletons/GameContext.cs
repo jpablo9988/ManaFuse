@@ -15,11 +15,9 @@ public class GameContext : Singleton<GameContext>
     {
         get
         {
-            if (_inputManager == null)
-            {
-                this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
-                _inputManager.enabled = true;
-            }
+            if (_inputManager) return _inputManager;
+            this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
+            _inputManager.enabled = true;
             return _inputManager;
         }
     }
@@ -27,11 +25,9 @@ public class GameContext : Singleton<GameContext>
     {
         get
         {
-            if (ui_RevolverManager == null)
-            {
-                this.GetComponentInScene<RevolverManagerUI>(_createManagersIfMissing, out ui_RevolverManager);
-                ui_RevolverManager.enabled = true;
-            }
+            if (ui_RevolverManager) return ui_RevolverManager;
+            this.GetComponentInScene<RevolverManagerUI>(_createManagersIfMissing, out ui_RevolverManager);
+            ui_RevolverManager.enabled = true;
             return ui_RevolverManager;
         }
     }
@@ -39,11 +35,9 @@ public class GameContext : Singleton<GameContext>
     {
         get
         {
-            if (_attackManager == null)
-            {
-                this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
-                _inputManager.enabled = true;
-            }
+            if (_attackManager) return _attackManager;
+            this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
+            _inputManager.enabled = true;
             return _attackManager;
         }
     }
@@ -51,11 +45,9 @@ public class GameContext : Singleton<GameContext>
     {
         get
         {
-            if (_playerManager == null)
-            {
-                this.GetComponentInScene(_createManagersIfMissing, out _playerManager);
-                _playerManager.enabled = true;
-            }
+            if (_playerManager) return _playerManager;
+            this.GetComponentInScene(_createManagersIfMissing, out _playerManager);
+            _playerManager.enabled = true;
             return _playerManager;
         }
     }
@@ -63,22 +55,37 @@ public class GameContext : Singleton<GameContext>
     {
         get
         {
-            if (_deckManager == null)
-            {
-                this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
-                _deckManager.enabled = true;
-            }
+            if (_deckManager) return _deckManager;
+            this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
+            _deckManager.enabled = true;
             return _deckManager;
         }
     }
-    override protected void Awake()
+    protected override void Awake()
     {
         base.Awake();
-        if (_inputManager == null) _inputManager = this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
+        if (!_inputManager) _inputManager = this.GetComponentInScene<InputManager>(_createManagersIfMissing, out _inputManager);
         ui_RevolverManager = this.GetComponentInScene<RevolverManagerUI>(false, out ui_RevolverManager);
         _playerManager = this.GetComponentInScene(false, out _playerManager);
-        if (_attackManager == null) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
-        if (_deckManager == null) _deckManager = this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
+        if (!_attackManager) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
+        if (!_deckManager) _deckManager = this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
+        
+        
+        //Check for missing dependencies if they have failed to have been created! 
+        #if UNITY_EDITOR
+        var missingDependencies = "";
+
+        if (!_inputManager) {missingDependencies += "InputManager "; }
+        if (!ui_RevolverManager) {missingDependencies += "RevolverManagerUI "; }
+        if (!_playerManager) {missingDependencies += "PlayerManager "; }
+        if (!_attackManager) {missingDependencies += "AttackManager "; }
+        if (!_deckManager) {missingDependencies += "DeckManager ";}
+
+        //Report missing dependencies and stop play mode if in Editor
+        if (string.IsNullOrEmpty(missingDependencies)) return;
+        Debug.LogError("UNABLE TO FIND / CREATE DEPENDENCIES: " + missingDependencies);
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 
 }

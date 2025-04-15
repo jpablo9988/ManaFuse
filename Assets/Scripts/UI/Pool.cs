@@ -18,7 +18,7 @@ public class Pool : MonoBehaviour
 
     public GameObject GetInactiveObject()
     {
-        return pooledObjects.Where(pooledObject => pooledObject.activeInHierarchy == false).FirstOrDefault();
+        return pooledObjects.FirstOrDefault(pooledObject => pooledObject.activeInHierarchy == false);
     }
     public void SetAllObjectsInactive()
     {

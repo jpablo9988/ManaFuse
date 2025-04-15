@@ -31,17 +31,41 @@ public class PlayerManager : MonoBehaviour
     }
     void Start()
     {
-        if (_bar == null)
+        if (!_bar)
         {
             _bar = this.GetComponentInScene(false, out _bar);
+            if (!_bar)
+            {
+                #if UNITY_EDITOR
+                Debug.LogError("Failed to find ManafuseBar component");
+                UnityEditor.EditorApplication.isPlaying = false;
+                #endif
+                return;
+            }
         }
-        if (_timer == null)
+        if (!_timer)
         {
             _timer = this.GetComponentInScene(false, out _timer);
+            if (!_timer)
+            {
+                #if UNITY_EDITOR
+                    Debug.LogError("Failed to find Timer component");
+                    UnityEditor.EditorApplication.isPlaying = false;
+                #endif
+                return;
+            }
         }
-        if (_movement == null)
+        if (!_movement)
         {
             _movement = this.GetComponentInScene(false, out _movement);
+            if (!_movement)
+            {
+                #if UNITY_EDITOR
+                Debug.LogError("Failed to find Movement component");
+                UnityEditor.EditorApplication.isPlaying = false;
+                #endif
+                return;
+            }
         }
         _bar.SetManaUnits(_manaUnits, _manaBarTicks);
 
@@ -60,17 +84,15 @@ public class PlayerManager : MonoBehaviour
     }
     public void SetManaUnits(int newUnits, int newTicks = 0)
     {
-        if (_bar.gameObject.activeSelf)
+        if (!_bar.gameObject.activeSelf) return;
+        _manaUnits = newUnits;
+        if (newTicks > 0)
         {
-            _manaUnits = newUnits;
-            if (newTicks > 0)
-            {
-                _bar.SetManaUnits(_manaUnits, newTicks, false);
-            }
-            else
-            {
-                _bar.SetManaUnits(_manaUnits, (int)_bar.MaxSliderValue, false);
-            }
+            _bar.SetManaUnits(_manaUnits, newTicks, false);
+        }
+        else
+        {
+            _bar.SetManaUnits(_manaUnits, (int)_bar.MaxSliderValue, false);
         }
     }
     public void ChangeManaByTickUnit(float unit, bool includeRedSlider = true)
@@ -99,11 +121,11 @@ public class PlayerManager : MonoBehaviour
     {
         if (gameOver)
         {
-            Debug.Log("Game Over");
+            print("Game Over");
         }
         else
         {
-            Debug.Log("You have been resusitated");
+            print("You have been resusitated");
         }
         GameContext.Instance.InputManager.ActivatePlayerInputs = !gameOver;
         GameContext.Instance.InputManager.ActivateCardInputs = !gameOver;

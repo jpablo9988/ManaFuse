@@ -89,12 +89,10 @@ namespace CardSystem
         private void ActivateAttackEffect(GameObject user)
         {
             // Attack cards can shoot projectiles
-            if (spawnProjectile && projectilePrefab != null)
+            if (!spawnProjectile || !projectilePrefab) return;
+            if (projectilePrefab.TryGetComponent(out Projectile projectileRef))
             {
-                if (projectilePrefab.TryGetComponent(out Projectile projectileRef))
-                {
-                    GameContext.Instance.ProjectileManager.ShootProjectile(projectileRef);
-                }
+                GameContext.Instance.ProjectileManager.ShootProjectile(projectileRef);
             }
         }
 

@@ -47,14 +47,12 @@ public class PlayerInputHandler : MonoBehaviour
     void Update()
     {
         _moveInput = _movementAction.ReadValue<Vector2>();
-        if (!_playerMovement.IsSprinting)
+        if (_playerMovement.IsSprinting) return;
+        if (_moveInput.magnitude > 0)
         {
-            if (_moveInput.magnitude > 0)
-            {
-                _playerMovement.Rotate(_moveInput);
-            }
-            _characterAnimations.SetAnimationParameters(_moveInput.magnitude, _playerMovement.RoundedAngle);
+            _playerMovement.Rotate(_moveInput);
         }
+        _characterAnimations.SetAnimationParameters(_moveInput.magnitude, _playerMovement.RoundedAngle);
     }
     void FixedUpdate()
     {

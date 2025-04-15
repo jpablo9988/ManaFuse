@@ -27,13 +27,11 @@ namespace CardSystem
         /// </summary>
         private void Awake()
         {
-            if (deckManager == null)
+            if (deckManager) return;
+            deckManager = GetComponent<DeckManager>();
+            if (!deckManager)
             {
-                deckManager = GetComponent<DeckManager>();
-                if (deckManager == null)
-                {
-                    deckManager = this.GetComponentInScene(false, out deckManager);
-                }
+                deckManager = this.GetComponentInScene(false, out deckManager);
             }
         }
 
@@ -48,9 +46,9 @@ namespace CardSystem
             if (slotIndex < 0 || slotIndex >= cardSlots.Length) return;
             cardSlots[slotIndex] = card;
 
-            if (card != null)
+            if (card)
             {
-                Debug.Log($"Setting {card.cardName} in slot {slotIndex}");
+                print($"Setting {card.cardName} in slot {slotIndex}");
             }
 
             UpdateSlotUI(slotIndex, card);
@@ -119,20 +117,20 @@ namespace CardSystem
         /// <param name="card">The card to display, or null to hide the slot.</param>
         private void UpdateSlotUI(int slotIndex, Card card = null)
         {
-            if (GameContext.Instance.UIRevolverManager == null)
+            if (!GameContext.Instance.UIRevolverManager)
             {
                 Debug.LogWarning("UIRevolverManager not found in GameContext");
                 return;
             }
 
-            if (card == null)
+            if (!card)
             {
                 GameContext.Instance.UIRevolverManager.DiscardCard((BulletDirection)slotIndex);
                 return;
             }
 
             GameContext.Instance.UIRevolverManager.LoadCard((BulletDirection)slotIndex, card);
-            Debug.Log($"Slot {slotIndex} updated with {card.cardName}");
+            print($"Slot {slotIndex} updated with {card.cardName}");
         }
         /// <summary>
         /// Will iterate over the card list and check if all items are null or not.
@@ -166,7 +164,7 @@ namespace CardSystem
         /// <returns></returns>
         public int NoEmptySlots()
         {
-            return cardSlots.Where(card => card == null).Count();
+            return cardSlots.Count(card => card == null);
         }
     }
 }
