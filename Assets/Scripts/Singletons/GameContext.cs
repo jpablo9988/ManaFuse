@@ -9,6 +9,8 @@ public class GameContext : Singleton<GameContext>
     [SerializeField] private AttackManager _attackManager;
     [SerializeField] private PlayerManager _playerManager;
     [SerializeField] private DeckManager _deckManager;
+    [SerializeField] private PauseHandler _pauseManager;
+
     [Header("Dependency Settings")]
     [SerializeField] private bool _createManagersIfMissing = true;
     public InputManager InputManager
@@ -61,6 +63,16 @@ public class GameContext : Singleton<GameContext>
             return _deckManager;
         }
     }
+    public PauseHandler PauseHandler
+    {
+        get
+        {
+            if (_pauseManager) return _pauseManager;
+            this.GetComponentInScene<PauseHandler>(_createManagersIfMissing, out _pauseManager);
+            _pauseManager.enabled = true;
+            return _pauseManager;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -69,17 +81,17 @@ public class GameContext : Singleton<GameContext>
         _playerManager = this.GetComponentInScene(false, out _playerManager);
         if (!_attackManager) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
         if (!_deckManager) _deckManager = this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
-        
-        
+
+
         //Check for missing dependencies if they have failed to have been created! 
-        #if UNITY_EDITOR
+#if UNITY_EDITOR
         var missingDependencies = "";
 
-        if (!_inputManager) {missingDependencies += "InputManager "; }
-        if (!ui_RevolverManager) {missingDependencies += "RevolverManagerUI "; }
-        if (!_playerManager) {missingDependencies += "PlayerManager "; }
-        if (!_attackManager) {missingDependencies += "AttackManager "; }
-        if (!_deckManager) {missingDependencies += "DeckManager ";}
+        if (!_inputManager) { missingDependencies += "InputManager "; }
+        if (!ui_RevolverManager) { missingDependencies += "RevolverManagerUI "; }
+        if (!_playerManager) { missingDependencies += "PlayerManager "; }
+        if (!_attackManager) { missingDependencies += "AttackManager "; }
+        if (!_deckManager) { missingDependencies += "DeckManager "; }
 
         //Report missing dependencies and stop play mode if in Editor
         if (string.IsNullOrEmpty(missingDependencies)) return;

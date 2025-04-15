@@ -52,6 +52,7 @@ public class StartCountdownEvent : MonoBehaviour
         _currCycles = _noBlinks;
         _inputManager.ActivateCardInputs = false;
         _inputManager.ActivatePlayerInputs = false;
+        _inputManager.ActivateUIInputs = false;
         _isOnActive = true;
         for (int i = 0; i < _objects.Count; i++)
         {
@@ -67,6 +68,7 @@ public class StartCountdownEvent : MonoBehaviour
         //Activate Player Controls.
         _inputManager.ActivateCardInputs = true;
         _inputManager.ActivatePlayerInputs = true;
+        _inputManager.ActivateUIInputs = true;
         for (int i = 0; i < _objects.Count; i++)
         {
 
