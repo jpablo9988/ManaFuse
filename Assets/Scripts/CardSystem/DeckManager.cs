@@ -120,7 +120,6 @@ namespace CardSystem
             // Draw top card from active deck
             Card drawnCard = activeDeck[0];
             activeDeck.RemoveAt(0);
-
             return drawnCard;
         }
 
@@ -161,21 +160,24 @@ namespace CardSystem
             if (!willAutodraw)
             {
                 GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+                GameContext.Instance.InputManager.ActivateCardInputs = false;
                 int noReloadBullets = 1;
                 for (int i = 0; i < cardManager.CardSlotsCount; i++)
                 {
                     if (cardManager.IsSlotEmpty(i))
                     {
-                        if (cardManager.IsLastSlotEmpty(i))
+
+                        StartCoroutine(AutoDrawAfterDelay
+                        (autoDrawDelay * noReloadBullets, i,
+                        () =>
                         {
-                            StartCoroutine(AutoDrawAfterDelay
-                            (autoDrawDelay * noReloadBullets, i,
-                            () => { Debug.Log("Loading Last Element..."); }));
-                        }
-                        else
-                        {
-                            StartCoroutine(AutoDrawAfterDelay(autoDrawDelay * noReloadBullets, i));
-                        }
+                            Debug.Log(cardManager.NoEmptySlots());
+                            //If it's the last chamber to load, activate player controls.
+                            if (cardManager.NoEmptySlots() <= 0)
+                            {
+                                GameContext.Instance.InputManager.ActivateCardInputs = true;
+                            }
+                        }));
                         noReloadBullets++;
                     }
                 }
@@ -241,7 +243,6 @@ namespace CardSystem
         /// Returns the number of cards currently in the active deck.
         /// </summary>
         public int GetActiveCount() => activeDeck.Count;
-
         /// <summary>
         /// Returns the number of cards currently in the discard pile.
         /// </summary>
