@@ -27,16 +27,20 @@ public class EnemyAI : MonoBehaviour
     [Header("Maneuver Settings")]
     [Tooltip("Jiggle movement magnitude")]
     public float jiggleMagnitude = 5f;
-    [FormerlySerializedAs("oscillationSpeed")] 
+    [FormerlySerializedAs("oscillationSpeed")]
     [Tooltip("Jiggle movement speed")]
     public float jiggleSpeed = 5f;
-    
+
     [Header("Health Settings")]
     [Tooltip("The total health of the enemy.")]
     public float health = 100f;
     [Tooltip("Amount of mana to reward the player when the enemy dies.")]
     public float manaReward = 10f;
-    
+    [Header("Dependencies")]
+    [SerializeField]
+    [Tooltip("(Optional) Where the attack bullet with spawn from.")]
+    private Transform _attackSpawnPoint;
+
     //Reference to the player's transform.
     private Transform playerTransform;
     //Records time of the last attack.
@@ -52,17 +56,17 @@ public class EnemyAI : MonoBehaviour
             playerTransform = GameContext.Instance.Player.transform;
         }
     }
-    
+
     private void Update()
     {
         if (!playerTransform)
             return;
-        
+
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
-        
+
         //Determine the detection threshold based on detection mode.
         float detectionThreshold = detectionUsesMinRange ? optimalRangeMin : optimalRangeMax;
-        
+
         //Sit and idle until the player comes within range.
         if (distanceToPlayer > detectionThreshold)
         {
@@ -70,7 +74,7 @@ public class EnemyAI : MonoBehaviour
             SetYFixed();
             return;
         }
-        
+
         //Move to maintain optimal range.
         if (distanceToPlayer < optimalRangeMin)
         {
@@ -86,7 +90,7 @@ public class EnemyAI : MonoBehaviour
             moveDirection.y = 0;
             transform.position += moveDirection * (moveSpeed * Time.deltaTime);
         }
-        
+
         //Add random motion to simulate dodging / avoiding projectiles.
         Vector3 toPlayer = (playerTransform.position - transform.position).normalized;
         toPlayer.y = 0;
@@ -98,7 +102,7 @@ public class EnemyAI : MonoBehaviour
         Vector3 jiggles = right * lateralOffset + toPlayer * forwardOffset;
         jiggles.y = 0;
         transform.position += jiggles * Time.deltaTime;
-        
+
         //Attack if within optimal range and cooldown has elapsed.
         if (distanceToPlayer < optimalRangeMin ||
             distanceToPlayer > optimalRangeMax ||
@@ -107,28 +111,36 @@ public class EnemyAI : MonoBehaviour
             SetYFixed();
             return;
         }
-        
+
         Attack();
         lastAttackTime = Time.time;
-        
+
         //Ensure Y remains fixed.
         SetYFixed();
     }
 
-    
+
     private void Attack()
     {
         if (!attackCard)
             return;
-            
+
         if (attackCard.spawnProjectile && attackCard.projectilePrefab)
         {
             //Determine the direction toward the player.
             var direction = (playerTransform.position - transform.position).normalized;
             var rotation = Quaternion.LookRotation(direction);
-                
+
             //Instantiate the projectile at the enemy's position.
-            var projObj = Instantiate(attackCard.projectilePrefab, transform.position, rotation);
+            GameObject projObj;
+            if (_attackSpawnPoint != null)
+            {
+                projObj = Instantiate(attackCard.projectilePrefab, _attackSpawnPoint.position, transform.rotation);
+            }
+            else
+            {
+                projObj = Instantiate(attackCard.projectilePrefab, transform.position, rotation);
+            }
             var proj = projObj.GetComponent<Projectile>(); // Ensure the prefab has a Projectile component.
             if (proj)
             {
@@ -140,10 +152,17 @@ public class EnemyAI : MonoBehaviour
         }
         if (attackCard.spawnParticleEffect && attackCard.particleEffectPrefab)
         {
-            Instantiate(attackCard.particleEffectPrefab, transform.position, transform.rotation);
+            if (_attackSpawnPoint != null)
+            {
+                Instantiate(attackCard.particleEffectPrefab, _attackSpawnPoint.position, transform.rotation);
+            }
+            else
+            {
+                Instantiate(attackCard.particleEffectPrefab, transform.position, transform.rotation);
+            }
         }
     }
-    
+
 
     public void TakeDamage(float damage)
     {
@@ -152,7 +171,7 @@ public class EnemyAI : MonoBehaviour
             Die();
         print("Enemy hit for: " + damage);
     }
-    
+
 
     private void Die()
     {
@@ -160,7 +179,7 @@ public class EnemyAI : MonoBehaviour
         GameContext.Instance.Player.ChangeManaByTickUnit(manaReward);
         Destroy(gameObject);
     }
-    
+
 
     private void SetYFixed()
     {

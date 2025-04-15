@@ -128,7 +128,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   lifetime: 3
-  damage: 10
+  damage: 40
   isEnemyProjectile: 0
   selfDamageEnabled: 0
   collisionDelay: 0.05

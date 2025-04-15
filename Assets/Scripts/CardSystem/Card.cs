@@ -81,6 +81,13 @@ namespace CardSystem
                 Instantiate(particleEffectPrefab, user.transform.position, user.transform.rotation);
             }
         }
+        public void OnHitTarget()
+        {
+            if (cardType == CardType.Attack)
+            {
+                GameContext.Instance.Player.ChangeMana(this.cardCost, true);
+            }
+        }
 
         /// <summary>
         /// Executes the Attack card's effect: spawning a projectile.

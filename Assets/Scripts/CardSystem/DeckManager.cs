@@ -164,37 +164,28 @@ namespace CardSystem
         {
             if (willAutodraw) return;
             GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+            GameContext.Instance.InputManager.ActivateCardInputs = false;
             int noReloadBullets = 1;
             for (int i = 0; i < cardManager.CardSlotsCount; i++)
             {
-                GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
-                GameContext.Instance.InputManager.ActivateCardInputs = false;
-                int noReloadBullets = 1;
-                for (int i = 0; i < cardManager.CardSlotsCount; i++)
+                if (cardManager.IsSlotEmpty(i))
                 {
-                    if (cardManager.IsSlotEmpty(i))
-                    {
 
-                        StartCoroutine(AutoDrawAfterDelay
-                        (autoDrawDelay * noReloadBullets, i,
-                        () =>
+                    StartCoroutine(AutoDrawAfterDelay
+                    (autoDrawDelay * noReloadBullets, i,
+                    () =>
+                    {
+                        //If it's the last chamber to load, activate player controls.
+                        if (cardManager.NoEmptySlots() <= 0)
                         {
-                            //If it's the last chamber to load, activate player controls.
-                            if (cardManager.NoEmptySlots() <= 0)
-                            {
-                                GameContext.Instance.InputManager.ActivateCardInputs = true;
-                            }
-                        }));
-                        noReloadBullets++;
-                    }
+                            GameContext.Instance.InputManager.ActivateCardInputs = true;
+                        }
+                    }));
+                    noReloadBullets++;
                 }
-                else
-                {
-                    StartCoroutine(AutoDrawAfterDelay(autoDrawDelay * noReloadBullets, i));
-                }
-                noReloadBullets++;
             }
         }
+
 
         /// <summary>
         /// Starts a coroutine to draw a new card to the specified slot after a delay.

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 /// <summary>
@@ -19,9 +20,10 @@ public class Projectile : MonoBehaviour
     [Tooltip("True if the player can damage themselves with this projectile.")]
     public bool selfDamageEnabled = false;
 
-    [Tooltip("The amount of time in seconds that the projectile won't hit the shooter")] [SerializeField]
+    [Tooltip("The amount of time in seconds that the projectile won't hit the shooter")]
+    [SerializeField]
     private float collisionDelay = 0.3f;
-
+    public static event Action OnHitEnemy;
     private float spawnTime;
 
     private void Start()
@@ -37,20 +39,20 @@ public class Projectile : MonoBehaviour
         {
             transform.Translate(Vector3.forward * (speed * Time.deltaTime));
         }
-        else //This is the worst bandaid fix of my life...
+        else //This is the worst bandaid fix of my life... LMAO
         {
             transform.Translate(-speed * Time.deltaTime * Vector3.left);
         }
-        
+
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        
+
         if (Time.time - spawnTime < collisionDelay)
             return;
-        
-        
+
+
         //If the projectile hits the player:
         if (collision.gameObject.CompareTag("Player"))
         {
@@ -63,20 +65,25 @@ public class Projectile : MonoBehaviour
             Destroy(gameObject);
             return;
         }
-        
+
         //If the projectile hits an enemy:
-        if (collision.gameObject.CompareTag("Enemy"))
+        if (collision.gameObject.CompareTag("Enemy") && !isEnemyProjectile)
         {
-            var enemy = collision.gameObject.GetComponent<EnemyAI>();
-            if (enemy != null)
+            if (collision.gameObject.TryGetComponent<EnemyAI>(out var enemy))
             {
                 enemy.TakeDamage(damage);
+                //Activate on Hit Enemy.
+                OnHitEnemy?.Invoke();
+                //This is a one-time effect.
+                OnHitEnemy = null;
             }
             Destroy(gameObject);
             return;
         }
-        
-        //For everything else, yeet the projectile
-        Destroy(gameObject);
+        if (collision.gameObject.CompareTag("Obstacle"))
+        {
+            //For everything blockable, yeet the projectile
+            Destroy(gameObject);
+        }
     }
 }
