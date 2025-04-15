@@ -171,7 +171,6 @@ namespace CardSystem
                         (autoDrawDelay * noReloadBullets, i,
                         () =>
                         {
-                            Debug.Log(cardManager.NoEmptySlots());
                             //If it's the last chamber to load, activate player controls.
                             if (cardManager.NoEmptySlots() <= 0)
                             {
