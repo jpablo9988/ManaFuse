@@ -36,9 +36,8 @@ namespace CardSystem
 
         public CardManager CardManager => cardManager;
 
-        /// <summary>
-        /// Get references to required components on initialization.
-        /// </summary>
+        private bool _isReloading = false;
+
         private void Awake()
         {
             if (cardManager) return;
@@ -162,7 +161,8 @@ namespace CardSystem
         /// </summary>
         public void ReloadSlots()
         {
-            if (willAutodraw) return;
+            if (willAutodraw && _isReloading) return;
+            _isReloading = true;
             GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
             GameContext.Instance.InputManager.ActivateCardInputs = false;
             int noReloadBullets = 1;
@@ -179,6 +179,7 @@ namespace CardSystem
                         if (cardManager.NoEmptySlots() <= 0)
                         {
                             GameContext.Instance.InputManager.ActivateCardInputs = true;
+                            _isReloading = false;
                         }
                     }));
                     noReloadBullets++;

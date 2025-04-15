@@ -19,8 +19,8 @@ public class UIInputHandler : MonoBehaviour
     }
     void OnDisable()
     {
-        _inputActions.Disable();
         _pauseAction.started -= ctx => Pause(); //Should only trigger once. (When _sprintAction is pressed)
+        _inputActions.Disable();
     }
 
     public void Pause()
