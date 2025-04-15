@@ -37,7 +37,7 @@ public class ManafuseBar : MonoBehaviour
         }
         if (redSlider.value > greenSlider.value)
         {
-            redSlider.value -= Time.deltaTime * (TicksPerUnit * redManaDrainTime);
+            redSlider.value -= Time.deltaTime * (TicksPerUnit * (1 / redManaDrainTime));
         }
 
     }
@@ -97,7 +97,7 @@ public class ManafuseBar : MonoBehaviour
             maxTicks = (float)ticks;
         ActivateDividers();
         greenSlider.maxValue = maxTicks;
-        redSlider.maxValue = MaxSliderValue;
+        redSlider.maxValue = maxTicks;
         if (resetManaValues)
         {
             greenSlider.value = MaxSliderValue;

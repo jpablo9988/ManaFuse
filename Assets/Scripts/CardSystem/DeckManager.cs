@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -26,10 +27,14 @@ namespace CardSystem
 
         [Tooltip("Time in seconds to wait before automatically drawing a new card after one is used.")]
         [SerializeField] private float autoDrawDelay = 1f;
+        [Tooltip("Marks if the Bullets will auto-draw")]
+        [SerializeField] private bool willAutodraw = true;
 
         [Header("Dependencies")]
         [Tooltip("Reference to the CardManager that handles card slots and UI updates.")]
         [SerializeField] private CardManager cardManager;
+
+        public CardManager CardManager => cardManager;
 
         /// <summary>
         /// Get references to required components on initialization.
@@ -145,6 +150,36 @@ namespace CardSystem
             {
                 discardPile.Add(card);
             }
+            GameContext.Instance.UIRevolverManager.ShowReloadIndicator = cardManager.IsChamberEmpty();
+        }
+        /// <summary>
+        /// Reloads the Hand/Chambers if any is null.
+        /// When reloading, disable card controls (use slots/reload).
+        /// </summary>
+        public void ReloadSlots()
+        {
+            if (!willAutodraw)
+            {
+                GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+                int noReloadBullets = 1;
+                for (int i = 0; i < cardManager.CardSlotsCount; i++)
+                {
+                    if (cardManager.IsSlotEmpty(i))
+                    {
+                        if (cardManager.IsLastSlotEmpty(i))
+                        {
+                            StartCoroutine(AutoDrawAfterDelay
+                            (autoDrawDelay * noReloadBullets, i,
+                            () => { Debug.Log("Loading Last Element..."); }));
+                        }
+                        else
+                        {
+                            StartCoroutine(AutoDrawAfterDelay(autoDrawDelay * noReloadBullets, i));
+                        }
+                        noReloadBullets++;
+                    }
+                }
+            }
         }
 
         /// <summary>
@@ -153,17 +188,22 @@ namespace CardSystem
         /// <param name="slotIndex">The slot index to draw a card to (0-3).</param>
         public void StartAutoDrawForSlot(int slotIndex)
         {
-            StartCoroutine(AutoDrawAfterDelay(slotIndex));
+            if (willAutodraw)
+            {
+                GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
+                StartCoroutine(AutoDrawAfterDelay(this.autoDrawDelay, slotIndex));
+            }
         }
 
         /// <summary>
         /// Waits for the specified delay time before drawing a card to the slot.
         /// </summary>
         /// <param name="slotIndex">The slot index to draw a card to (0-3).</param>
-        private IEnumerator AutoDrawAfterDelay(int slotIndex)
+        private IEnumerator AutoDrawAfterDelay(float drawDelay, int slotIndex, Action optionalAction = null)
         {
-            yield return new WaitForSeconds(autoDrawDelay);
+            yield return new WaitForSeconds(drawDelay);
             DrawCardToSlot(slotIndex);
+            optionalAction?.Invoke();
         }
 
         /// <summary>
@@ -175,7 +215,7 @@ namespace CardSystem
             for (int i = 0; i < deck.Count; i++)
             {
                 Card temp = deck[i];
-                int randomIndex = Random.Range(i, deck.Count);
+                int randomIndex = UnityEngine.Random.Range(i, deck.Count);
                 deck[i] = deck[randomIndex];
                 deck[randomIndex] = temp;
             }
