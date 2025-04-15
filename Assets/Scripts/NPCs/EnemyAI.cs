@@ -1,6 +1,7 @@
 using UnityEngine;
 using CardSystem;
 using UnityEngine.Serialization;
+using System;
 
 
 public class EnemyAI : MonoBehaviour
@@ -47,6 +48,7 @@ public class EnemyAI : MonoBehaviour
     private float lastAttackTime = -Mathf.Infinity;
     //Stores the enemy's initial Y coordinate.
     private float initialY;
+    public static event Action OnDeathEnemy;
 
     private void Start()
     {
@@ -177,6 +179,7 @@ public class EnemyAI : MonoBehaviour
     {
         //Reward player for the kill.
         GameContext.Instance.Player.ChangeManaByTickUnit(manaReward);
+        OnDeathEnemy?.Invoke();
         Destroy(gameObject);
     }
 

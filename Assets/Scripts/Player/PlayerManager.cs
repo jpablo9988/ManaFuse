@@ -24,6 +24,7 @@ public class PlayerManager : MonoBehaviour
 
     public bool IsTimerActive { get => _timer.IsTicking; set => _timer.IsTicking = value; }
     public PlayerMovement PlayerMovementManager => _movement;
+    public static event Action OnDeathPlayer;
 
     void Awake()
     {
@@ -36,10 +37,10 @@ public class PlayerManager : MonoBehaviour
             _bar = this.GetComponentInScene(false, out _bar);
             if (!_bar)
             {
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 Debug.LogError("Failed to find ManafuseBar component");
                 UnityEditor.EditorApplication.isPlaying = false;
-                #endif
+#endif
                 return;
             }
         }
@@ -48,10 +49,10 @@ public class PlayerManager : MonoBehaviour
             _timer = this.GetComponentInScene(false, out _timer);
             if (!_timer)
             {
-                #if UNITY_EDITOR
-                    Debug.LogError("Failed to find Timer component");
-                    UnityEditor.EditorApplication.isPlaying = false;
-                #endif
+#if UNITY_EDITOR
+                Debug.LogError("Failed to find Timer component");
+                UnityEditor.EditorApplication.isPlaying = false;
+#endif
                 return;
             }
         }
@@ -60,10 +61,10 @@ public class PlayerManager : MonoBehaviour
             _movement = this.GetComponentInScene(false, out _movement);
             if (!_movement)
             {
-                #if UNITY_EDITOR
+#if UNITY_EDITOR
                 Debug.LogError("Failed to find Movement component");
                 UnityEditor.EditorApplication.isPlaying = false;
-                #endif
+#endif
                 return;
             }
         }
@@ -121,7 +122,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (gameOver)
         {
-            print("Game Over");
+            OnDeathPlayer?.Invoke();
         }
         else
         {
