@@ -161,7 +161,7 @@ namespace CardSystem
         /// </summary>
         public void ReloadSlots()
         {
-            if (willAutodraw && _isReloading) return;
+            if (willAutodraw || _isReloading) return;
             _isReloading = true;
             GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
             GameContext.Instance.InputManager.ActivateCardInputs = false;
