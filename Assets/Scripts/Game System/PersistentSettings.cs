@@ -1,15 +1,14 @@
 using UnityEngine;
 
-public class PersistentSettings
+public static class PersistentSettings
 {
     private const string VolumeKey = "GlobalVolume";
     private const string FullscreenKey = "IsFullScreen";
 
-    // Default values
     private const float DefaultVolume = 1.0f;
     private const bool DefaultFullscreen = true;
 
-    // Volume from 0.0 - 1.0
+    // Volume value between 0 and 1
     public static float GlobalVolume
     {
         get => PlayerPrefs.GetFloat(VolumeKey, DefaultVolume);
@@ -17,6 +16,7 @@ public class PersistentSettings
         {
             PlayerPrefs.SetFloat(VolumeKey, Mathf.Clamp01(value));
             PlayerPrefs.Save();
+            AudioListener.volume = value; // Apply immediately
         }
     }
 
@@ -28,13 +28,21 @@ public class PersistentSettings
         {
             PlayerPrefs.SetInt(FullscreenKey, value ? 1 : 0);
             PlayerPrefs.Save();
+            Screen.fullScreen = value; // Apply immediately
         }
     }
 
-    // Call on app start if needed
+    // Apply saved settings at application start
     public static void ApplySettings()
     {
         AudioListener.volume = GlobalVolume;
         Screen.fullScreen = IsFullScreen;
+    }
+
+    // Optional: reset all settings to default values
+    public static void ResetToDefault()
+    {
+        GlobalVolume = DefaultVolume;
+        IsFullScreen = DefaultFullscreen;
     }
 }
