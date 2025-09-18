@@ -10,7 +10,7 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
 {
     [Header("Movement Settings")]
     [Tooltip("Base movement speed of the player.")]
-    [SerializeField] private float moveSpeed = 5f;
+    [SerializeField] private float moveSpeed = 1000f;
 
     [Header("Sprint Settings")]
     [Tooltip("Distance in units the player will move during a default sprint.")]
