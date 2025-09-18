@@ -25,6 +25,36 @@ public class PlayerManager : MonoBehaviour
     public bool IsTimerActive { get => _timer.IsTicking; set => _timer.IsTicking = value; }
     public PlayerMovement PlayerMovementManager => _movement;
     public static event Action OnDeathPlayer;
+    
+    /// <summary>
+    /// Gets the current number of mana units
+    /// </summary>
+    public int CurrentManaUnits 
+    { 
+        get 
+        { 
+            if (_bar != null && _bar.gameObject.activeInHierarchy)
+            {
+                try
+                {
+                    // Get the green slider from the ManafuseBar
+                    var greenSlider = _bar.GetComponentInChildren<UnityEngine.UI.Slider>();
+                    if (greenSlider != null)
+                    {
+                        // Calculate current units based on slider value
+                        float currentSliderValue = greenSlider.value;
+                        float ticksPerUnit = _bar.TicksPerUnit;
+                        return Mathf.FloorToInt(currentSliderValue / ticksPerUnit);
+                    }
+                }
+                catch (System.Exception e)
+                {
+                    Debug.LogWarning($"Error calculating current mana units: {e.Message}");
+                }
+            }
+            return _manaUnits;
+        } 
+    }
 
     void Awake()
     {

@@ -28,7 +28,7 @@ namespace CardSystem
         [Tooltip("Time in seconds to wait before automatically drawing a new card after one is used.")]
         [SerializeField] private float autoDrawDelay = 1f;
         [Tooltip("Marks if the Bullets will auto-draw")]
-        [SerializeField] private bool willAutodraw = true;
+        [SerializeField] private bool willAutodraw = false;
 
         [Header("Dependencies")]
         [Tooltip("Reference to the CardManager that handles card slots and UI updates.")]
@@ -140,6 +140,29 @@ namespace CardSystem
             if (drawnCard)
             {
                 cardManager.SetCardInSlot(slotIndex, drawnCard);
+            }
+        }
+
+        /// <summary>
+        /// Reloads a specific slot immediately. If forceReplace is true and the slot
+        /// already contains a card, the existing card is discarded before drawing.
+        /// </summary>
+        /// <param name="slotIndex">Slot index to reload (0-3).</param>
+        /// <param name="forceReplace">If true, replaces an existing card in the slot.</param>
+        public void ReloadSlot(int slotIndex, bool forceReplace)
+        {
+            if (slotIndex < 0 || slotIndex >= cardManager.cardSlots.Length) return;
+
+            // If replacing, discard current card and clear UI
+            if (forceReplace && !cardManager.IsSlotEmpty(slotIndex))
+            {
+                cardManager.DiscardCardFromSlot(slotIndex);
+            }
+
+            // Draw a card into the slot if empty
+            if (cardManager.IsSlotEmpty(slotIndex))
+            {
+                DrawCardToSlot(slotIndex);
             }
         }
 

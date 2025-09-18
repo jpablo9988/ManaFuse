@@ -10,6 +10,7 @@ namespace CardSystem
         public DeckManager _deckManager;
         public GameObject player;
         public bool discardHeld = false;
+        public bool reloadHeld = false;
 
         //Trigger Thresholds for "Held" input
         private const float TriggerThreshold = 0.5f;
@@ -46,7 +47,9 @@ namespace CardSystem
             _inputActions.CardControls.Slot2.performed += ctx => HandleSlotInput(1);
             _inputActions.CardControls.Slot3.performed += ctx => HandleSlotInput(2);
             _inputActions.CardControls.Slot4.performed += ctx => HandleSlotInput(3);
-            _inputActions.CardControls.EquipMod.performed += ctx => _deckManager.ReloadSlots();
+            // Reload modifier (hold)
+            _inputActions.CardControls.EquipMod.performed += ctx => OnReloadPressed();
+            _inputActions.CardControls.EquipMod.canceled += ctx => OnReloadReleased();
             _inputActions.CardControls.DiscardMod.performed += ctx => discardHeld = true;
             _inputActions.CardControls.DiscardMod.canceled += ctx => discardHeld = false;
         }
@@ -58,14 +61,21 @@ namespace CardSystem
             _inputActions.CardControls.Slot2.performed -= ctx => HandleSlotInput(1);
             _inputActions.CardControls.Slot3.performed -= ctx => HandleSlotInput(2);
             _inputActions.CardControls.Slot4.performed -= ctx => HandleSlotInput(3);
-            _inputActions.CardControls.EquipMod.performed -= ctx => _deckManager.ReloadSlots();
+            _inputActions.CardControls.EquipMod.performed -= ctx => OnReloadPressed();
+            _inputActions.CardControls.EquipMod.canceled -= ctx => OnReloadReleased();
             _inputActions.CardControls.DiscardMod.performed -= ctx => discardHeld = false;
             _inputActions.CardControls.Disable();
         }
 
         private void HandleSlotInput(int slotIndex)
         {
-            if (discardHeld)
+            // Priority: reload > discard > activate
+            if (reloadHeld)
+            {
+                // Reload this specific slot (only if empty)
+                _deckManager.ReloadSlot(slotIndex, false);
+            }
+            else if (discardHeld)
             {
                 //Discard card from selected slot
                 cardManager.DiscardCardFromSlot(slotIndex);
@@ -74,6 +84,26 @@ namespace CardSystem
             {
                 //Activate card in selected slot
                 cardManager.ActivateCardInSlot(slotIndex, player);
+            }
+        }
+
+        private void OnReloadPressed()
+        {
+            reloadHeld = true;
+            // Start glow effect on revolver UI
+            if (GameContext.Instance.UIRevolverManager != null)
+            {
+                GameContext.Instance.UIRevolverManager.StartGlow();
+            }
+        }
+
+        private void OnReloadReleased()
+        {
+            reloadHeld = false;
+            // Stop glow effect on revolver UI
+            if (GameContext.Instance.UIRevolverManager != null)
+            {
+                GameContext.Instance.UIRevolverManager.StopGlow();
             }
         }
     }
