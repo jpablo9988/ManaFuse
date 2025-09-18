@@ -13,15 +13,11 @@ public class BulletManagerUI : MonoBehaviour
     private Image _numberImage; // New UI Image for displaying the number sprite
     [SerializeField]
     private Sprite[] _numberSprites; // Array of sprites for digits 0-9
-    private Pool _energyNodesPool;
-    private RectTransform _imageRT;
     public BulletDirection Direction => _direction;
+
 
     void Awake()
     {
-        _energyNodesPool = GetComponentInChildren<Pool>(true);
-        _imageRT = GetComponent<RectTransform>();
-
         if (_bulletImage == null)
         {
             _bulletImage = GetComponent<Image>();
@@ -77,10 +73,7 @@ public class BulletManagerUI : MonoBehaviour
 
     public void DisableBullet()
     {
-        if (_energyNodesPool)
-        {
-            _energyNodesPool.SetAllObjectsInactive();
-        }
+
 
         if (_bulletImage)
         {
@@ -108,29 +101,17 @@ public class BulletManagerUI : MonoBehaviour
             Debug.LogError($"Number sprites array is not properly set up in {_direction}. Requires 10 sprites (0-9).");
             return;
         }
-
-        // Clear any existing energy nodes (legacy dot system)
-        if (_energyNodesPool)
+        if (manaCost > 9 || manaCost < 0)
         {
-            _energyNodesPool.SetAllObjectsInactive();
+            Debug.LogError($"Number sprites array is not properly set up in {_direction}. Requires 10 sprites (0-9).");
+
         }
 
-        // Clamp mana cost to valid range (0-9)
-        int displayCost = Mathf.Clamp(manaCost, 0, 9);
+
 
         // Enable and set the number sprite
         _numberImage.enabled = true;
-        _numberImage.sprite = _numberSprites[displayCost];
-        // Removed SetNativeSize() to prevent automatic size adjustment
-        // Removed automatic positioning to let the number stay where it's placed in the scene
-        
-        // Ensure number image renders on top by moving it to the end of the hierarchy
-        _numberImage.transform.SetAsLastSibling();
-        
-        // Additional fix: Move the entire BulletUI to the end of its parent's children
-        // This ensures this BulletUI (and its number) renders after other BulletUIs
-        transform.SetAsLastSibling();
-
-        print($"Set number display for {_direction}: {displayCost}");
+        _numberImage.sprite = _numberSprites[manaCost];
+        print($"Set number display for {_direction}: {manaCost}");
     }
 }
