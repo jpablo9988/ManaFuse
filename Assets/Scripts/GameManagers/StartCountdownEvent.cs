@@ -72,7 +72,7 @@ public class StartCountdownEvent : MonoBehaviour
         for (int i = 0; i < _objects.Count; i++)
         {
 
-            _objects[i]._go.SetActive(_objects[i]._leaveActive);
+            _objects[i]._go.SetActive(_objects[i]._leaveActive); //Throwing error here. gO is being destroyed when trying to active it.
         }
         for (int i = 0; i < _uiObjects.Count; i++)
         {
