@@ -19,14 +19,14 @@ public class ManafuseBar : MonoBehaviour
     private Slider redSlider;
     [SerializeField]
     private Pool dividerPool;
-    
+
     [Header("Edge Sprite")]
     [SerializeField]
     [Tooltip("Optional sprite that follows the green slider's edge")]
-    public RectTransform edgeSprite;
+    private RectTransform edgeSprite;
     [SerializeField]
     [Tooltip("Offset from the slider edge (in pixels)")]
-    public float edgeSpriteOffset = 0f;
+    private float edgeSpriteOffset = 0f;
 
     public float MaxSliderValue { get { return greenSlider.maxValue; } }
     public float TicksPerUnit { get { return MaxSliderValue / unitDividers; } }
@@ -67,7 +67,7 @@ public class ManafuseBar : MonoBehaviour
             NoManaLeft?.Invoke(false);
         }
     }
-    
+
     /// <summary>
     /// Updates the position of the edge sprite to follow the green slider's current value.
     /// The sprite will only follow the green slider, not the red one.
@@ -75,18 +75,18 @@ public class ManafuseBar : MonoBehaviour
     private void UpdateEdgeSpritePosition()
     {
         if (edgeSprite == null || greenSlider == null) return;
-        
+
         // Calculate the normalized position of the green slider (0 to 1)
         float normalizedPosition = greenSlider.value / greenSlider.maxValue;
-        
+
         // Get the slider's fill area (the actual visual bar)
         RectTransform sliderFillArea = greenSlider.fillRect;
         if (sliderFillArea == null) return;
-        
+
         // Calculate the position along the slider's width
         float sliderWidth = sliderFillArea.rect.width;
         float targetX = (normalizedPosition * sliderWidth) + edgeSpriteOffset;
-        
+
         // Set the edge sprite's position
         Vector3 newPosition = edgeSprite.anchoredPosition;
         newPosition.x = targetX;
@@ -138,11 +138,11 @@ public class ManafuseBar : MonoBehaviour
             greenSlider.value = MaxSliderValue;
             redSlider.value = MaxSliderValue;
         }
-        
+
         // Update edge sprite position after setting up the slider
         UpdateEdgeSpritePosition();
     }
-    
+
     /// <summary>
     /// Public method to manually update the edge sprite position.
     /// Useful for testing or external control.
