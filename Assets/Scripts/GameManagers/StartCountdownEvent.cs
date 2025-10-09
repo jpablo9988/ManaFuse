@@ -1,7 +1,9 @@
 using System;
 using System.Collections.Generic;
+using AudioSystem;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Timeline;
 
 ///
 /// Counts down from a timer, activating and deactivating certain objects in a pattern.
@@ -37,7 +39,8 @@ public class StartCountdownEvent : MonoBehaviour
     float _timeActive;
     [SerializeField]
     float _timeInactive;
-
+    [SerializeField]
+    private MusicTrack _levelMusicTrack;
     private InputManager _inputManager;
     float _currTimer, _currCycles;
     bool _isOnActive;
@@ -45,6 +48,11 @@ public class StartCountdownEvent : MonoBehaviour
     {
         _inputManager = GameContext.Instance.InputManager;
     }
+    void Start()
+    {
+        GameContext.Instance.AudioManager.PlayMusicTrack(_levelMusicTrack, false); //Should not fade in - starts in-sync with blinking event.
+    }
+
     void OnEnable()
     {
         //Deactivate Player Controls.
@@ -52,8 +60,7 @@ public class StartCountdownEvent : MonoBehaviour
         _currCycles = _noBlinks;
         _inputManager.ActivateCardInputs = false;
         _inputManager.ActivatePlayerInputs = false;
-        _inputManager.ActivateUIInputs = false;
-        _isOnActive = true;
+        _inputManager.ActivateUIInputs = false; _isOnActive = true;
         for (int i = 0; i < _objects.Count; i++)
         {
             _objects[i]._go.SetActive(_objects[i]._startsActive);
