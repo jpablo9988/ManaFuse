@@ -38,8 +38,6 @@ public class Projectile : MonoBehaviour
     private MeshRenderer bulletVisuals;
     void Awake()
     {
-        if (impactParticleSystem == null)
-            TryGetComponent(out impactParticleSystem);
         if (bulletTrail == null)
             TryGetComponent(out bulletTrail);
         if (bulletVisuals == null)
