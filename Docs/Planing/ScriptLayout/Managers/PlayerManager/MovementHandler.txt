@@ -1,0 +1,15 @@
+MovementHandler
+
+Role: Player Movement Processor
+
+
+Goal: 
+
+The MovementHandler, as per the name, will handle any and all processing for the player's movement, aiming, and dashing. 
+
+This will essentially be a direct port from the previous version, but ensuring the new architecutre restrictions.
+
+
+Currennt Functions:
+
+N/A

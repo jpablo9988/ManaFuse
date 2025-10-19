@@ -1,0 +1,31 @@
+CardEditor
+
+Role: Scriptable Object Editor
+
+
+Goals:
+
+
+CardEditor is built to provide a simple UI in-editor to modify values for a given card file. All parameters for the card should be able to be selected 
+via a mixture of drop downs, bools, and object selections; making card creation quick and easy.
+
+All actual functionality should be supplied by supporting scripts, where as edited cards simply define arguments for these script functions.
+
+
+Previous functions to port over:
+
+CardEditor can remain untouched for now, as it's purely an editor element.
+
+
+Current Functions:
+
+[OnEnable]
+
+Read current values for the select card
+
+
+[OnInspectorGUI]
+
+Initialize and draw the editor UI elements for the card editor
+
+

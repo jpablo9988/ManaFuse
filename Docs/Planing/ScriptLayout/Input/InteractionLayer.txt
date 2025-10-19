@@ -1,0 +1,16 @@
+InteractionLayer
+
+Role: Misc Input Layer
+
+
+Goal:
+
+The InteractionLayer acts as a unorganized input layer for the player that doesn't fit into any specific categories, but doesn't fit into it's own
+dedicated layer.
+
+This layer can be used for things like in-level interactables, game-world button prompts, debug keybinds, etc
+
+
+Current Functions:
+
+N/A

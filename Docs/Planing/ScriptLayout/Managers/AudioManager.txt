@@ -1,0 +1,17 @@
+Audio Manager
+
+Role: Audio Manager
+
+
+Changes from previous version:
+
+None! This looks good!
+
+Goal:
+
+-todo-
+
+
+Current Functions:
+
+

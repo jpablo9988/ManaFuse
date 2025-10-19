@@ -1,0 +1,38 @@
+GameContext
+
+Role: Top level manager
+
+Changes from previous version:
+
+All previous links to managers need to be adjusted to their new versions, otherwise, if the manager it refers to still exists, it should be fine.
+
+
+Goal: 
+
+The goal for the GameContext is to have a unified way to handle calls from all of our scripts, and send them to the correct manager
+
+The workflow for this process should be a such:
+
+[Script] Calls the game context directly upon a certain event, state, or value change (This does NOT have to go through a manager,
+anything can call the game context directly)
+
+[Game Context] Recieves said call, and passes this call down to the correct manager(s)
+
+[Manager] Processes said call, and triggers the correct functions in the scripts that it handles
+
+
+This process allows us to abstract calls between scripts into a more consistent workflow. This allows us, at any point in time to accurately
+and consistently follow calls from any script and modify the behavior in a clean way.
+For example, if I need to add additional triggers when a card is activated, all I need to do is to create the script or function I need within
+it's related folder, and modify the manager entry to properly execute my new script/function
+Now any script that calls card activation through game context will trigger my new function, simplifying the workflow of new additions
+
+
+Previous functions to port over:
+(unclear)
+
+
+Current Functions:
+(List current functions and where they lead here)
+
+

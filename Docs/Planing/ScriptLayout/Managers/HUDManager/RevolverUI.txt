@@ -1,0 +1,14 @@
+RevolverUI
+
+Role: HUD element
+
+
+Goal:
+
+The goal for the Revolver UI is to perform all functions related to our current revolver UI, such as reading icons from cards, displaying mana use of each card
+as well as drawing any additioanl elements anchored to the Revolver UI
+
+
+Current Functions:
+
+N/A

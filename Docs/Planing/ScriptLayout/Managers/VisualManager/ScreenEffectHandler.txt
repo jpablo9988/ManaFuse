@@ -1,0 +1,14 @@
+ScreenEffectHandler
+
+
+Role: Effect Handler
+
+
+Goal:
+
+The screen effect handle will handle any shaders or effects applied in screenspace, such as warping, vignette, pixelization, etc
+
+
+Current Functions:
+
+N/A

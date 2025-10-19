@@ -1,0 +1,22 @@
+MovementLayer
+
+Role: Player Movement Input layer
+
+
+Goal: 
+
+Similar to all other input layers, the goal of the movement layer is to group all input keys for binds related to movement.
+This includes dashing, powerups not related to the card system, aiming, etc.
+
+Similar to the CardLayer, we may want groups of inputs to be enabled and disabled to allow us to switch between different modes.
+For example, If went want to allow for mouse aiming instead of purely keyboard aiming, we could setup the binds for that here and switch which keys
+are enabled or disabled; or even allow for a modifier key to toggle the input layers on the fly.
+
+
+Previous Functions to port over:
+All
+
+
+Current functions:
+
+N/A

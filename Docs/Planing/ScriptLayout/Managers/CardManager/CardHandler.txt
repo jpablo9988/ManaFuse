@@ -1,0 +1,21 @@
+CardHandler
+
+Role: Card Handler
+
+
+Goal:
+
+Essentially, this is the replacement for the current state of CardManager, for handling the remaining functions not replicated by other scripts.
+In order to ensure that we aren't creating additional paths, CardHandler will make extensive use of the new CardManager to call scripts within the 
+card system. This may feel a bit awakrd, but this results in the same flexibility as any script within the codebase.
+
+Functions being replicated are as such:
+
+Drawing a card to a slot
+Sending a call to the HUDManager to update the loaded slots (pass on which cards are equipped directly to the HUDManager)
+Activating cards
+Ensuring if a slot is available (to be loaded, or to be activated)
+
+
+Current Functions: 
+N/A

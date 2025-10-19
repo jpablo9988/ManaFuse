@@ -1,0 +1,15 @@
+Projectile
+
+
+Role: Attack Module
+
+
+Goal:
+
+
+The goal of the projectile script, is to handle all functions critical to applying damage, and how much damage, which ever target the projectile hits.
+
+
+Current Functions:
+
+N/A

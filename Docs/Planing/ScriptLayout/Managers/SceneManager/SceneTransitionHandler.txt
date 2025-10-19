@@ -1,0 +1,13 @@
+SceneTransitionHandler
+
+Role: Scene Loader
+
+
+Goal:
+
+The goal of the scene transition handler is to cleanly handle loading and unloading of scenes between levels, or join levels if implemented
+
+
+Current Functions:
+
+N/A

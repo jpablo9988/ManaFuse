@@ -1,0 +1,25 @@
+sfxHandler
+
+Role: Audio Subsystem
+
+Changes from previous version:
+
+None! This looks good!
+
+Goal:
+
+-todo-
+
+
+Current Functions: 
+
+[PlaySFX]
+
+Play sound effect via the audio mixer
+(Other functions allow for pitch selection / randomization)
+
+[IsAudioMixerDataValid]
+
+Ensure the AudioMixer, and assigned pitch are valid
+
+

@@ -1,0 +1,15 @@
+ManaBarUI
+
+Role: HUD element
+
+
+Goal: 
+
+
+The goal of the Manabar UI is to handle all support functions related to the manabar. From animations, displaying status effects, or different manabar types.
+The current revision of the manabar, and it's related functions should be ported over to this script.
+
+
+Current Functions:
+
+N/A

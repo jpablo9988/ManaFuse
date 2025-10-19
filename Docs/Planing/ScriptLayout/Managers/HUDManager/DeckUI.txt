@@ -1,0 +1,12 @@
+DeckUI
+
+Role: HUD element
+
+Goal:
+
+The DeckUI is in charge of elements that display your current deck, as well as any animations related to deck functions; like drawing, discarding, or shuffling.
+
+
+Current Functions:
+
+N/A

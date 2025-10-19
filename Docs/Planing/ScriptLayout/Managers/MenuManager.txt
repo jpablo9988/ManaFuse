@@ -1,0 +1,14 @@
+MenuManager
+
+Role: Menu System Manager
+
+
+Goal: 
+
+The goal of the menu manager is to handle every function related to menu elements from the main menu, game over screen, pause menu, overlay menus, etc.
+You could consider this a UI manager, though the HUD is seperated out into it's own system for organization sake. 
+
+
+Current Functions: 
+
+N/A 

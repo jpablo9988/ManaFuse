@@ -1,0 +1,17 @@
+EenemyAI
+
+Role: Enemy NPC 
+
+
+Goal:
+
+
+The goal of the EnemyAI script is to be an extensible scirpt for handling and creating any type of AI. All parameters like speed, dodge rate, and health will
+be defined here. As for attacks, Enemy AI are currently set up to use cards, just like the player.
+
+The previous Enemy AI will be implemented here, but modified to follow the new architectual rules.
+
+
+Current Functions:
+
+N/A

@@ -1,0 +1,14 @@
+SceneTracker
+
+Role: Progress Tracker
+
+
+Goal:
+
+The goal of the SceneTracker is to keep track of the status of elements within the scene. Whether this is how many enemies have been defeated, level progress
+what objects have been interacted with, and even which objects have been destroyed. 
+
+
+Current Functions:
+
+N/A

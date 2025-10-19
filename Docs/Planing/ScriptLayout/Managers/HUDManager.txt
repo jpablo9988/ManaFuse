@@ -1,0 +1,12 @@
+HUDManager 
+
+Role: HUD System Manager
+
+Goal:
+
+The goal for the HUDManager is to process any and all updates to the in-game HUD, keeping things seperated from the main UI.
+All updates, disabling and enabling seperate elements, as well as triggering things like animations, should be handled by the HUDManager.
+
+Current Functions: 
+
+N/A

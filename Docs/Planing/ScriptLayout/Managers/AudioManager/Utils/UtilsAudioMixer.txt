@@ -1,0 +1,24 @@
+UtilsAudioMixer
+
+Role: Audio Sub System
+
+Changes from previous version:
+
+None! This looks good! 
+
+Goal:
+
+-todo-
+
+
+Current Functions:
+
+[SetVolume]: 
+
+Adjusts volume in the mixer(?)
+
+[StartFade]: (3 Variants)
+
+Fades out the the selected audio source over a period of time(?)
+
+

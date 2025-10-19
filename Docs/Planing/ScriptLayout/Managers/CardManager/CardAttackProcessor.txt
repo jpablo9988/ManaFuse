@@ -1,0 +1,17 @@
+CardAttackProcessor
+
+Role: Card Processor
+
+Goal:
+
+The idea behind the CardAttack processor is to have a single script which dictates how all attack cards will work in the game. 
+When a card is set to type "Attack", arguements will be passed to this script via CardManager which define how the attack will function.
+Currently, the only attack type is "Shoot Projectile", though future attack types can be implemented here as needed.
+
+
+Previous functions to port over:
+
+[ShootProjectile] (From Attackmanager)
+
+
+

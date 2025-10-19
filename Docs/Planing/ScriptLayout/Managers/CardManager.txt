@@ -1,0 +1,18 @@
+CardManager
+
+Role: Card System Manager
+
+
+Goals: 
+
+
+The goal of the CardManager is to have a unified way to handle all calls to the various card systems. This abstracts calls away from specific
+scripts and functions, allowing for a more modular design that flows in an easy to understand way. 
+
+All incoming calls to the card system will be handled by CardManager, instead of hardcoding; so if aspects of the script change, or if multiple scripts
+within this system are required to be called, all of it will be handled in a transparent manner by CardManager.
+
+
+Current Functions:
+
+N/A

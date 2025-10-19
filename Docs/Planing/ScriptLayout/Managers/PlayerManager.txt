@@ -1,0 +1,14 @@
+PlayerManager
+
+Role: Player Manager
+
+
+Goal:
+
+The goal of the player manager is to process all functions related directly to the player themselves. This includes things as basic as movement and
+Interaction handlers, to things like stat tracking (kills, deaths, etc).
+
+
+Current Functiions:
+
+N/A

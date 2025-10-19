@@ -1,0 +1,14 @@
+SceneManager
+
+Role: Scene Manager
+
+
+Goal:
+
+The goal of the scene manager, is to provide a unified way to interact with objects related to the scene, as well as it's status.
+This includes things like Enemy AI, projectile and card related helper assets within the scene, as well as the level status.
+
+
+Current Functions:
+
+N/A

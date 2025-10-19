@@ -1,0 +1,6 @@
+DisabledDebug
+
+Function: 
+Disables all debugging on production builds, this helps massively with performance on proper builds of the game.
+
+No edits are required.

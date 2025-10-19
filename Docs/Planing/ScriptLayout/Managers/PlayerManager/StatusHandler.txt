@@ -1,0 +1,18 @@
+StatusHandler
+
+Role: Player Status Handler
+
+
+Goals:
+
+
+Not to be confused with status effects, the player stauts handler will keep track of things like the player's remaining manabar, handle reduction of the manabar
+over time, movement speed, respawning, etc.
+
+At the same time, this WILL also be handling status effects as well as buffs, on top of keeping track of which ones are currently applied to the player
+and for how long
+
+
+Current Functions:
+
+N/A

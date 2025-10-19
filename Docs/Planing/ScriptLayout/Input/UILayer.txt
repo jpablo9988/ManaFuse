@@ -1,0 +1,22 @@
+UILayer
+
+Role: Menu Input Layer
+
+
+Goal:
+
+The UILayer will act as the universal input layer for all UI interactions. Because of this, organization and categorization within
+this script is crucial.
+
+Disabling or enabling of other inputs outside of this layer should be handled naturally like all other scripts through the InputManager.
+DO NOT implement cross talk between layers, as this ruins the heiarchy and organization process (along with it's benefits).
+
+
+Previous Functions to port over:
+
+All.
+
+
+Current Functions:
+
+N/A

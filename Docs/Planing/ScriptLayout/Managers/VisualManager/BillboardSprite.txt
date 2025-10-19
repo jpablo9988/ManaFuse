@@ -1,0 +1,14 @@
+BillboardSprite
+
+
+Role: Visual Element
+
+
+Goal: 
+
+The Billboard Sprite script is all the supporting functions for the visual style of the same name
+
+
+Current Functions:
+
+N/A

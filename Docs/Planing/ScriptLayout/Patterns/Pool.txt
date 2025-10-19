@@ -1,0 +1,9 @@
+Pool
+
+Function:
+
+Datastructure used to preload objects into a scene, and reuse said objects rather than removing and reinitializing them constantly.
+
+Goals:
+
+Should be fine as is, though I would like to see pools, and other optimization techniques used more frequently throughout the codebase if possible.

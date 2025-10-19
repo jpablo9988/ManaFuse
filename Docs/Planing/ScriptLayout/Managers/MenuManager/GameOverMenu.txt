@@ -1,0 +1,15 @@
+GameOverMenu
+
+Role: Gameplay Menu
+
+
+Goal: 
+
+
+The role of the game over is rather simple: provide a screen when the player has died, and allow for either a scene reload or exiting back to the menu.
+This function can be useful to trigger re-randomization functions, respawning or resetting elements, and resetting states without having to fully reload
+the current scene.
+
+Current Functions:
+
+N/A

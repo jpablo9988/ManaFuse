@@ -1,0 +1,15 @@
+CameraHandler
+
+Role: Camera Module
+
+
+Goal: 
+
+
+The goal of CameraHandler is to handle any and all functions that manipulate the camera. This includes things like player tracking, camera shake, 
+fov management, cutscene handlers, etc
+
+
+Current Functions:
+
+N/A

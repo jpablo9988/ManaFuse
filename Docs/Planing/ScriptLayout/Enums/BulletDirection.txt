@@ -1,0 +1,5 @@
+BulletDirection
+
+
+This is an enum file, and will stay largely unmodified from the previous version.
+Updates are not required.

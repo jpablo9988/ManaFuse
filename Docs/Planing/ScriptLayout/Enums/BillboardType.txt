@@ -1,0 +1,5 @@
+Billboard type
+
+
+This is an enums file, and will stay largely the same as it was.
+No modifications required.

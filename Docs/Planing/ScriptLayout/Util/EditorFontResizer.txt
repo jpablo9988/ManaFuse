@@ -1,0 +1,7 @@
+EditorFontResizer
+
+Function:
+
+Allows you to change the font size of most of the elements within the editor, as scaling isn't properly supported in platforms other than Windows.
+
+Updates may be required for proper scaling, currently semi-functional.

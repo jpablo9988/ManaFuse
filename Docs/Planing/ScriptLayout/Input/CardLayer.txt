@@ -1,0 +1,28 @@
+CardLayer
+
+Role: Card Input Manager
+
+Changes from previous version:
+
+Implements similar function as CardInputHandler. 
+For the most part, it stays the same, though we might want to have new functions that switch between different control sets
+such as when we want to switch between the "Normal" and "Simplified" reloading mechanics
+
+
+Goal: 
+
+The goal of our input layers, is to provide a simple, and easy to use reference for all the different elements that makeup the controls,
+and allow for an easy way to modify, enable, or disable sets of controls without even having to reference them directly (only referencing
+the input manager).
+
+The CardLayer is no different, and is built to handle all controls related to card and deck inputs.
+
+
+Previous functions to port over:
+
+All previous functions
+
+
+Current Functions:
+
+N/A

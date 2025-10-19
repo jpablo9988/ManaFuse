@@ -1,0 +1,357 @@
+Legend:
+[] = folder
+{} = Script
+>> = Depends Upon / Linked
+<< = Called Upon / Depended on
+$ = Dependency is correct / makes sense to have (This does not mean it should be changed, rather that direct or close to direct connections should be considered)
+# = Script is exempt from full reognization / rewrites (if possible)
+? = Script might need to changed or reworked (or removed as dependent/dependency)
+% = Split script into multiple (If used on dependency, split that specific module from it)
+& = Rework / Merge into a more dedicated script
+?X = Scrap this script
+! = Script *should* be reworked from the ground up
+!! = Script NEEDS to be reworked entirely from the ground up
+------------------------------------------------------------------------------------------------
+*Multiple declarations mean both things are true; i.e %& means that the script needs to be reorganized entirely, or should be reworked as a manager
+
+*Declarations when in depencies / dependent, may be done so in context of the current script. For all declarations, please refer to the scripts full listing.
+================================================================================================
+
+
+[Attacks]
+
+{Projectile} ?
+>>EnemyAI $
+>>GameContext $
+---------------------
+<<AttackManager $
+<<CardManager $
+<<Card $
+<<EnemyAI $
+======================
+
+
+[CardSystem]
+
+{Card.cs} $#
+>>BulletDirection ?&
+>>GameContext $
+>>Projectile $
+---------------------
+<<DeckManager $?
+<<cardManager $?
+<<BulletManagerUI ?
+<<AttackManager ?
+<<Projectile $
+======================
+
+
+{DeckManager} !!%&
+>>Card $
+>>CardManager $?
+---------------------
+<<CardManager ?%&
+<<CardInputHandler $
+<<GameContext $
+======================
+
+
+{CardManager} !!%&
+>>DeckManager ?
+>>Card $
+>>BulletDirection ?
+>>GameContext $
+>>Projectile $
+---------------------
+<<CardInputHandler $
+<<DeckManager $
+======================
+
+
+{CardInputHandler} &?
+>>CardManager $
+>DeckManager $
+>>PlayerInputHandler &
+>>GameContext $
+---------------------
+<<InputManager $
+======================
+
+
+[Commons]
+
+{Singleton} #
+--Abstract Script-- (ignore)
+======================
+
+
+[EditorTweaks]
+
+{EditorFontResizer} #
+--Misc Script-- (ignore)
+======================
+
+
+[Enums]
+
+{BillboardType} #
+--Enum-- (ignore)
+======================
+
+
+{BulletDirection} #
+--Enum-- (ignore)
+======================
+
+
+{Scene} #
+--Enum-- (ignore)
+======================
+
+
+[Extensions]
+
+{InputMapExtension} ?
+======================
+
+
+{MonoBehaviorExtension} #$
+======================
+
+
+[GameManagers]
+
+{CharacterAnimationManager} $
+<<PlayerInputHandler $&
+<<AttackManager $?
+=======================
+
+
+{GameProgressTracker} ?&
+>>EnemyAI $
+>>PlayerManager $?%
+=======================
+
+
+{InputManager} ?&
+>>PlayerInputHandler ?&
+>>CardInputHanlder ?%&
+>>UIInputHanlder ?%&
+----------------------
+<<GameContext $
+<<GameProgressTracker ?
+<<PlayerManager ?
+<<DeckManager $
+<<StartCountdownEvent ?!
+=======================
+
+
+{StartCountdownEvent} ?!&
+>>InputManager $?
+=======================
+
+
+[Interfaces]
+
+{ICharacterMovement} X
+(What even is this...)
+<<PlayerMovement $
+<<PlayerInputHandler $
+=======================
+
+
+[NPCs]
+
+{EnemyAI} $
+>>Card $
+>>GameContext $
+>>Projectile $
+---------------------
+<<Projectile $?
+<<GameProgressTracker $?
+=======================
+
+
+[Player]
+
+{AttackManager}
+>>Projectile $
+>>CharacterAnimationManager ?
+---------------------
+<<Card $
+<<GameContext $
+======================
+
+
+{BillboardSprite} $ (WHY IS THIS HERE!?!?!)
+>>BillboardType $
+======================
+
+
+{PlayerInputHandler} ?
+>>CharacterAnimationManager $
+---------------------
+<<InputManager $
+======================
+
+
+{PlayerManager} ?%
+>>PlayerMovement $?
+>>GameContext $
+>>ManafuseBar ?
+--------------------
+<<Projectile $?
+=====================
+
+
+{PlayerMovement} ?
+>>ICharacterMovement X
+--------------------
+<<Card $?
+<<PlayerInputHandler $
+<<PlayerManager $%
+=====================
+
+
+{Timer} ?&
+<<PlayerManager ?
+=====================
+
+
+[ScriptableObjects] X (SHOULD NOT BE HERE)
+
+{BulletAction} X
+=====================
+
+
+[Singletons]
+
+{GameContext} #$
+>>InputManager $
+>>RevolverManagerUI $
+>>AttackManager $
+>>PlayerManager $
+>>DeckManager $
+>>PauseHandler $
+-------------------
+<<Projectile $
+<< Card $
+<<CardInputHandler $
+<<CardManager $
+<<DeckManager
+<<GameProgressTracker $
+<<StartCountdownEvent $
+<<EnemyAI $
+<<PlayerManager $
+<<UIInputHanlder $
+====================
+
+
+
+[UI]
+
+{BulletManagerUI} ?&
+>>BulletDirection ?
+>>Card $
+--------------------
+<<RevolverManagerUI ?&
+====================
+
+
+{DrawGUIOnTop} $?&
+====================
+
+
+{LinkSizeUI} $?&
+====================
+
+
+{ManaBarDebugMenu} $?&
+>>ManafuseBar $
+====================
+
+
+{ManafuseBar} $
+>>Pool $
+-------------------
+<<PlayerManager $
+<<ManaBarDebugMenu $
+====================
+
+
+{ManaUnitsDisplay} $?&
+>>PlayerManager $?
+====================
+
+
+{PauseHandler} $
+<<GameContext $
+<<UIInputHandler $
+====================
+
+
+{Pool} $#
+<<ManafuseBar $
+====================
+
+
+{RevolverDebugUI} $?&
+>>RevolverManagerUI $
+>>Card $?
+====================
+
+
+{RevolverManagerUI} $?%&
+>>BulletManagerUI $
+>>BulletDirection $?
+------------------
+<<CardInputHandler $?
+<<CardManager $?
+<<DeckManager $?
+<<GameContext $
+<<RevolverDebugUI $
+===================
+
+
+{SceneTransitionHandler} ?$&
+>>SceneTransitionVote $
+===================
+
+
+{SceneTransitionVote} $&
+>>Scene $
+------------------
+<<SceneTransitionHandler $
+===================
+
+
+{UIInputHandler} $&%
+>>GameContext $
+------------------
+<<InputManager $
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

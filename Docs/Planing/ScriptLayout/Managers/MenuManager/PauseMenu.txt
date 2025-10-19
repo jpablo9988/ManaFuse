@@ -1,0 +1,14 @@
+PauseMenu
+
+Role: Gameplay Menu
+
+
+Goal: 
+
+The PauseMenu is, as the name goes, the script which will handle the pause menu. It'll handle freezing the current game state, providing an options menu, and
+a way to exit the back to the main menu. Other functions like a deck database and other useful menus may be implemented here.
+
+
+Current Functions:
+
+N/A

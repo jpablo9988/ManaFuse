@@ -1,0 +1,15 @@
+LevelUI
+
+Role: HUD Element
+
+
+Goal:
+
+
+The goal for the level UI is to process any HUD elements related to things like level progression, level maps, enemies remaining, and overall
+level details and progress.
+
+
+Current Functions:
+
+N/A

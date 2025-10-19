@@ -1,0 +1,9 @@
+MainMenu
+
+Role: Main Menu
+
+
+Goal:
+
+The main menu scirpt is just that: the main menu. This will handle transitions to levels, the options menu (can be seperated), and any additional
+screens that will be shown to the player. Feel free to seperate this out into their own scripts as needed. 

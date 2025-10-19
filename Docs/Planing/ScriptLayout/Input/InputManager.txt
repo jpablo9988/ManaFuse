@@ -1,0 +1,22 @@
+InputManager
+
+Role: Input layer handler
+
+
+Goal: 
+
+
+The goal for the InputManager is to act as an intermediate between all other input layers. This simplifies the process of disabling or calling upon
+multiple input layers at once, and also allows us to do full input layer interactions without having to hard code them in on each script that requires
+such a funciton.
+
+For the most part, the InputManager will only be handling incoming calls from scripts outside of the input subsystem, so the implementation of this
+script might be rather minimal
+
+
+Current Functions:
+
+N/A
+
+
+

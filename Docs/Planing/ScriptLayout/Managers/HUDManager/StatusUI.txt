@@ -1,0 +1,15 @@
+StatusUI
+
+Role: HUD element
+
+
+Goal:
+
+
+The goal of the StatusUI is to display any and all statuses related to the player, or other trackable states that render on the HUD directly.
+This could be anything from durations of buffs, to an overlay of current loaded cards, or even details like current speed / cooldowns.
+
+
+Current Functions:
+
+N/A

@@ -1,0 +1,16 @@
+DeckHandler
+
+Role: Deck Manager
+
+
+Goal: 
+
+The goal of the DeckHandler is to keep track of the current deck, process of discarding, drawing, and adding cards, as well as any commands sent to the deck
+such as forcing a reshuffle of the deck, or shuffling a set of cards before placing them into a certain position within the deck. 
+
+Specific functions should be programmed on a case-by-case basis if we do intend on implementing them, but ALL Deck operations should be kept here.
+
+
+Current Functions:
+
+N/A

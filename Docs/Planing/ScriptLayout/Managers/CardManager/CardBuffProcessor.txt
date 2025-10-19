@@ -1,0 +1,17 @@
+CardBuffProcessor
+
+Role: Card Processor
+
+
+Goal: 
+
+CardBuffProcessor, similar to CardAttackProcessor will be utilized to define functions needed for cards, in relation to powerups / buffs.
+When a card is set to "Buff", arguements passed on to this script via cardManager will define which functions to trigger within the script,
+as well as their related perameters. 
+
+This could be anything from healing, buffs for specific attacks, elements, etc.
+
+
+Current Functions:
+
+N/A

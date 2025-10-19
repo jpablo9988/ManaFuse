@@ -1,0 +1,21 @@
+Card
+
+Role: Card Scriptable Object Base
+
+
+Goal: 
+
+The goal of the card system is largely the same as it was previously: to provide a clear base file, where all existing cards will base their data off of.
+This allows us to have a universal script which all objects of the same type are built off of; instead of having seperate scripts for each card.
+
+Card objects are merely tools to define what a card does, and it's metadata like Icon, Name, Mana Usage, etc.
+Actual functionality of the cards are implemented in related scripts, what functions are called and their parameters are dictated by this file.
+
+
+
+Previous functions to port over:
+
+Since this is more of a datafile, the card file will remain untouched
+
+
+
