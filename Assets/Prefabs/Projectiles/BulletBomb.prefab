@@ -17,9 +17,9 @@ GameObject:
   - component: {fileID: 5556064556656913538}
   - component: {fileID: 1121246176246234574}
   - component: {fileID: 8478874768945054622}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BulletBomb
-  m_TagString: Untagged
+  m_TagString: DefensiveBullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -132,6 +132,9 @@ MonoBehaviour:
   isEnemyProjectile: 0
   selfDamageEnabled: 0
   collisionDelay: 0.05
+  impactParticleSystem: {fileID: 0}
+  bulletTrail: {fileID: 0}
+  bulletVisuals: {fileID: 0}
 --- !u!54 &-8599985849092932970
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5085,7 +5088,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7729777133648976530}
   - component: {fileID: 8471753074777004094}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Square
   m_TagString: Untagged
   m_Icon: {fileID: 0}

@@ -1,5 +1,6 @@
 using UnityEngine;
 using CardSystem;
+using AudioSystem;
 
 public class GameContext : Singleton<GameContext>
 {
@@ -10,6 +11,7 @@ public class GameContext : Singleton<GameContext>
     [SerializeField] private PlayerManager _playerManager;
     [SerializeField] private DeckManager _deckManager;
     [SerializeField] private PauseHandler _pauseManager;
+    [SerializeField] private AudioManager _audioManager;
 
     [Header("Dependency Settings")]
     [SerializeField] private bool _createManagersIfMissing = true;
@@ -73,6 +75,16 @@ public class GameContext : Singleton<GameContext>
             return _pauseManager;
         }
     }
+    public AudioManager AudioManager
+    {
+        get
+        {
+            if (_audioManager) return _audioManager;
+            this.GetComponentInScene<AudioManager>(_createManagersIfMissing, out _audioManager);
+            _audioManager.enabled = true;
+            return _audioManager;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -81,6 +93,8 @@ public class GameContext : Singleton<GameContext>
         _playerManager = this.GetComponentInScene(false, out _playerManager);
         if (!_attackManager) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
         if (!_deckManager) _deckManager = this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
+        if (!_audioManager) _audioManager = this.GetComponentInScene<AudioManager>(_createManagersIfMissing, out _audioManager);
+
 
 
         //Check for missing dependencies if they have failed to have been created! 
@@ -92,6 +106,7 @@ public class GameContext : Singleton<GameContext>
         if (!_playerManager) { missingDependencies += "PlayerManager "; }
         if (!_attackManager) { missingDependencies += "AttackManager "; }
         if (!_deckManager) { missingDependencies += "DeckManager "; }
+        if (!_audioManager) { missingDependencies += "AudioManager "; }
 
         //Report missing dependencies and stop play mode if in Editor
         if (string.IsNullOrEmpty(missingDependencies)) return;

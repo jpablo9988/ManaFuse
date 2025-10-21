@@ -1,4 +1,5 @@
 using System;
+using Unity.VisualScripting;
 using UnityEngine;
 
 /// <summary>
@@ -25,25 +26,32 @@ public class Projectile : MonoBehaviour
     private float collisionDelay = 0.3f;
     public static event Action OnHitEnemy;
     private float spawnTime;
-
+    [Header("Dependencies")]
+    [SerializeField]
+    [Tooltip("Particle System of the Bullet that plays on impact. Can be left blank if there's none. ")]
+    private ParticleSystem impactParticleSystem;
+    [SerializeField]
+    [Tooltip("Will try to get one from current gO if there's none assigned. Can be left blank if there's none. ")]
+    private TrailRenderer bulletTrail;
+    [SerializeField]
+    [Tooltip("Important if using particle systems when being destroyed. Will try and get its attached component from the current GameObject. ")]
+    private MeshRenderer bulletVisuals;
+    void Awake()
+    {
+        if (bulletTrail == null)
+            TryGetComponent(out bulletTrail);
+        if (bulletVisuals == null)
+            TryGetComponent(out bulletVisuals);
+    }
     private void Start()
     {
         spawnTime = Time.time;
-        Destroy(gameObject, lifetime);
+        Invoke(nameof(BulletOnNoLifespan), lifetime);
     }
 
     private void Update()
     {
-        //Move forward in the local forward direction.
-        if (isEnemyProjectile)
-        {
-            transform.Translate(Vector3.forward * (speed * Time.deltaTime));
-        }
-        else //This is the worst bandaid fix of my life... LMAO
-        {
-            transform.Translate(-speed * Time.deltaTime * Vector3.left);
-        }
-
+        transform.Translate(Vector3.forward * (speed * Time.deltaTime));
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -61,8 +69,8 @@ public class Projectile : MonoBehaviour
             {
                 //Reduce player's mana by the projectile's damage.
                 GameContext.Instance.Player.ChangeManaByTickUnit(-damage, true);
+                BulletOnImpact();
             }
-            Destroy(gameObject);
             return;
         }
 
@@ -77,12 +85,40 @@ public class Projectile : MonoBehaviour
                 //This is a one-time effect.
                 OnHitEnemy = null;
             }
-            Destroy(gameObject);
+            BulletOnImpact();
             return;
         }
-        if (collision.gameObject.CompareTag("Obstacle"))
+        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Wall"))
         {
             //For everything blockable, yeet the projectile
+            BulletOnImpact();
+        }
+    }
+    //Disables the script and the bullet's visuals and starts the particle impact.
+    private void BulletOnImpact()
+    {
+        if (impactParticleSystem != null && bulletVisuals != null)
+        {
+            bulletVisuals.enabled = false;
+            if (bulletTrail != null) bulletTrail.enabled = false;
+            impactParticleSystem.Play();
+            this.enabled = false;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+    private void BulletOnNoLifespan()
+    {
+        if (bulletTrail != null && bulletVisuals != null)
+        {
+            bulletVisuals.enabled = false;
+            bulletTrail.autodestruct = true;
+            this.enabled = false;
+        }
+        else
+        {
             Destroy(gameObject);
         }
     }

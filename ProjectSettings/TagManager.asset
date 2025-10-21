@@ -6,14 +6,17 @@ TagManager:
   tags:
   - Enemy
   - Obstacle
+  - Wall
+  - Bullet
+  - DefensiveBullet
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Bullet
   - Water
   - UI
-  - 
+  - Floor
   - 
   - 
   - 
