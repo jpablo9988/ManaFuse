@@ -3,13 +3,12 @@ using CardSystem;
 using UnityEngine.Serialization;
 using System;
 
-
+[RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
 {
     [Header("Detection Settings")]
     [Tooltip("If true, enemy detection is triggered when the player is within the minimum range. If false, detection uses the maximum range.")]
     public bool detectionUsesMinRange = false;
-
     [Header("Attack Settings")]
     [Tooltip("The card used for the enemy's attack; variables from this card determine the projectile.")]
     public Card attackCard;
@@ -49,6 +48,7 @@ public class EnemyAI : MonoBehaviour
     //Stores the enemy's initial Y coordinate.
     private float initialY;
     public static event Action OnDeathEnemy;
+    private Rigidbody rb;
 
     private void Start()
     {
@@ -57,8 +57,8 @@ public class EnemyAI : MonoBehaviour
         {
             playerTransform = GameContext.Instance.Player.transform;
         }
+        rb = GetComponent<Rigidbody>();
     }
-
     private void Update()
     {
         if (!playerTransform)
@@ -76,21 +76,24 @@ public class EnemyAI : MonoBehaviour
             SetYFixed();
             return;
         }
-
+        Vector3 newLinearVelocity = new();
         //Move to maintain optimal range.
         if (distanceToPlayer < optimalRangeMin)
         {
             //Too close: move away.
             Vector3 moveDirection = (transform.position - playerTransform.position).normalized;
             moveDirection.y = 0;
-            transform.position += moveDirection * (moveSpeed * Time.deltaTime);
+            //transform.position += moveDirection * (moveSpeed * Time.deltaTime);
+            newLinearVelocity = moveDirection * moveSpeed;
+
         }
         else if (distanceToPlayer > optimalRangeMax)
         {
             //Too far: move toward the player.
             Vector3 moveDirection = (playerTransform.position - transform.position).normalized;
             moveDirection.y = 0;
-            transform.position += moveDirection * (moveSpeed * Time.deltaTime);
+            //transform.position += moveDirection * (moveSpeed * Time.deltaTime);
+            newLinearVelocity = moveDirection * moveSpeed;
         }
 
         //Add random motion to simulate dodging / avoiding projectiles.
@@ -103,7 +106,8 @@ public class EnemyAI : MonoBehaviour
         float forwardOffset = Mathf.Sin(Time.time * jiggleSpeed * 0.5f) * jiggleMagnitude * 0.5f;
         Vector3 jiggles = right * lateralOffset + toPlayer * forwardOffset;
         jiggles.y = 0;
-        transform.position += jiggles * Time.deltaTime;
+        //transform.position += jiggles * Time.deltaTime;
+        rb.linearVelocity = newLinearVelocity + jiggles;
 
         //Attack if within optimal range and cooldown has elapsed.
         if (distanceToPlayer < optimalRangeMin ||

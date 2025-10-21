@@ -8,13 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1845379111822032361, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 2244824111945897690, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
       propertyPath: m_Name
       value: Cone
       objectReference: {fileID: 0}
+    - target: {fileID: 2244824111945897690, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     - target: {fileID: 4560810068133589223, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -12.28
+      value: 20.4
       objectReference: {fileID: 0}
     - target: {fileID: 4560810068133589223, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
       propertyPath: m_LocalPosition.y
@@ -22,7 +30,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 4560810068133589223, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -2.9400003
+      value: -26.41
       objectReference: {fileID: 0}
     - target: {fileID: 4560810068133589223, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
       propertyPath: m_LocalRotation.w
@@ -64,6 +72,10 @@ PrefabInstance:
       propertyPath: m_ReceiveShadows
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 6692738185417312966, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 2147483647
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 53230283510017849, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
     m_RemovedGameObjects: []
@@ -85,7 +97,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5506003066479874178}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: b4c53be82d01dd4499eb2c0992110ab5, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
