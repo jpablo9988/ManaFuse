@@ -69,7 +69,7 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     {
         Vector3 movement = new(m_Input.x, 0f, m_Input.y);
         if (m_Input.magnitude == 0) rb.linearVelocity = new Vector3(0, 0, 0);
-        rb.MovePosition(rb.position + moveSpeed * Time.fixedDeltaTime * movement);
+        rb.linearVelocity = moveSpeed * movement;
     }
 
     /// <summary>
