@@ -4,35 +4,37 @@ using UnityEngine;
 
 public class PlayerManager : MonoBehaviour
 {
-    [Header("Start Settings")]
-    [SerializeField]
+    [Header("Start Settings")] [SerializeField]
     private bool _startTimerTicking = true;
-    [Header("Mana")]
-    [SerializeField]
-    [Tooltip("The amount of mana whole units the bar will have. ")]
-    private int _manaUnits;
-    [SerializeField]
-    [Tooltip("The amount of seconds the bar has until depletion. ")]
-    private int _manaBarTicks;
-    [Header("Dependencies")]
-    [SerializeField]
-    private ManafuseBar _bar;
-    [SerializeField]
-    private Timer _timer;
-    [SerializeField]
-    private PlayerMovement _movement;
 
-    public bool IsTimerActive { get => _timer.IsTicking; set => _timer.IsTicking = value; }
+    [Header("Mana")] [SerializeField] [Tooltip("The amount of mana whole units the bar will have. ")]
+    private int _manaUnits;
+
+    [SerializeField] [Tooltip("The amount of seconds the bar has until depletion. ")]
+    private int _manaBarTicks;
+
+    [Header("Dependencies")] [SerializeField]
+    private ManafuseBar _bar;
+
+    [SerializeField] private Timer _timer;
+    [SerializeField] private PlayerMovement _movement;
+
+    public bool IsTimerActive
+    {
+        get => _timer.IsTicking;
+        set => _timer.IsTicking = value;
+    }
+
     public PlayerMovement PlayerMovementManager => _movement;
     public static event Action OnDeathPlayer;
-    
+
     /// <summary>
     /// Gets the current number of mana units
     /// </summary>
-    public int CurrentManaUnits 
-    { 
-        get 
-        { 
+    public int CurrentManaUnits
+    {
+        get
+        {
             if (_bar != null && _bar.gameObject.activeInHierarchy)
             {
                 try
@@ -52,14 +54,16 @@ public class PlayerManager : MonoBehaviour
                     Debug.LogWarning($"Error calculating current mana units: {e.Message}");
                 }
             }
+
             return _manaUnits;
-        } 
+        }
     }
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
     }
+
     void Start()
     {
         if (!_bar)
@@ -74,6 +78,7 @@ public class PlayerManager : MonoBehaviour
                 return;
             }
         }
+
         if (!_timer)
         {
             _timer = this.GetComponentInScene(false, out _timer);
@@ -86,6 +91,7 @@ public class PlayerManager : MonoBehaviour
                 return;
             }
         }
+
         if (!_movement)
         {
             _movement = this.GetComponentInScene(false, out _movement);
@@ -98,21 +104,26 @@ public class PlayerManager : MonoBehaviour
                 return;
             }
         }
+
         _bar.SetManaUnits(_manaUnits, _manaBarTicks);
 
     }
+
     void OnEnable()
     {
         if (_timer != null)
         {
             _timer.InitializeTimer(_startTimerTicking, ReduceManaByTickUnit);
         }
+
         ManafuseBar.NoManaLeft += IsGameOver;
     }
+
     void OnDisable()
     {
         ManafuseBar.NoManaLeft -= IsGameOver;
     }
+
     public void SetManaUnits(int newUnits, int newTicks = 0)
     {
         if (!_bar.gameObject.activeSelf) return;
@@ -126,6 +137,7 @@ public class PlayerManager : MonoBehaviour
             _bar.SetManaUnits(_manaUnits, (int)_bar.MaxSliderValue, false);
         }
     }
+
     public void ChangeManaByTickUnit(float unit, bool includeRedSlider = true)
     {
         if (_bar.gameObject.activeSelf)
@@ -141,6 +153,7 @@ public class PlayerManager : MonoBehaviour
             _bar.ChangeByTick(-unit, true);
         }
     }
+
     public void ChangeMana(int unitAmount, bool includeRedSlider)
     {
         if (_bar.gameObject.activeSelf)
@@ -148,6 +161,7 @@ public class PlayerManager : MonoBehaviour
             _bar.ChangeByUnit(unitAmount, includeRedSlider);
         }
     }
+
     private void IsGameOver(bool gameOver)
     {
         if (gameOver)
@@ -158,9 +172,25 @@ public class PlayerManager : MonoBehaviour
         {
             print("You have been resusitated");
         }
+
         GameContext.Instance.InputManager.ActivatePlayerInputs = !gameOver;
         GameContext.Instance.InputManager.ActivateCardInputs = !gameOver;
+    }
 
 
+
+    //Refactored Stuff
+
+    // < Player Movement > 
+    
+    //State Grabber
+    private bool returnPlayerMovement(string value)
+    {
+        if (value == "sprintState")
+        {
+            return PlayerMovementManager.IsSprinting;
+        }
+
+        return false;
     }
 }

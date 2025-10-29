@@ -99,5 +99,11 @@ public class GameContext : Singleton<GameContext>
         UnityEditor.EditorApplication.isPlaying = false;
 #endif
     }
+    
+    //New stuff starts here, everything above will be reworked at a later time. One step at a time
+    
+    
+    // < PlayerManager >
+    
 
 }
