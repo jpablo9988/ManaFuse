@@ -36,7 +36,6 @@ public class InputManager : MonoBehaviour
         this.GetComponentInScene<PlayerInputHandler>(false, out playerHandler);
         this.GetComponentInScene<CardInputHandler>(false, out cardHandler);
         this.GetComponentInScene<UIInputHandler>(false, out uiHandler);
-
     }
     void OnEnable()
     {
