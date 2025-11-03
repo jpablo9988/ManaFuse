@@ -6,31 +6,36 @@ using UnityEngine;
 [CanEditMultipleObjects]
 public class CubeGeneratorEditor : Editor
 {
-    SerializedProperty dimensions, mainTexture, textureVariations, variationChance, cubeTag, prefab, layer;
+    SerializedProperty parentName, newLayer, newTag, dimensions, startingRotation, mainTexture, textureVariations, variationChance, prefab, parentPrefab;
     void OnEnable()
     {
+        parentName = serializedObject.FindProperty("parentName");
+        newLayer = serializedObject.FindProperty("newLayer");
+        newTag = serializedObject.FindProperty("newTag");
         dimensions = serializedObject.FindProperty("dimensions");
+        startingRotation = serializedObject.FindProperty("startingRotation");
         mainTexture = serializedObject.FindProperty("mainTexture");
         textureVariations = serializedObject.FindProperty("textureVariations");
         variationChance = serializedObject.FindProperty("variationChance");
-        cubeTag = serializedObject.FindProperty("cubeTag");
-        layer = serializedObject.FindProperty("layer");
         prefab = serializedObject.FindProperty("prefab");
+        parentPrefab = serializedObject.FindProperty("parentPrefab");
     }
     public override void OnInspectorGUI()
     {
         CubeGenerator cubeGenerator = (CubeGenerator)target;
+        EditorGUILayout.PropertyField(parentName, new GUIContent("Parent Name"));
         EditorGUILayout.PropertyField(dimensions, new GUIContent("Dimensions"));
+        EditorGUILayout.PropertyField(startingRotation, new GUIContent("Starting Rotation"));
+        EditorGUILayout.PropertyField(newTag, new GUIContent("Tag"));
+        EditorGUILayout.PropertyField(newLayer, new GUIContent("Layer (Number)"));
         EditorGUILayout.PropertyField(mainTexture, new GUIContent("Main Texture"));
         if (cubeGenerator.MainTexture != null)
         {
             EditorGUILayout.PropertyField(textureVariations, new GUIContent("Texture Variations"));
             EditorGUILayout.PropertyField(variationChance, new GUIContent("Variation Chance"));
         }
-        EditorGUILayout.PropertyField(cubeTag, new GUIContent("Instantiation Tag"));
-        EditorGUILayout.PropertyField(layer, new GUIContent("Layer Type"));
         EditorGUILayout.PropertyField(prefab, new GUIContent("Target Prefab"));
-
+        EditorGUILayout.PropertyField(parentPrefab, new GUIContent("Parent Prefab"));
         if (GUILayout.Button("Generate Block"))
         {
             if (CanGenerate(cubeGenerator))

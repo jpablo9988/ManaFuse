@@ -15,4 +15,4 @@ MonoBehaviour:
   musicName: NOIRESQUE
   musicClip: {fileID: 8300000, guid: 85ee65e822de27b46b870e671105a461, type: 3}
   isLoopable: 1
-  audioPitch: 1
+  audioPitch: 0.95
