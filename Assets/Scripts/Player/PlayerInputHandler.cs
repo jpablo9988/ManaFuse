@@ -35,14 +35,14 @@ public class PlayerInputHandler : MonoBehaviour
     void OnEnable()
     {
         _inputActions.Player.Enable();
-        //_sprintAction.started += Sprint; //SPRINT DISABLED: Should only trigger once. (When _sprintAction is pressed)
+        _sprintAction.started += Sprint; //Should only trigger once. (When _sprintAction is pressed)
         _characterAnimations.AnimationSpeed(1);
     }
 
     void OnDisable()
     {
         _inputActions.Player.Disable();
-        //_sprintAction.started -= Sprint; //SPRINT DISABLED
+        _sprintAction.started -= Sprint;
     }
     void Update()
     {
@@ -60,16 +60,15 @@ public class PlayerInputHandler : MonoBehaviour
     }
     public void Sprint()
     {
-        //_playerMovement.InitiateSprint(_moveInput);
+        _playerMovement.InitiateSprint(_moveInput);
     }
 
     private void Sprint(InputAction.CallbackContext context)
     {
-        //SPRINT DISABLED - Dash cards still work via CardSystem
-        //if (context.started)
-        //{
-        //    _playerMovement.InitiateSprint(_moveInput);
-        //}
+        if (context.started)
+        {
+            _playerMovement.InitiateSprint(_moveInput);
+        }
     }
 
 }
