@@ -1,0 +1,31 @@
+using System;
+using UnityEngine;
+
+public class Timer : MonoBehaviour
+{
+    [SerializeField]
+    [Tooltip("The amount of time it will trigger a countdown in Seconds.")]
+    private float _timeUnit = 1;
+    private float _localTimer;
+    private bool _isTicking;
+    private event Action<float> OnDownTick;
+    public bool IsTicking { get => _isTicking; set => _isTicking = value; }
+
+    private void OnEnable()
+    {
+        _localTimer = _timeUnit;
+    }
+    public void InitializeTimer(bool startTicking, Action<float> triggerEvent)
+    {
+        _isTicking = startTicking;
+        OnDownTick = triggerEvent;
+    }
+    private void Update()
+    {
+        if (!_isTicking) return;
+        _localTimer -= Time.deltaTime;
+        if (!(_localTimer <= 0)) return;
+        OnDownTick?.Invoke(1);
+        _localTimer = _timeUnit;
+    }
+}
