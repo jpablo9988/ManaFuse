@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ff1eb18b6805643aab7c93199f2f81, type: 3}
+  m_Name: BrickBuildingRooftop
+  m_EditorClassIdentifier: 
+  newTag: Wall
+  newLayer: 0
+  mainTexture: {fileID: 2100000, guid: ced0188fd03e75944b9c4a833b7724f9, type: 2}
+  textureVariations: []
+  variationChance: 0
+  prefab: {fileID: 9200941081327415184, guid: 9fd86171ac1ad6543a07fc687f901337, type: 3}
+  parentPrefab: {fileID: 690997440733379246, guid: eeef8aa6828a665418d903833941e8a6, type: 3}

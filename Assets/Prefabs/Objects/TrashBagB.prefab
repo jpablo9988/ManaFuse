@@ -20,6 +20,14 @@ PrefabInstance:
       propertyPath: m_Center.z
       value: -0.00000011920929
       objectReference: {fileID: 0}
+    - target: {fileID: 124207448723847516, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 124207448723847516, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2244824111945897690, guid: 1e5050050436c314e883ecd1d0c4357f, type: 3}
       propertyPath: m_Name
       value: TrashBagB
