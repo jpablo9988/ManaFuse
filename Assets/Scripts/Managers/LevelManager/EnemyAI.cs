@@ -54,11 +54,12 @@ public class EnemyAI : MonoBehaviour
     private void Start()
     {
         initialY = transform.position.y;
-        if (GameContext.Instance.Player)
+        if (GameContext.Instance.Player.pTransform())
         {
-            playerTransform = GameContext.Instance.Player.transform;
+            playerTransform = GameContext.Instance.Player.pTransform();
         }
     }
+    
 
     private void Update()
     {
@@ -155,7 +156,7 @@ public class EnemyAI : MonoBehaviour
         }
         if (attackCard.spawnParticleEffect && attackCard.particleEffectPrefab)
         {
-            if (_attackSpawnPoint != null)
+            if (_attackSpawnPoint)
             {
                 Instantiate(attackCard.particleEffectPrefab, _attackSpawnPoint.position, transform.rotation);
             }

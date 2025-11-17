@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.UI;
+using static PlayerManager.PlayerTokens;
 
 /// <summary>
 /// Displays the current mana units as a 2-digit number using sprite images (0-9)
@@ -34,14 +35,8 @@ public class ManaUnitsDisplay : MonoBehaviour
 
     void Awake()
     {
-        // Find PlayerManager in the scene
-        _playerManager = FindFirstObjectByType<PlayerManager>();
-        if (_playerManager == null)
-        {
-            Debug.LogError("ManaUnitsDisplay: PlayerManager not found in scene!");
-            enabled = false; // Disable the component to prevent further errors
-            return;
-        }
+        // Cache PlayerManager to avoid repeated GameContext lookups each frame
+        // _playerManager = GameContext.Instance.GetService<PlayerManager>();
 
         // Validate number sprites array
         if (_numberSprites == null || _numberSprites.Length != 10)
@@ -80,7 +75,7 @@ public class ManaUnitsDisplay : MonoBehaviour
     void Update()
     {
         // Update display only when the value changes (optimized)
-        if (_playerManager != null)
+        if (_playerManager)
         {
             int currentValue = GetCurrentManaUnits();
             if (currentValue != _lastDisplayedValue)
@@ -96,7 +91,7 @@ public class ManaUnitsDisplay : MonoBehaviour
     /// </summary>
     public void UpdateDisplay()
     {
-        if (_playerManager == null) return;
+        if (!_playerManager) return;
 
         // Get current mana units from PlayerManager
         int currentManaUnits = GetCurrentManaUnits();
@@ -142,9 +137,10 @@ public class ManaUnitsDisplay : MonoBehaviour
     /// </summary>
     private int GetCurrentManaUnits()
     {
-        if (_playerManager != null)
+        if (_playerManager)
         {
-            return _playerManager.CurrentManaUnits;
+            //return _playerManager.CurrentManaUnits;
+            return GameContext.Instance.Player.CurrentManaUnits();
         }
 
         return 0;

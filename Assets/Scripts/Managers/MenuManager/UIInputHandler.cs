@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static MenuManager.MenuTokens;
 
 public class UIInputHandler : MonoBehaviour
 {
@@ -25,6 +26,6 @@ public class UIInputHandler : MonoBehaviour
 
     public void Pause()
     {
-        GameContext.Instance.PauseHandler.ChangePauseState();
+        GameContext.Instance.Act(ChangePauseState, default);
     }
 }
