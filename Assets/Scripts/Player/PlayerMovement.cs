@@ -180,4 +180,29 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
         _isSprinting = false;
         rb.position = sprintTargetPosition;
     }
+    
+    //Death Movement Fix
+    private void OnEnable()
+    {
+        PlayerManager.OnDeathPlayer += HandlePlayerDeath;
+    }
+    private void OnDisable()
+    {
+        PlayerManager.OnDeathPlayer -= HandlePlayerDeath;
+    }
+    private void HandlePlayerDeath()
+    {
+        StopAllMovement();
+        enabled = false;
+    }
+    public void StopAllMovement()
+    {
+        StopAllCoroutines();
+        _isSprinting = false;
+        if (rb)
+        {
+            rb.velocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+    }
 }
