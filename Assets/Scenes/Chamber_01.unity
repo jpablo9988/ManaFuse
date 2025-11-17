@@ -11290,7 +11290,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 589423717}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -14244,15 +14244,15 @@ RectTransform:
   m_GameObject: {fileID: 327536088}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 8, y: 4, z: 1}
+  m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 589423717}
+  m_Father: {fileID: 3815762147290750165}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 368.00003, y: -18.54612}
-  m_SizeDelta: {x: 100, y: 100}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &327536090
 MonoBehaviour:
@@ -14495,10 +14495,10 @@ Camera:
   m_LensShift: {x: 0, y: 0}
   m_NormalizedViewPortRect:
     serializedVersion: 2
-    x: 0.05906406
+    x: 0
     y: 0
-    width: 0.88242716
-    height: 0.99999994
+    width: 0.9993425
+    height: 1
   near clip plane: 0.1
   far clip plane: 5000
   field of view: 40
@@ -96121,12 +96121,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 5220920594022342560, guid: 7aeef985b29d0264893faf82db35458b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1826335490}
-    - targetCorrespondingSourceObject: {fileID: 173682184396084694, guid: 7aeef985b29d0264893faf82db35458b, type: 3}
+    - targetCorrespondingSourceObject: {fileID: 6303457928013505265, guid: 7aeef985b29d0264893faf82db35458b, type: 3}
       insertIndex: 0
       addedObject: {fileID: 327536089}
-    - targetCorrespondingSourceObject: {fileID: 173682184396084694, guid: 7aeef985b29d0264893faf82db35458b, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 1458592735}
     - targetCorrespondingSourceObject: {fileID: 173682184396084694, guid: 7aeef985b29d0264893faf82db35458b, type: 3}
       insertIndex: -1
       addedObject: {fileID: 180200416}
@@ -96173,6 +96170,11 @@ MonoBehaviour:
   _onesDigitImage: {fileID: 2000418150}
   _showLeadingZero: 1
   _hideOnZero: 0
+--- !u!224 &3815762147290750165 stripped
+RectTransform:
+  m_CorrespondingSourceObject: {fileID: 6303457928013505265, guid: 7aeef985b29d0264893faf82db35458b, type: 3}
+  m_PrefabInstance: {fileID: 3815762147290750158}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4560810068173835493 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8006390163160966618, guid: e3cb5c886b0095249a9deaf50f1534fa, type: 3}
@@ -96807,3 +96809,4 @@ SceneRoots:
   - {fileID: 1701002039}
   - {fileID: 237074017}
   - {fileID: 2094085313}
+  - {fileID: 253031416}
