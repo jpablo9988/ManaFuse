@@ -20,14 +20,6 @@ public class ManafuseBar : MonoBehaviour
     [SerializeField]
     private Pool dividerPool;
 
-    [Header("Edge Sprite")]
-    [SerializeField]
-    [Tooltip("Optional sprite that follows the green slider's edge")]
-    private RectTransform edgeSprite;
-    [SerializeField]
-    [Tooltip("Offset from the slider edge (in pixels)")]
-    private float edgeSpriteOffset = 0f;
-
     public float MaxSliderValue { get { return greenSlider.maxValue; } }
     public float TicksPerUnit { get { return MaxSliderValue / unitDividers; } }
     public static event Action<bool> NoManaLeft;
@@ -52,7 +44,6 @@ public class ManafuseBar : MonoBehaviour
     void OnEnable()
     {
         redSlider.onValueChanged.AddListener(delegate { CheckRecovery(); });
-        greenSlider.onValueChanged.AddListener(delegate { UpdateEdgeSpritePosition(); });
     }
     void OnDisable()
     {
@@ -68,30 +59,6 @@ public class ManafuseBar : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Updates the position of the edge sprite to follow the green slider's current value.
-    /// The sprite will only follow the green slider, not the red one.
-    /// </summary>
-    private void UpdateEdgeSpritePosition()
-    {
-        if (edgeSprite == null || greenSlider == null) return;
-
-        // Calculate the normalized position of the green slider (0 to 1)
-        float normalizedPosition = greenSlider.value / greenSlider.maxValue;
-
-        // Get the slider's fill area (the actual visual bar)
-        RectTransform sliderFillArea = greenSlider.fillRect;
-        if (sliderFillArea == null) return;
-
-        // Calculate the position along the slider's width
-        float sliderWidth = sliderFillArea.rect.width;
-        float targetX = (normalizedPosition * sliderWidth) + edgeSpriteOffset;
-
-        // Set the edge sprite's position
-        Vector3 newPosition = edgeSprite.anchoredPosition;
-        newPosition.x = targetX;
-        edgeSprite.anchoredPosition = newPosition;
-    }
     private void ActivateDividers()
     {
         dividerPool.SetAllObjectsInactive(); //Refresh Mana.
@@ -139,16 +106,5 @@ public class ManafuseBar : MonoBehaviour
             redSlider.value = MaxSliderValue;
         }
 
-        // Update edge sprite position after setting up the slider
-        UpdateEdgeSpritePosition();
-    }
-
-    /// <summary>
-    /// Public method to manually update the edge sprite position.
-    /// Useful for testing or external control.
-    /// </summary>
-    public void RefreshEdgeSpritePosition()
-    {
-        UpdateEdgeSpritePosition();
     }
 }
