@@ -45,7 +45,6 @@ namespace AudioSystem
         void Update()
         {
             audioMixer.GetFloat(musicTrackPitchParameterName, out float pitch);
-            Debug.Log("Curr Music Pitch: " + pitch);
         }
         public void SetGlobalVolume(float _preferedVolume)
         {

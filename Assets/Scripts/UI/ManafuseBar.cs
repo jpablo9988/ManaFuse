@@ -58,7 +58,7 @@ public class ManafuseBar : MonoBehaviour
             NoManaLeft?.Invoke(false);
         }
     }
-    
+
     private void ActivateDividers()
     {
         dividerPool.SetAllObjectsInactive(); //Refresh Mana.
@@ -105,6 +105,6 @@ public class ManafuseBar : MonoBehaviour
             greenSlider.value = MaxSliderValue;
             redSlider.value = MaxSliderValue;
         }
-        
+
     }
 }
