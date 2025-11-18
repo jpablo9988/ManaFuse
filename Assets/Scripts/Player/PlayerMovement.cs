@@ -201,7 +201,7 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
         _isSprinting = false;
         if (rb)
         {
-            rb.velocity = Vector3.zero;
+            rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
         }
     }
