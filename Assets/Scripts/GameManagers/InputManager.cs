@@ -14,18 +14,18 @@ public class InputManager : MonoBehaviour
     private UIInputHandler uiHandler;
     public bool ActivatePlayerInputs
     {
-        get { if (playerHandler != null) return playerHandler.isActiveAndEnabled; else return false; }
-        set { if (playerHandler != null) playerHandler.enabled = value; }
+        get { if (playerHandler) return playerHandler.isActiveAndEnabled; else return false; }
+        set { if (playerHandler) playerHandler.enabled = value; }
     }
     public bool ActivateCardInputs
     {
-        get { if (cardHandler != null) return cardHandler.isActiveAndEnabled; else return false; }
-        set { if (cardHandler != null) cardHandler.enabled = value; }
+        get { if (cardHandler) return cardHandler.isActiveAndEnabled; else return false; }
+        set { if (cardHandler) cardHandler.enabled = value; }
     }
     public bool ActivateUIInputs
     {
-        get { if (uiHandler != null) return uiHandler.isActiveAndEnabled; else return false; }
-        set { if (uiHandler != null) uiHandler.enabled = value; }
+        get { if (uiHandler) return uiHandler.isActiveAndEnabled; else return false; }
+        set { if (uiHandler) uiHandler.enabled = value; }
     }
     public PlayerInputHandler PlayerHandler => playerHandler;
     public CardInputHandler CardHandler => cardHandler;
