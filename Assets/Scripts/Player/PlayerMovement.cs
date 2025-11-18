@@ -18,7 +18,7 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
 
     [Tooltip("Duration in seconds of the default sprint movement.")]
     [SerializeField] private float sprintDuration = 0.2f;
-    
+
     [Tooltip("Duration in seconds of the sprint cooldown.")]
     [SerializeField] private float sprintCooldown = 2f;
 
@@ -122,10 +122,10 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     {
         // Don't sprint if there's no input direction or already sprinting
         if (m_Input.magnitude < 0.1f || _isSprinting) return;
-        
+
         // Check if the time since last sprint is more than the sprint cooldown
         if (Time.time - _lastSprintTime < sprintCooldown) return;
-        
+
         // Set the last sprint time
         _lastSprintTime = Time.time;
 

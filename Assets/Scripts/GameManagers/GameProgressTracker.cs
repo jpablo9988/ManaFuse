@@ -18,6 +18,17 @@ public class GameProgressTracker : MonoBehaviour
     [SerializeField]
     private ObjectReference[] _losePlayerObjects;
     private int noEnemiesInScene = 0;
+    public bool winByEnemiesKilled = true;
+    private bool isVictoryAchieved = false;
+    public bool IsVictoryAchieved
+    {
+        get { return isVictoryAchieved; }
+        set
+        {
+            isVictoryAchieved = true;
+            if (isVictoryAchieved) OnVictory();
+        }
+    }
 
     void Start()
     {
@@ -51,15 +62,19 @@ public class GameProgressTracker : MonoBehaviour
     private void OnDeathEnemy()
     {
         noEnemiesInScene--;
-        if (noEnemiesInScene <= 0)
+        if (noEnemiesInScene <= 0 && winByEnemiesKilled)
         {
-            //Disable all Player Inputs.
-            GameContext.Instance.InputManager.ActivateCardInputs = false;
-            GameContext.Instance.InputManager.ActivatePlayerInputs = false;
-            foreach (ObjectReference obj in _winPlayerObjects)
-            {
-                obj.go.SetActive(obj.enableOnEnd);
-            }
+            OnVictory();
+        }
+    }
+    private void OnVictory()
+    {
+        //Disable all Player Inputs.
+        GameContext.Instance.InputManager.ActivateCardInputs = false;
+        GameContext.Instance.InputManager.ActivatePlayerInputs = false;
+        foreach (ObjectReference obj in _winPlayerObjects)
+        {
+            obj.go.SetActive(obj.enableOnEnd);
         }
     }
     private void OnDeathPlayer()
