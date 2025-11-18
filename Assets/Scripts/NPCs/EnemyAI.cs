@@ -3,6 +3,9 @@ using CardSystem;
 using UnityEngine.Serialization;
 using System;
 
+/// <summary>
+/// TODO: Enemy Movement and Enemy Stats (or just NPC/Enemy Class) should be separate.
+/// </summary>
 [RequireComponent(typeof(Rigidbody))]
 public class EnemyAI : MonoBehaviour
 {
@@ -22,6 +25,8 @@ public class EnemyAI : MonoBehaviour
     public float moveSpeed = 6f;
     [Tooltip("The amount of damage the enemy's projectile will deal.")]
     public float projectileDamage = 10f;
+    [Tooltip("TEMPORARY: Makes an enemy static")]
+    public bool isStatic = false;
 
     [FormerlySerializedAs("oscillationMagnitude")]
     [Header("Maneuver Settings")]
@@ -61,7 +66,7 @@ public class EnemyAI : MonoBehaviour
     }
     private void Update()
     {
-        if (!playerTransform)
+        if (!playerTransform || isStatic)
             return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
