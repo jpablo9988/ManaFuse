@@ -193,7 +193,6 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     private void HandlePlayerDeath()
     {
         StopAllMovement();
-        enabled = false;
     }
     public void StopAllMovement()
     {
@@ -203,6 +202,8 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
         {
             rb.linearVelocity = Vector3.zero;
             rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
         }
     }
 }
