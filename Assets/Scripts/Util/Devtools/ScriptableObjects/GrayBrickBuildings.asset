@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 87ff1eb18b6805643aab7c93199f2f81, type: 3}
+  m_Name: GrayBrickBuildings
+  m_EditorClassIdentifier: 
+  newTag: Wall
+  newLayer: 0
+  mainTexture: {fileID: 2100000, guid: 6b06f3d402734ae41910e7e4a7ae3f35, type: 2}
+  textureVariations:
+  - {fileID: 2100000, guid: 26fc9128cd5f1e44cbc311c4126e634a, type: 2}
+  - {fileID: 2100000, guid: f67d4a33772694044b0f0b1436740666, type: 2}
+  - {fileID: 2100000, guid: 04ebc19157d297a4c80e8309b359fd27, type: 2}
+  variationChance: 20
+  prefab: {fileID: 5334591922849144918, guid: 156ab4054fffc844babb052ef00080f0, type: 3}
+  parentPrefab: {fileID: 690997440733379246, guid: eeef8aa6828a665418d903833941e8a6, type: 3}

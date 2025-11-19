@@ -5,5 +5,6 @@ public enum Scene
 {
     MAIN_MENU = 0,
     SETTINGS = 1,
-    CHAMBER_01 = 2
+    TUTORIAL = 2,
+    CHAMBER_01 = 3
 }

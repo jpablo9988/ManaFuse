@@ -19,6 +19,9 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     [Tooltip("Duration in seconds of the default sprint movement.")]
     [SerializeField] private float sprintDuration = 0.2f;
 
+    [Tooltip("Duration in seconds of the sprint cooldown.")]
+    [SerializeField] private float sprintCooldown = 2f;
+
     [Tooltip("Animation curve that controls sprint movement over time. 0,0 to 1,1 range.")]
     [SerializeField] private AnimationCurve sprintCurve = AnimationCurve.EaseInOut(0, 0, 1, 1);
 
@@ -45,6 +48,11 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     /// Gets whether the player is currently sprinting.
     /// </summary>
     public bool IsSprinting => _isSprinting;
+
+    /// <summary>
+    /// Last time player sprinted.
+    /// </summary>
+    private float _lastSprintTime = 0.0f;
 
     /// <summary>
     /// Gets the current visual rotation angle of the player between -180 and 180 degrees.
@@ -115,6 +123,12 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
         // Don't sprint if there's no input direction or already sprinting
         if (m_Input.magnitude < 0.1f || _isSprinting) return;
 
+        // Check if the time since last sprint is more than the sprint cooldown
+        if (Time.time - _lastSprintTime < sprintCooldown) return;
+
+        // Set the last sprint time
+        _lastSprintTime = Time.time;
+
         // Mark as sprinting to prevent movement during sprint
         _isSprinting = true;
 
@@ -165,5 +179,31 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
         // End sprint
         _isSprinting = false;
         rb.position = sprintTargetPosition;
+    }
+    
+    //Death Movement Fix
+    private void OnEnable()
+    {
+        PlayerManager.OnDeathPlayer += HandlePlayerDeath;
+    }
+    private void OnDisable()
+    {
+        PlayerManager.OnDeathPlayer -= HandlePlayerDeath;
+    }
+    private void HandlePlayerDeath()
+    {
+        StopAllMovement();
+    }
+    public void StopAllMovement()
+    {
+        StopAllCoroutines();
+        _isSprinting = false;
+        if (rb)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+            rb.isKinematic = true;
+            rb.detectCollisions = false;
+        }
     }
 }

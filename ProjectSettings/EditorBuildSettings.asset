@@ -12,6 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/UISampleScene.unity
     guid: b0668fc3c83c6d8458c3dbb7c5f7f8e0
   - enabled: 1
+    path: Assets/Scenes/TutorialScene.unity
+    guid: 121a3bcfe340cd94f84b86893c8d4ed6
+  - enabled: 1
     path: Assets/Scenes/Chamber_01.unity
     guid: aafaa70c381a30b4fa7fa0915841247e
   m_configObjects:

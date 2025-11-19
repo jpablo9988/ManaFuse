@@ -151,6 +151,7 @@ namespace CardSystem
         /// <param name="forceReplace">If true, replaces an existing card in the slot.</param>
         public void ReloadSlot(int slotIndex, bool forceReplace)
         {
+            GameContext.Instance.UIRevolverManager.ShowReloadIndicator = false;
             if (slotIndex < 0 || slotIndex >= cardManager.cardSlots.Length) return;
 
             // If replacing, discard current card and clear UI
@@ -272,5 +273,11 @@ namespace CardSystem
         /// Returns the number of cards currently in the discard pile.
         /// </summary>
         public int GetDiscardCount() => discardPile.Count;
+
+        public void AddTemporaryCardToDeck(List<Card> newCards)
+        {
+            baseDeck.AddRange(newCards);
+            activeDeck.AddRange(newCards);
+        }
     }
 }

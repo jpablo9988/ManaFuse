@@ -33,7 +33,7 @@ public class PlayerManager : MonoBehaviour
     { 
         get 
         { 
-            if (_bar != null && _bar.gameObject.activeInHierarchy)
+            if (_bar && _bar.gameObject.activeInHierarchy)
             {
                 try
                 {
@@ -152,6 +152,7 @@ public class PlayerManager : MonoBehaviour
     {
         if (gameOver)
         {
+            _movement.StopAllMovement();
             OnDeathPlayer?.Invoke();
         }
         else
