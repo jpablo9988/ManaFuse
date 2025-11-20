@@ -1,8 +1,11 @@
 using System;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using SaveSystem;
 
-public class GameProgressTracker : MonoBehaviour
+[RequireComponent(typeof(PersistentId))]
+public class GameProgressTracker : MonoBehaviour, ISaveable
 {
     [Serializable]
     internal struct ObjectReference
@@ -20,6 +23,8 @@ public class GameProgressTracker : MonoBehaviour
     private int noEnemiesInScene = 0;
     public bool winByEnemiesKilled = true;
     private bool isVictoryAchieved = false;
+    private PersistentId _persistentId;
+
     public bool IsVictoryAchieved
     {
         get { return isVictoryAchieved; }
@@ -28,6 +33,11 @@ public class GameProgressTracker : MonoBehaviour
             isVictoryAchieved = true;
             if (isVictoryAchieved) OnVictory();
         }
+    }
+
+    void Awake()
+    {
+        _persistentId = GetComponent<PersistentId>();
     }
 
     void Start()
@@ -53,11 +63,17 @@ public class GameProgressTracker : MonoBehaviour
     {
         EnemyAI.OnDeathEnemy += OnDeathEnemy;
         PlayerManager.OnDeathPlayer += OnDeathPlayer;
+
+        // Register with save system
+        SaveGameManager.Instance.Register(this);
     }
     void OnDisable()
     {
         EnemyAI.OnDeathEnemy -= OnDeathEnemy;
         PlayerManager.OnDeathPlayer -= OnDeathPlayer;
+
+        // Unregister from save system
+        SaveGameManager.Instance.Unregister(this);
     }
     private void OnDeathEnemy()
     {
@@ -87,5 +103,39 @@ public class GameProgressTracker : MonoBehaviour
             obj.go.SetActive(obj.enableOnEnd);
         }
 
+    }
+
+    // ISaveable Implementation
+    public string SaveId => _persistentId ? _persistentId.Id : string.Empty;
+
+    public object CaptureState()
+    {
+        return new ProgressSaveData
+        {
+            currentSceneIndex = SceneManager.GetActiveScene().buildIndex,
+            currentSceneName = SceneManager.GetActiveScene().name,
+            isVictoryAchieved = this.isVictoryAchieved,
+            enemiesRemaining = this.noEnemiesInScene
+        };
+    }
+
+    public void RestoreState(object state)
+    {
+        if (state is ProgressSaveData data)
+        {
+            this.isVictoryAchieved = data.isVictoryAchieved;
+            this.noEnemiesInScene = data.enemiesRemaining;
+
+            Debug.Log($"Progress restored: Scene={data.currentSceneName}, Enemies={data.enemiesRemaining}, Victory={data.isVictoryAchieved}");
+        }
+    }
+
+    [Serializable]
+    private class ProgressSaveData
+    {
+        public int currentSceneIndex;
+        public string currentSceneName;
+        public bool isVictoryAchieved;
+        public int enemiesRemaining;
     }
 }

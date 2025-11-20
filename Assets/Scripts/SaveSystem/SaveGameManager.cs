@@ -47,6 +47,23 @@ namespace SaveSystem
             EnsureSaveDirectory();
         }
 
+        private void OnApplicationQuit()
+        {
+            // Clean up on quit to prevent editor warnings
+            _saveables.Clear();
+        }
+
+#if UNITY_EDITOR
+        private void OnDestroy()
+        {
+            // Clean up when exiting play mode in editor
+            if (_instance == this)
+            {
+                _instance = null;
+            }
+        }
+#endif
+
         /// <summary>
         /// Registers an ISaveable so it participates in save/load.
         /// </summary>
