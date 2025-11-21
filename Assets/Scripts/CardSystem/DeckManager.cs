@@ -359,10 +359,6 @@ namespace CardSystem
                             cardManager.SetCardInSlot(i, card);
                         }
                     }
-                    else
-                    {
-                        cardManager.SetCardInSlot(i, null);
-                    }
                 }
 
                 Debug.Log($"Deck state restored: {activeDeck.Count} active, {discardPile.Count} discarded");
