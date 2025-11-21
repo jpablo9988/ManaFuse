@@ -17,6 +17,9 @@ namespace CardSystem
         [Header("Deck Configuration")]
         [Tooltip("The player's permanent card collection. This is used to initialize the active deck at game start.")]
         [SerializeField] private List<Card> baseDeck = new List<Card>();
+        
+        // Keep a reference to the original base deck for restoring from saves
+        private List<Card> _originalBaseDeck = new List<Card>();
 
         /// <summary>
         /// Cards currently available to be drawn. This deck is depleted as cards are drawn.
@@ -99,6 +102,12 @@ namespace CardSystem
         /// </summary>
         public void InitializeDecks()
         {
+            // Store original base deck for save/load
+            if (_originalBaseDeck.Count == 0)
+            {
+                _originalBaseDeck.AddRange(baseDeck);
+            }
+            
             // Clear all decks to start fresh
             activeDeck.Clear();
             discardPile.Clear();
@@ -304,7 +313,6 @@ namespace CardSystem
         {
             return new DeckSaveData
             {
-                baseDeckCardNames = baseDeck.Select(card => card ? card.name : "").ToArray(),
                 activeDeckCardNames = activeDeck.Select(card => card ? card.name : "").ToArray(),
                 discardPileCardNames = discardPile.Select(card => card ? card.name : "").ToArray(),
                 slotCardNames = cardManager.cardSlots.Select(card => card ? card.name : "").ToArray()
@@ -315,16 +323,9 @@ namespace CardSystem
         {
             if (state is DeckSaveData data)
             {
-                // Rebuild base deck from saved card names
+                // Use the original base deck as our card library
                 baseDeck.Clear();
-                foreach (var cardName in data.baseDeckCardNames)
-                {
-                    if (!string.IsNullOrEmpty(cardName))
-                    {
-                        var card = Resources.LoadAll<Card>("").FirstOrDefault(c => c.name == cardName);
-                        if (card) baseDeck.Add(card);
-                    }
-                }
+                baseDeck.AddRange(_originalBaseDeck);
 
                 // Rebuild active deck from saved card names
                 activeDeck.Clear();
@@ -332,8 +333,15 @@ namespace CardSystem
                 {
                     if (!string.IsNullOrEmpty(cardName))
                     {
-                        var card = baseDeck.FirstOrDefault(c => c.name == cardName);
-                        if (card) activeDeck.Add(card);
+                        var card = _originalBaseDeck.FirstOrDefault(c => c && c.name == cardName);
+                        if (card)
+                        {
+                            activeDeck.Add(card);
+                        }
+                        else
+                        {
+                            Debug.LogWarning($"Could not find card '{cardName}' in original base deck");
+                        }
                     }
                 }
 
@@ -343,8 +351,11 @@ namespace CardSystem
                 {
                     if (!string.IsNullOrEmpty(cardName))
                     {
-                        var card = baseDeck.FirstOrDefault(c => c.name == cardName);
-                        if (card) discardPile.Add(card);
+                        var card = _originalBaseDeck.FirstOrDefault(c => c && c.name == cardName);
+                        if (card)
+                        {
+                            discardPile.Add(card);
+                        }
                     }
                 }
 
@@ -353,22 +364,25 @@ namespace CardSystem
                 {
                     if (!string.IsNullOrEmpty(data.slotCardNames[i]))
                     {
-                        var card = baseDeck.FirstOrDefault(c => c.name == data.slotCardNames[i]);
+                        var card = _originalBaseDeck.FirstOrDefault(c => c && c.name == data.slotCardNames[i]);
                         if (card)
                         {
                             cardManager.SetCardInSlot(i, card);
                         }
+                        else
+                        {
+                            Debug.LogWarning($"Could not find card '{data.slotCardNames[i]}' for slot {i}");
+                        }
                     }
                 }
 
-                Debug.Log($"Deck state restored: {activeDeck.Count} active, {discardPile.Count} discarded");
+                Debug.Log($"Deck state restored: {activeDeck.Count} active, {discardPile.Count} discarded, {data.slotCardNames.Length} slots");
             }
         }
 
         [Serializable]
         private class DeckSaveData
         {
-            public string[] baseDeckCardNames;
             public string[] activeDeckCardNames;
             public string[] discardPileCardNames;
             public string[] slotCardNames;
