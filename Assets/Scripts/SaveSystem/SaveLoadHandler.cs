@@ -6,6 +6,7 @@ namespace SaveSystem
     /// <summary>
     /// Handles manual save/load operations via keyboard shortcuts (F5/F9).
     /// Provides visual feedback to the player when save/load operations complete.
+    /// Testing Clas.
     /// </summary>
     public class SaveLoadHandler : MonoBehaviour
     {
@@ -16,7 +17,7 @@ namespace SaveSystem
         [Header("UI Feedback (Optional)")]
         [Tooltip("Text component to display save/load messages")]
         [SerializeField] private TextMeshProUGUI feedbackText;
-        
+
         [Tooltip("Duration in seconds to display feedback messages")]
         [SerializeField] private float feedbackDuration = 2f;
 
@@ -53,7 +54,7 @@ namespace SaveSystem
         public void SaveGame()
         {
             bool success = SaveGameManager.Instance.Save(saveSlotName);
-            
+
             if (success)
             {
                 Debug.Log($"Game saved successfully to {saveSlotName}!");
@@ -79,7 +80,7 @@ namespace SaveSystem
             }
 
             bool success = SaveGameManager.Instance.Load(saveSlotName);
-            
+
             if (success)
             {
                 Debug.Log($"Game loaded successfully from {saveSlotName}!");

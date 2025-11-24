@@ -11,6 +11,7 @@ namespace SaveSystem
     /// </summary>
     public sealed class SaveGameManager : MonoBehaviour
     {
+        //TODO: This class shouldn't be a Singleton. It should be accessed through GameContext.
         private static SaveGameManager _instance;
         public static SaveGameManager Instance
         {
