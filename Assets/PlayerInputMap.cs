@@ -906,7 +906,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
             ""id"": ""6ff163fb-5403-46d8-a9e5-46ad48e75b72"",
             ""actions"": [
                 {
-                    ""name"": ""Slot1"",
+                    ""name"": ""SlotNorth"",
                     ""type"": ""Button"",
                     ""id"": ""88277606-22e3-4887-ab9c-790de0b948d9"",
                     ""expectedControlType"": """",
@@ -915,7 +915,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Slot2"",
+                    ""name"": ""SlotEast"",
                     ""type"": ""Button"",
                     ""id"": ""d2f88b38-8052-475f-80d6-2dbe195ea327"",
                     ""expectedControlType"": """",
@@ -924,7 +924,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Slot3"",
+                    ""name"": ""SlotSouth"",
                     ""type"": ""Button"",
                     ""id"": ""ec517857-ffcc-44a9-a543-fe6a868dc935"",
                     ""expectedControlType"": """",
@@ -933,7 +933,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""initialStateCheck"": false
                 },
                 {
-                    ""name"": ""Slot4"",
+                    ""name"": ""SlotWest"",
                     ""type"": ""Button"",
                     ""id"": ""4055baea-060a-49c4-a1fb-2a68198bc3b9"",
                     ""expectedControlType"": """",
@@ -968,7 +968,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slot1"",
+                    ""action"": ""SlotNorth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -979,7 +979,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Slot1"",
+                    ""action"": ""SlotNorth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -990,7 +990,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Slot1"",
+                    ""action"": ""SlotNorth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1001,7 +1001,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slot2"",
+                    ""action"": ""SlotEast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1012,18 +1012,18 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slot2"",
+                    ""action"": ""SlotEast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""08c90ee8-b133-4732-9d66-2ce307070be3"",
-                    ""path"": ""<Keyboard>/j"",
+                    ""path"": ""<Keyboard>/l"",
                     ""interactions"": """",
                     ""processors"": """",
-                    ""groups"": "";Gamepad"",
-                    ""action"": ""Slot2"",
+                    ""groups"": """",
+                    ""action"": ""SlotEast"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1034,7 +1034,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slot3"",
+                    ""action"": ""SlotSouth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1045,7 +1045,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Slot3"",
+                    ""action"": ""SlotSouth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1056,7 +1056,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slot3"",
+                    ""action"": ""SlotSouth"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1067,18 +1067,18 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Touch"",
-                    ""action"": ""Slot4"",
+                    ""action"": ""SlotWest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
                     ""id"": ""ac25cf48-4c88-4995-8cd2-977ff8a5d720"",
-                    ""path"": ""<Keyboard>/l"",
+                    ""path"": ""<Keyboard>/j"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": "";Gamepad"",
-                    ""action"": ""Slot4"",
+                    ""action"": ""SlotWest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1089,7 +1089,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Slot4"",
+                    ""action"": ""SlotWest"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -1162,7 +1162,7 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""b8e3766b-a666-4ea3-897e-02f61af3aca4"",
-                    ""path"": ""<Keyboard>/r"",
+                    ""path"": ""<Keyboard>/shift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
@@ -1256,10 +1256,10 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         m_UI_Pause = m_UI.FindAction("Pause", throwIfNotFound: true);
         // CardControls
         m_CardControls = asset.FindActionMap("CardControls", throwIfNotFound: true);
-        m_CardControls_Slot1 = m_CardControls.FindAction("Slot1", throwIfNotFound: true);
-        m_CardControls_Slot2 = m_CardControls.FindAction("Slot2", throwIfNotFound: true);
-        m_CardControls_Slot3 = m_CardControls.FindAction("Slot3", throwIfNotFound: true);
-        m_CardControls_Slot4 = m_CardControls.FindAction("Slot4", throwIfNotFound: true);
+        m_CardControls_SlotNorth = m_CardControls.FindAction("SlotNorth", throwIfNotFound: true);
+        m_CardControls_SlotEast = m_CardControls.FindAction("SlotEast", throwIfNotFound: true);
+        m_CardControls_SlotSouth = m_CardControls.FindAction("SlotSouth", throwIfNotFound: true);
+        m_CardControls_SlotWest = m_CardControls.FindAction("SlotWest", throwIfNotFound: true);
         m_CardControls_DiscardMod = m_CardControls.FindAction("DiscardMod", throwIfNotFound: true);
         m_CardControls_EquipMod = m_CardControls.FindAction("EquipMod", throwIfNotFound: true);
     }
@@ -1668,10 +1668,10 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
     // CardControls
     private readonly InputActionMap m_CardControls;
     private List<ICardControlsActions> m_CardControlsActionsCallbackInterfaces = new List<ICardControlsActions>();
-    private readonly InputAction m_CardControls_Slot1;
-    private readonly InputAction m_CardControls_Slot2;
-    private readonly InputAction m_CardControls_Slot3;
-    private readonly InputAction m_CardControls_Slot4;
+    private readonly InputAction m_CardControls_SlotNorth;
+    private readonly InputAction m_CardControls_SlotEast;
+    private readonly InputAction m_CardControls_SlotSouth;
+    private readonly InputAction m_CardControls_SlotWest;
     private readonly InputAction m_CardControls_DiscardMod;
     private readonly InputAction m_CardControls_EquipMod;
     /// <summary>
@@ -1686,21 +1686,21 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// </summary>
         public CardControlsActions(@PlayerInputMap wrapper) { m_Wrapper = wrapper; }
         /// <summary>
-        /// Provides access to the underlying input action "CardControls/Slot1".
+        /// Provides access to the underlying input action "CardControls/SlotNorth".
         /// </summary>
-        public InputAction @Slot1 => m_Wrapper.m_CardControls_Slot1;
+        public InputAction @SlotNorth => m_Wrapper.m_CardControls_SlotNorth;
         /// <summary>
-        /// Provides access to the underlying input action "CardControls/Slot2".
+        /// Provides access to the underlying input action "CardControls/SlotEast".
         /// </summary>
-        public InputAction @Slot2 => m_Wrapper.m_CardControls_Slot2;
+        public InputAction @SlotEast => m_Wrapper.m_CardControls_SlotEast;
         /// <summary>
-        /// Provides access to the underlying input action "CardControls/Slot3".
+        /// Provides access to the underlying input action "CardControls/SlotSouth".
         /// </summary>
-        public InputAction @Slot3 => m_Wrapper.m_CardControls_Slot3;
+        public InputAction @SlotSouth => m_Wrapper.m_CardControls_SlotSouth;
         /// <summary>
-        /// Provides access to the underlying input action "CardControls/Slot4".
+        /// Provides access to the underlying input action "CardControls/SlotWest".
         /// </summary>
-        public InputAction @Slot4 => m_Wrapper.m_CardControls_Slot4;
+        public InputAction @SlotWest => m_Wrapper.m_CardControls_SlotWest;
         /// <summary>
         /// Provides access to the underlying input action "CardControls/DiscardMod".
         /// </summary>
@@ -1735,18 +1735,18 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_CardControlsActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_CardControlsActionsCallbackInterfaces.Add(instance);
-            @Slot1.started += instance.OnSlot1;
-            @Slot1.performed += instance.OnSlot1;
-            @Slot1.canceled += instance.OnSlot1;
-            @Slot2.started += instance.OnSlot2;
-            @Slot2.performed += instance.OnSlot2;
-            @Slot2.canceled += instance.OnSlot2;
-            @Slot3.started += instance.OnSlot3;
-            @Slot3.performed += instance.OnSlot3;
-            @Slot3.canceled += instance.OnSlot3;
-            @Slot4.started += instance.OnSlot4;
-            @Slot4.performed += instance.OnSlot4;
-            @Slot4.canceled += instance.OnSlot4;
+            @SlotNorth.started += instance.OnSlotNorth;
+            @SlotNorth.performed += instance.OnSlotNorth;
+            @SlotNorth.canceled += instance.OnSlotNorth;
+            @SlotEast.started += instance.OnSlotEast;
+            @SlotEast.performed += instance.OnSlotEast;
+            @SlotEast.canceled += instance.OnSlotEast;
+            @SlotSouth.started += instance.OnSlotSouth;
+            @SlotSouth.performed += instance.OnSlotSouth;
+            @SlotSouth.canceled += instance.OnSlotSouth;
+            @SlotWest.started += instance.OnSlotWest;
+            @SlotWest.performed += instance.OnSlotWest;
+            @SlotWest.canceled += instance.OnSlotWest;
             @DiscardMod.started += instance.OnDiscardMod;
             @DiscardMod.performed += instance.OnDiscardMod;
             @DiscardMod.canceled += instance.OnDiscardMod;
@@ -1764,18 +1764,18 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
         /// <seealso cref="CardControlsActions" />
         private void UnregisterCallbacks(ICardControlsActions instance)
         {
-            @Slot1.started -= instance.OnSlot1;
-            @Slot1.performed -= instance.OnSlot1;
-            @Slot1.canceled -= instance.OnSlot1;
-            @Slot2.started -= instance.OnSlot2;
-            @Slot2.performed -= instance.OnSlot2;
-            @Slot2.canceled -= instance.OnSlot2;
-            @Slot3.started -= instance.OnSlot3;
-            @Slot3.performed -= instance.OnSlot3;
-            @Slot3.canceled -= instance.OnSlot3;
-            @Slot4.started -= instance.OnSlot4;
-            @Slot4.performed -= instance.OnSlot4;
-            @Slot4.canceled -= instance.OnSlot4;
+            @SlotNorth.started -= instance.OnSlotNorth;
+            @SlotNorth.performed -= instance.OnSlotNorth;
+            @SlotNorth.canceled -= instance.OnSlotNorth;
+            @SlotEast.started -= instance.OnSlotEast;
+            @SlotEast.performed -= instance.OnSlotEast;
+            @SlotEast.canceled -= instance.OnSlotEast;
+            @SlotSouth.started -= instance.OnSlotSouth;
+            @SlotSouth.performed -= instance.OnSlotSouth;
+            @SlotSouth.canceled -= instance.OnSlotSouth;
+            @SlotWest.started -= instance.OnSlotWest;
+            @SlotWest.performed -= instance.OnSlotWest;
+            @SlotWest.canceled -= instance.OnSlotWest;
             @DiscardMod.started -= instance.OnDiscardMod;
             @DiscardMod.performed -= instance.OnDiscardMod;
             @DiscardMod.canceled -= instance.OnDiscardMod;
@@ -2002,33 +2002,33 @@ public partial class @PlayerInputMap: IInputActionCollection2, IDisposable
     public interface ICardControlsActions
     {
         /// <summary>
-        /// Method invoked when associated input action "Slot1" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SlotNorth" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSlot1(InputAction.CallbackContext context);
+        void OnSlotNorth(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Slot2" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SlotEast" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSlot2(InputAction.CallbackContext context);
+        void OnSlotEast(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Slot3" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SlotSouth" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSlot3(InputAction.CallbackContext context);
+        void OnSlotSouth(InputAction.CallbackContext context);
         /// <summary>
-        /// Method invoked when associated input action "Slot4" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
+        /// Method invoked when associated input action "SlotWest" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>
         /// <seealso cref="UnityEngine.InputSystem.InputAction.started" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.performed" />
         /// <seealso cref="UnityEngine.InputSystem.InputAction.canceled" />
-        void OnSlot4(InputAction.CallbackContext context);
+        void OnSlotWest(InputAction.CallbackContext context);
         /// <summary>
         /// Method invoked when associated input action "DiscardMod" is either <see cref="UnityEngine.InputSystem.InputAction.started" />, <see cref="UnityEngine.InputSystem.InputAction.performed" /> or <see cref="UnityEngine.InputSystem.InputAction.canceled" />.
         /// </summary>

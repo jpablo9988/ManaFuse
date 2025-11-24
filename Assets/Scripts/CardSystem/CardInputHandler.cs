@@ -33,20 +33,20 @@ namespace CardSystem
 
             if (cardManager) return;
             //Yeet play mode if we can't find a card manager
-            #if UNITY_EDITOR
+#if UNITY_EDITOR
             Debug.LogError("Failed to find card manager");
             UnityEditor.EditorApplication.isPlaying = false;
-            #endif
+#endif
         }
 
         private void OnEnable() //fix all these at some point
         {
             _inputActions.CardControls.Enable();
             //Slot binds. These are setup for both keyboard and controller
-            _inputActions.CardControls.Slot1.performed += ctx => HandleSlotInput(0);
-            _inputActions.CardControls.Slot2.performed += ctx => HandleSlotInput(1);
-            _inputActions.CardControls.Slot3.performed += ctx => HandleSlotInput(2);
-            _inputActions.CardControls.Slot4.performed += ctx => HandleSlotInput(3);
+            _inputActions.CardControls.SlotNorth.performed += ctx => HandleSlotInput(0);
+            _inputActions.CardControls.SlotEast.performed += ctx => HandleSlotInput(1);
+            _inputActions.CardControls.SlotSouth.performed += ctx => HandleSlotInput(2);
+            _inputActions.CardControls.SlotWest.performed += ctx => HandleSlotInput(3);
             // Reload modifier (hold)
             _inputActions.CardControls.EquipMod.performed += ctx => OnReloadPressed();
             _inputActions.CardControls.EquipMod.canceled += ctx => OnReloadReleased();
@@ -57,10 +57,10 @@ namespace CardSystem
         private void OnDisable()
         {
             //Slot binds. These are setup for both keyboard and controller
-            _inputActions.CardControls.Slot1.performed -= ctx => HandleSlotInput(0);
-            _inputActions.CardControls.Slot2.performed -= ctx => HandleSlotInput(1);
-            _inputActions.CardControls.Slot3.performed -= ctx => HandleSlotInput(2);
-            _inputActions.CardControls.Slot4.performed -= ctx => HandleSlotInput(3);
+            _inputActions.CardControls.SlotNorth.performed -= ctx => HandleSlotInput(0);
+            _inputActions.CardControls.SlotEast.performed -= ctx => HandleSlotInput(1);
+            _inputActions.CardControls.SlotSouth.performed -= ctx => HandleSlotInput(2);
+            _inputActions.CardControls.SlotWest.performed -= ctx => HandleSlotInput(3);
             _inputActions.CardControls.EquipMod.performed -= ctx => OnReloadPressed();
             _inputActions.CardControls.EquipMod.canceled -= ctx => OnReloadReleased();
             _inputActions.CardControls.DiscardMod.performed -= ctx => discardHeld = false;

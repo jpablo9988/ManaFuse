@@ -820,7 +820,7 @@
             "id": "6ff163fb-5403-46d8-a9e5-46ad48e75b72",
             "actions": [
                 {
-                    "name": "Slot1",
+                    "name": "SlotNorth",
                     "type": "Button",
                     "id": "88277606-22e3-4887-ab9c-790de0b948d9",
                     "expectedControlType": "",
@@ -829,7 +829,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slot2",
+                    "name": "SlotEast",
                     "type": "Button",
                     "id": "d2f88b38-8052-475f-80d6-2dbe195ea327",
                     "expectedControlType": "",
@@ -838,7 +838,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slot3",
+                    "name": "SlotSouth",
                     "type": "Button",
                     "id": "ec517857-ffcc-44a9-a543-fe6a868dc935",
                     "expectedControlType": "",
@@ -847,7 +847,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Slot4",
+                    "name": "SlotWest",
                     "type": "Button",
                     "id": "4055baea-060a-49c4-a1fb-2a68198bc3b9",
                     "expectedControlType": "",
@@ -882,7 +882,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slot1",
+                    "action": "SlotNorth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -893,7 +893,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Slot1",
+                    "action": "SlotNorth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -904,7 +904,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Slot1",
+                    "action": "SlotNorth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -915,7 +915,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slot2",
+                    "action": "SlotEast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -926,18 +926,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slot2",
+                    "action": "SlotEast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "08c90ee8-b133-4732-9d66-2ce307070be3",
-                    "path": "<Keyboard>/j",
+                    "path": "<Keyboard>/l",
                     "interactions": "",
                     "processors": "",
-                    "groups": ";Gamepad",
-                    "action": "Slot2",
+                    "groups": "",
+                    "action": "SlotEast",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -948,7 +948,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slot3",
+                    "action": "SlotSouth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -959,7 +959,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Slot3",
+                    "action": "SlotSouth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -970,7 +970,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slot3",
+                    "action": "SlotSouth",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -981,18 +981,18 @@
                     "interactions": "",
                     "processors": "",
                     "groups": ";Touch",
-                    "action": "Slot4",
+                    "action": "SlotWest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
                 {
                     "name": "",
                     "id": "ac25cf48-4c88-4995-8cd2-977ff8a5d720",
-                    "path": "<Keyboard>/l",
+                    "path": "<Keyboard>/j",
                     "interactions": "",
                     "processors": "",
                     "groups": ";Gamepad",
-                    "action": "Slot4",
+                    "action": "SlotWest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1003,7 +1003,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Slot4",
+                    "action": "SlotWest",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -1076,7 +1076,7 @@
                 {
                     "name": "",
                     "id": "b8e3766b-a666-4ea3-897e-02f61af3aca4",
-                    "path": "<Keyboard>/r",
+                    "path": "<Keyboard>/shift",
                     "interactions": "",
                     "processors": "",
                     "groups": "",
