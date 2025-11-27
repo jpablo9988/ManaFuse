@@ -1,10 +1,8 @@
 using System;
 using TMPro;
 using UnityEngine;
-using SaveSystem;
 
-[RequireComponent(typeof(PersistentId))]
-public class PlayerManager : MonoBehaviour, ISaveable
+public class PlayerManager : MonoBehaviour
 {
     [Header("Start Settings")]
     [SerializeField]
@@ -23,8 +21,6 @@ public class PlayerManager : MonoBehaviour, ISaveable
     private Timer _timer;
     [SerializeField]
     private PlayerMovement _movement;
-
-    private PersistentId _persistentId;
 
     public bool IsTimerActive { get => _timer.IsTicking; set => _timer.IsTicking = value; }
     public PlayerMovement PlayerMovementManager => _movement;
@@ -113,16 +109,10 @@ public class PlayerManager : MonoBehaviour, ISaveable
             _timer.InitializeTimer(_startTimerTicking, ReduceManaByTickUnit);
         }
         ManafuseBar.NoManaLeft += IsGameOver;
-
-        // Register with save system
-        SaveGameManager.Instance.Register(this);
     }
     void OnDisable()
     {
         ManafuseBar.NoManaLeft -= IsGameOver;
-
-        // Unregister from save system
-        SaveGameManager.Instance.Unregister(this);
     }
     public void SetManaUnits(int newUnits, int newTicks = 0)
     {
@@ -174,82 +164,5 @@ public class PlayerManager : MonoBehaviour, ISaveable
         GameContext.Instance.InputManager.ActivateCardInputs = !gameOver;
 
 
-    }
-
-    // ISaveable Implementation
-    public string SaveId => _persistentId ? _persistentId.Id : string.Empty;
-
-    public object CaptureState()
-    {
-        float greenValue = 0f;
-        float redValue = 0f;
-
-        // Get current slider values from the bar
-        if (_bar && _bar.gameObject.activeInHierarchy)
-        {
-            var sliders = _bar.GetComponentsInChildren<UnityEngine.UI.Slider>();
-            if (sliders.Length >= 2)
-            {
-                greenValue = sliders[0].value; // First slider is green
-                redValue = sliders[1].value;   // Second slider is red
-            }
-        }
-
-        return new PlayerSaveData
-        {
-            manaUnits = _manaUnits,
-            manaBarTicks = _manaBarTicks,
-            greenSliderValue = greenValue,
-            redSliderValue = redValue,
-            positionX = transform.position.x,
-            positionY = transform.position.y,
-            positionZ = transform.position.z,
-            roundedAngle = _movement ? _movement.RoundedAngle : 180f
-        };
-    }
-
-    public void RestoreState(object state)
-    {
-        if (state is PlayerSaveData data)
-        {
-            // Restore position
-            transform.position = new Vector3(data.positionX, data.positionY, data.positionZ);
-
-            // Restore rotation through PlayerMovement
-            if (_movement != null)
-            {
-                _movement.SetRotation(data.roundedAngle);
-            }
-
-            // Restore mana bar configuration
-            if (_bar && _bar.gameObject.activeInHierarchy)
-            {
-                // Set up the bar with saved units and ticks (but don't reset values)
-                _bar.SetManaUnits(data.manaUnits, data.manaBarTicks, false);
-
-                // Restore the actual slider values
-                var sliders = _bar.GetComponentsInChildren<UnityEngine.UI.Slider>();
-                if (sliders.Length >= 2)
-                {
-                    sliders[0].value = data.greenSliderValue; // Green slider
-                    sliders[1].value = data.redSliderValue;   // Red slider
-                }
-            }
-
-            Debug.Log($"Player state restored: Mana={data.greenSliderValue}/{data.manaBarTicks}, Position={transform.position}, Rotation={data.roundedAngle}");
-        }
-    }
-
-    [Serializable]
-    private class PlayerSaveData
-    {
-        public int manaUnits;
-        public int manaBarTicks;
-        public float greenSliderValue;
-        public float redSliderValue;
-        public float positionX;
-        public float positionY;
-        public float positionZ;
-        public float roundedAngle;
     }
 }
