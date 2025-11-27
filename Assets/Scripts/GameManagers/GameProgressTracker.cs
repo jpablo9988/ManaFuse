@@ -20,6 +20,7 @@ public class GameProgressTracker : MonoBehaviour
     private int noEnemiesInScene = 0;
     public bool winByEnemiesKilled = true;
     private bool isVictoryAchieved = false;
+
     public bool IsVictoryAchieved
     {
         get { return isVictoryAchieved; }
@@ -28,6 +29,11 @@ public class GameProgressTracker : MonoBehaviour
             isVictoryAchieved = true;
             if (isVictoryAchieved) OnVictory();
         }
+    }
+
+    void Awake()
+    {
+        _persistentId = GetComponent<PersistentId>();
     }
 
     void Start()

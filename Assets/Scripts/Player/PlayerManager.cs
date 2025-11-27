@@ -25,14 +25,14 @@ public class PlayerManager : MonoBehaviour
     public bool IsTimerActive { get => _timer.IsTicking; set => _timer.IsTicking = value; }
     public PlayerMovement PlayerMovementManager => _movement;
     public static event Action OnDeathPlayer;
-    
+
     /// <summary>
     /// Gets the current number of mana units
     /// </summary>
-    public int CurrentManaUnits 
-    { 
-        get 
-        { 
+    public int CurrentManaUnits
+    {
+        get
+        {
             if (_bar && _bar.gameObject.activeInHierarchy)
             {
                 try
@@ -53,12 +53,13 @@ public class PlayerManager : MonoBehaviour
                 }
             }
             return _manaUnits;
-        } 
+        }
     }
 
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
+        _persistentId = GetComponent<PersistentId>();
     }
     void Start()
     {
