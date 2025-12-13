@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using SaveSystem;
 using UnityEngine;
 
 public class GameProgressTracker : MonoBehaviour
@@ -29,11 +30,6 @@ public class GameProgressTracker : MonoBehaviour
             isVictoryAchieved = true;
             if (isVictoryAchieved) OnVictory();
         }
-    }
-
-    void Awake()
-    {
-        _persistentId = GetComponent<PersistentId>();
     }
 
     void Start()
