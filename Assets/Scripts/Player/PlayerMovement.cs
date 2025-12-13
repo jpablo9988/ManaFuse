@@ -103,6 +103,20 @@ public class PlayerMovement : MonoBehaviour, ICharacterMovement
     }
 
     /// <summary>
+    /// Directly sets the player's rotation angle. Used for loading saved state.
+    /// </summary>
+    /// <param name="angle">The rotation angle in degrees.</param>
+    public void SetRotation(float angle)
+    {
+        _roundedAngle = angle;
+        if (targetTransformRotation != null)
+        {
+            Quaternion targetRotation = Quaternion.Euler(0f, _roundedAngle - 90f, 0f);
+            targetTransformRotation.rotation = targetRotation;
+        }
+    }
+
+    /// <summary>
     /// Initiates a sprint using the default sprint settings.
     /// </summary>
     /// <param name="m_Input">Movement input direction as a Vector2 (x,z).</param>

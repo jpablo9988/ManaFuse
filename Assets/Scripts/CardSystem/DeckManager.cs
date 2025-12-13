@@ -37,9 +37,11 @@ namespace CardSystem
         public CardManager CardManager => cardManager;
 
         private bool _isReloading = false;
+        private PersistentId _persistentId;
 
         private void Awake()
         {
+            _persistentId = GetComponent<PersistentId>();
             if (cardManager) return;
             cardManager = GetComponent<CardManager>();
             if (!cardManager)
