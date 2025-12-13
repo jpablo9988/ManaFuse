@@ -8,6 +8,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 620403157057800739, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.19
+      objectReference: {fileID: 0}
+    - target: {fileID: 620403157057800739, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.2
+      objectReference: {fileID: 0}
+    - target: {fileID: 620403157057800739, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.47
+      objectReference: {fileID: 0}
+    - target: {fileID: 988029784779268516, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 1619199026, guid: c7ff3707afedd824583de93d76583ac1, type: 3}
     - target: {fileID: 1675845833241882109, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
       propertyPath: m_LocalPosition.x
       value: 63.2
@@ -48,6 +64,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3308577731551737082, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: d0dae8f9cab4dc2409786de1bb3df41f, type: 2}
     - target: {fileID: 3816646876713231836, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
       propertyPath: health
       value: 20
@@ -56,14 +76,54 @@ PrefabInstance:
       propertyPath: attackCard
       value: 
       objectReference: {fileID: 11400000, guid: 5f3560562cb4a3040a4cb13978e70426, type: 2}
+    - target: {fileID: 4153364419679035295, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0.13
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153364419679035295, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4153364419679035295, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0.8
+      objectReference: {fileID: 0}
     - target: {fileID: 4318042881336807739, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
       propertyPath: m_Name
-      value: ShootingEnemy (5) Variant
+      value: DefensiveEnemy
       objectReference: {fileID: 0}
     - target: {fileID: 4819575635559175077, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
       objectReference: {fileID: 2100000, guid: 632b0be0e71538644adb0fef0d3bac45, type: 2}
+    - target: {fileID: 5506312735956191462, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2104672707, guid: db046eeb870ca29448c0894366d4ce89, type: 3}
+    - target: {fileID: 5614097624069566819, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.09
+      objectReference: {fileID: 0}
+    - target: {fileID: 5994983484012643407, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ef0bec7ca12ab68448394b9650c61773, type: 2}
+    - target: {fileID: 6235463530989801022, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Color.g
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6235463530989801022, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Color.r
+      value: 0.9633899
+      objectReference: {fileID: 0}
+    - target: {fileID: 7507348096240205171, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -336304574, guid: da937b26c1439d04690acddecd4b0fbb, type: 3}
+    - target: {fileID: 8031491811248369493, guid: a27ee0888fcd0514c9aaa601fb36130a, type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: cd44ca4d124557445a982e4a6596c347, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
