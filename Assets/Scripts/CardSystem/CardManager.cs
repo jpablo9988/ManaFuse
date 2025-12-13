@@ -46,7 +46,7 @@ namespace CardSystem
             if (slotIndex < 0 || slotIndex >= cardSlots.Length) return;
             cardSlots[slotIndex] = card;
             //Card is listening:
-            if (card.cardType == CardType.Attack)
+            if (card != null && card.cardType == CardType.Attack)
             {
                 Projectile.OnHitEnemy += card.OnHitTarget;
             }

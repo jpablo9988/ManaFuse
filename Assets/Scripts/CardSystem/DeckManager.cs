@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SaveSystem;
 using UnityEngine;
 
 namespace CardSystem
@@ -41,12 +42,10 @@ namespace CardSystem
         private void Awake()
         {
             if (cardManager) return;
-            cardManager = GetComponent<CardManager>();
             if (!cardManager)
             {
                 cardManager = this.GetComponentInScene(false, out cardManager);
             }
-
             if (cardManager) return;
             //Yeet play mode if we can't find a card manager
 #if UNITY_EDITOR
