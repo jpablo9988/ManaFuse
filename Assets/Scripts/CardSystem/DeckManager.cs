@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using SaveSystem;
 using UnityEngine;
 
 namespace CardSystem
@@ -37,13 +38,10 @@ namespace CardSystem
         public CardManager CardManager => cardManager;
 
         private bool _isReloading = false;
-        private PersistentId _persistentId;
 
         private void Awake()
         {
-            _persistentId = GetComponent<PersistentId>();
             if (cardManager) return;
-            cardManager = GetComponent<CardManager>();
             if (!cardManager)
             {
                 cardManager = this.GetComponentInScene(false, out cardManager);

@@ -59,7 +59,6 @@ public class PlayerManager : MonoBehaviour
     void Awake()
     {
         _movement = GetComponent<PlayerMovement>();
-        _persistentId = GetComponent<PersistentId>();
     }
     void Start()
     {

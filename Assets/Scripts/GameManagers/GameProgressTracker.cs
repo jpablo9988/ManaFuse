@@ -31,10 +31,6 @@ public class GameProgressTracker : MonoBehaviour
         }
     }
 
-    void Awake()
-    {
-        _persistentId = GetComponent<PersistentId>();
-    }
 
     void Start()
     {
