@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using SaveSystem;
 using UnityEngine;
 
 public class GameProgressTracker : MonoBehaviour
@@ -20,6 +21,7 @@ public class GameProgressTracker : MonoBehaviour
     private int noEnemiesInScene = 0;
     public bool winByEnemiesKilled = true;
     private bool isVictoryAchieved = false;
+
     public bool IsVictoryAchieved
     {
         get { return isVictoryAchieved; }

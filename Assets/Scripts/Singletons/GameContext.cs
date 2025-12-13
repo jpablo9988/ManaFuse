@@ -1,6 +1,7 @@
 using UnityEngine;
 using CardSystem;
 using AudioSystem;
+using SaveSystem;
 
 public class GameContext : Singleton<GameContext>
 {
@@ -12,6 +13,7 @@ public class GameContext : Singleton<GameContext>
     [SerializeField] private DeckManager _deckManager;
     [SerializeField] private PauseHandler _pauseManager;
     [SerializeField] private AudioManager _audioManager;
+    [SerializeField] private SaveGameManager _saveManager;
 
     [Header("Dependency Settings")]
     [SerializeField] private bool _createManagersIfMissing = true;
@@ -85,6 +87,16 @@ public class GameContext : Singleton<GameContext>
             return _audioManager;
         }
     }
+    public SaveGameManager SaveManager
+    {
+        get
+        {
+            if (_saveManager) return _saveManager;
+            // SaveGameManager uses its own singleton pattern, so just get the instance
+            _saveManager = SaveGameManager.Instance;
+            return _saveManager;
+        }
+    }
     protected override void Awake()
     {
         base.Awake();
@@ -94,6 +106,7 @@ public class GameContext : Singleton<GameContext>
         if (!_attackManager) _attackManager = this.GetComponentInScene<AttackManager>(_createManagersIfMissing, out _attackManager);
         if (!_deckManager) _deckManager = this.GetComponentInScene<DeckManager>(_createManagersIfMissing, out _deckManager);
         if (!_audioManager) _audioManager = this.GetComponentInScene<AudioManager>(_createManagersIfMissing, out _audioManager);
+        if (!_saveManager) _saveManager = SaveGameManager.Instance;
 
 
 

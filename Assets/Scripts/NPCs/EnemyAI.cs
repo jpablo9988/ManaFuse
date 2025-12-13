@@ -2,6 +2,7 @@ using UnityEngine;
 using CardSystem;
 using UnityEngine.Serialization;
 using System;
+using UnityEngine.UIElements;
 
 /// <summary>
 /// TODO: Enemy Movement and Enemy Stats (or just NPC/Enemy Class) should be separate.
@@ -45,6 +46,14 @@ public class EnemyAI : MonoBehaviour
     [SerializeField]
     [Tooltip("(Optional) Where the attack bullet with spawn from.")]
     private Transform _attackSpawnPoint;
+    [Tooltip("(Optional) Visual representation of the current aim rotation")]
+    [SerializeField]
+    private Transform _aimSpriteIndicator;
+    [Header("Animation References (Optional)")]
+    [SerializeField]
+    private CharacterAnimationManager _animationMovementHandler;
+    [SerializeField]
+    private CharacterAnimationManager _animationShootingHandler;
 
     //Reference to the player's transform.
     private Transform playerTransform;
@@ -70,6 +79,19 @@ public class EnemyAI : MonoBehaviour
             return;
 
         float distanceToPlayer = Vector3.Distance(transform.position, playerTransform.position);
+        //(TODO) Sometimes flips out of perspective due to camera's nature. It looks good, but could be better.
+        if (_aimSpriteIndicator)
+        {
+            Vector3 _playerDir = playerTransform.position - _aimSpriteIndicator.position;
+            _aimSpriteIndicator.right = _playerDir;
+            Vector3 _currRotation = _aimSpriteIndicator.rotation.eulerAngles;
+            _currRotation.x = 0;
+            if (_currRotation.y < 0)
+            {
+                _currRotation.x = 180;
+            }
+            _aimSpriteIndicator.rotation = Quaternion.Euler(_currRotation);
+        }
 
         //Determine the detection threshold based on detection mode.
         float detectionThreshold = detectionUsesMinRange ? optimalRangeMin : optimalRangeMax;
@@ -90,6 +112,7 @@ public class EnemyAI : MonoBehaviour
             moveDirection.y = 0;
             //transform.position += moveDirection * (moveSpeed * Time.deltaTime);
             newLinearVelocity = moveDirection * moveSpeed;
+            RotateVisually(moveDirection);
 
         }
         else if (distanceToPlayer > optimalRangeMax)
@@ -99,6 +122,7 @@ public class EnemyAI : MonoBehaviour
             moveDirection.y = 0;
             //transform.position += moveDirection * (moveSpeed * Time.deltaTime);
             newLinearVelocity = moveDirection * moveSpeed;
+            RotateVisually(moveDirection);
         }
 
         //Add random motion to simulate dodging / avoiding projectiles.
@@ -172,6 +196,7 @@ public class EnemyAI : MonoBehaviour
                 Instantiate(attackCard.particleEffectPrefab, transform.position, transform.rotation);
             }
         }
+        if (_animationShootingHandler) _animationShootingHandler.Shoot();
     }
 
 
@@ -198,5 +223,26 @@ public class EnemyAI : MonoBehaviour
         var pos = transform.position;
         pos.y = initialY;
         transform.position = pos;
+    }
+
+    /// <summary>
+    /// Rotates the player based on input direction.
+    /// Snaps rotation to 45-degree increments (8 directions).
+    /// Should be called from Update, not FixedUpdate, as it does not use physics.
+    /// </summary>
+    /// <param name="m_Input">Movement input direction as a Vector2 (x,z).</param>
+    private void RotateVisually(Vector3 m_Direction)
+    {
+        if (m_Direction.magnitude > 0.1f && _animationMovementHandler)
+        {
+            // Calculate angle from input
+            float angle = Mathf.Atan2(m_Direction.x, m_Direction.z) * Mathf.Rad2Deg;
+
+            // Snap to 45-degree increments (0, 45, 90, 135, 180, 225, 270, 315)
+            float _roundedAngle = Mathf.Round(angle / 45f) * 45f;
+
+            // Apply the rotation to the animation movement manager.
+            _animationMovementHandler.SetAnimationParameters(m_Direction.magnitude, _roundedAngle);
+        }
     }
 }
