@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using SaveSystem;
 using UnityEngine;
 
 public class GameProgressTracker : MonoBehaviour
@@ -30,7 +31,6 @@ public class GameProgressTracker : MonoBehaviour
             if (isVictoryAchieved) OnVictory();
         }
     }
-
 
     void Start()
     {
