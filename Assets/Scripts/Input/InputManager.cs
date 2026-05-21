@@ -51,6 +51,7 @@ public class InputManager : MonoBehaviour
             ctx.AddAsk(InputTokens.PlayerInputsActive, () => ActivatePlayerInputs);
             ctx.AddAsk(InputTokens.CardInputsActive, () => ActivateCardInputs);
             ctx.AddAsk(InputTokens.UIInputsActive, () => ActivateUIInputs);
+            ctx.AddAsk(InputTokens.PlayerInputs, () => playerHandler.CurrentMovementInput);
 
             // Acts
             ctx.AddAct(InputTokens.SetPlayerInputs, (bool v) => ActivatePlayerInputs = v);
@@ -78,6 +79,7 @@ public class InputManager : MonoBehaviour
         public static readonly Ask<bool> PlayerInputsActive = new Ask<bool>("Input.PlayerInputsActive");
         public static readonly Ask<bool> CardInputsActive = new Ask<bool>("Input.CardInputsActive");
         public static readonly Ask<bool> UIInputsActive = new Ask<bool>("Input.UIInputsActive");
+        public static readonly Ask<Vector2> PlayerInputs = new Ask<Vector2>("Input.PlayerInputs");
 
         public static readonly Act<bool> SetPlayerInputs = new Act<bool>("Input.SetPlayerInputs");
         public static readonly Act<bool> SetCardInputs = new Act<bool>("Input.SetCardInputs");

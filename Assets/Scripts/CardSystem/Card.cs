@@ -101,7 +101,8 @@ namespace CardSystem
             if (!spawnProjectile || !projectilePrefab) return;
             if (projectilePrefab.TryGetComponent(out Projectile projectileRef))
             {
-                GameContext.Instance.ProjectileManager.ShootProjectile(projectileRef);
+                // GameContext.Instance.ProjectileManager.ShootProjectile(projectileRef);
+                //GameContext.Instance.Act(Shoot)
             }
         }
 
@@ -124,29 +125,12 @@ namespace CardSystem
         /// <param name="user">The GameObject that is using the card.</param>
         private void ActivateDashEffect(GameObject user)
         {
-            if (GameContext.Instance.Player.PlayerMovementManager != null)
+            DashArgs customDashArgs = new(GameContext.Instance.Ask(InputManager.InputTokens.PlayerInputs))
             {
-                var playerMovement = GameContext.Instance.Player.PlayerMovementManager;
-
-                // Get the player's current facing angle
-                float angle = playerMovement.RoundedAngle * Mathf.Deg2Rad;
-
-                // Convert angle to a direction vector
-                // Using the snapped rotation to match visual facing
-                Vector2 moveInput = new Vector2(
-                    Mathf.Sin(angle),  // x component
-                    Mathf.Cos(angle)   // z component (as y in Vector2)
-                );
-
-                Debug.Log($"Dashing with angle {playerMovement.RoundedAngle}, direction: {moveInput}");
-
-                // Use the direction vector for the sprint
-                playerMovement.InitiateSprint(
-                    moveInput,
-                    dashDistance,
-                    dashDuration
-                );
-            }
+                Distance = dashDistance,
+                Duration = dashDuration
+            };
+            GameContext.Instance.Act(Dash, customDashArgs);
         }
     }
 
